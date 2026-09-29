@@ -1,0 +1,171 @@
+/* Shared stylesheet for the whole site. Plain CSS, no frameworks. */
+
+:root {
+  --bg: #ffffff;
+  --text: #1c1c1e;
+  --muted: #6b7280;
+  --accent: #1d4ed8;
+  --border: #e5e7eb;
+  --card-bg: #f9fafb;
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  line-height: 1.6;
+  color: var(--text);
+  background: var(--bg);
+}
+
+.container {
+  max-width: 760px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+/* Header + nav (same on every page) */
+.site-header {
+  border-bottom: 1px solid var(--border);
+  margin-bottom: 2rem;
+}
+
+.site-header .container {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+}
+
+.brand {
+  font-weight: 700;
+  font-size: 1.1rem;
+  color: var(--text);
+  text-decoration: none;
+}
+
+.site-header nav a {
+  margin-left: 1.25rem;
+  color: var(--muted);
+  text-decoration: none;
+  font-size: 0.95rem;
+}
+
+.site-header nav a:hover { color: var(--text); }
+.site-header nav a.active { color: var(--accent); font-weight: 600; }
+
+/* Home page */
+.hero h1 { font-size: 2.2rem; margin-bottom: 0.25rem; }
+.subtitle { font-size: 1.2rem; color: var(--muted); margin-top: 0; }
+
+.cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1rem;
+  margin: 2rem 0;
+}
+
+.card {
+  display: block;
+  padding: 1.25rem;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  background: var(--card-bg);
+  text-decoration: none;
+  color: var(--text);
+}
+
+.card:hover { border-color: var(--accent); }
+.card h2 { margin: 0 0 0.5rem; font-size: 1.1rem; }
+.card p { margin: 0; color: var(--muted); font-size: 0.95rem; }
+
+/* Script library */
+.script-group { margin-bottom: 2rem; }
+.script-group h2 { font-size: 1.25rem; border-bottom: 1px solid var(--border); padding-bottom: 0.4rem; }
+
+.script { margin-bottom: 1.25rem; }
+.script h3 { margin: 0 0 0.25rem; font-size: 1.05rem; }
+.script p { margin: 0.25rem 0; color: var(--muted); }
+.script code {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  font-size: 0.85rem;
+  background: var(--card-bg);
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  padding: 0.1rem 0.35rem;
+}
+
+/* Gallery */
+.gallery {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 1rem;
+  margin: 1.5rem 0;
+}
+
+.gallery figure {
+  margin: 0;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  overflow: hidden;
+  background: var(--card-bg);
+}
+
+.gallery img { width: 100%; height: auto; display: block; }
+.gallery figcaption { padding: 0.6rem 0.8rem; font-size: 0.9rem; color: var(--muted); }
+
+.empty-note {
+  grid-column: 1 / -1;
+  color: var(--muted);
+  border: 1px dashed var(--border);
+  border-radius: 10px;
+  padding: 2rem;
+  text-align: center;
+}
+
+/* Notes */
+.note {
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 1.25rem;
+  margin-bottom: 1.25rem;
+  background: var(--card-bg);
+}
+
+.note-date { color: var(--muted); font-size: 0.85rem; margin: 0 0 0.25rem; }
+.note h2 { margin: 0 0 0.5rem; font-size: 1.15rem; }
+.note p { margin: 0.5rem 0; }
+.note p:last-child { margin-bottom: 0; }
+.note code {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  font-size: 0.85rem;
+  background: #fff;
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  padding: 0.1rem 0.35rem;
+}
+
+footer {
+  border-top: 1px solid var(--border);
+  margin-top: 3rem;
+  padding: 1.5rem 0;
+  color: var(--muted);
+  font-size: 0.85rem;
+  text-align: center;
+}
+
+/* From-email archive additions */
+.group-note {
+  color: #666;
+  font-size: 0.9em;
+  margin: -0.5em 0 1em;
+}
+.script-date {
+  color: #888;
+  font-size: 0.85em;
+  margin-left: 0.5em;
+}

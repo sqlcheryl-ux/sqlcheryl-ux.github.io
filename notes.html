@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Notes — Cheryl Smith</title>
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<header class="site-header">
+  <div class="container">
+    <a class="brand" href="index.html">Cheryl Smith</a>
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="scripts.html">Scripts</a>
+      <a href="gallery.html">Gallery</a>
+      <a href="notes.html" class="active">Notes</a>
+    </nav>
+  </div>
+</header>
+
+<main class="container">
+  <h1>Notes</h1>
+  <p>Short lessons from the field, newest first.</p>
+
+  <!--
+    HOW TO ADD A NOTE
+    Copy one <article class="note"> ... </article> block, paste it at the
+    top of the list below (right after this comment), and update the date,
+    heading, and body. Commit and push -- the site updates automatically.
+  -->
+
+  <article class="note">
+    <p class="note-date">2026-09-29</p>
+    <h2>Make job-failure emails actually useful</h2>
+    <p>
+      The built-in "notify on failure" email only says the job failed. Add a
+      final job step that runs when the main step fails: have it read the
+      failed step's <code>message</code> from
+      <code>msdb.dbo.sysjobhistory</code> and send it with
+      <code>sp_send_dbmail</code>. Then the alert arrives with the real error
+      attached.
+    </p>
+  </article>
+
+  <article class="note">
+    <p class="note-date">2026-09-29</p>
+    <h2>SSIS errors live in the SSISDB catalog</h2>
+    <p>
+      When a package fails, skip the Agent history and go straight to
+      <code>SSISDB.catalog.event_messages</code> joined to
+      <code>catalog.executions</code>. Filter
+      <code>event_name</code> to <code>OnError</code> /
+      <code>OnTaskFailed</code> — that's the full error chain, including
+      which task raised it.
+    </p>
+  </article>
+
+  <article class="note">
+    <p class="note-date">2026-09-29</p>
+    <h2>Job failure emails are thin — check msdb instead</h2>
+    <p>
+      A dbmail alert tells you which step failed but not why. The actual error
+      text is in the <code>message</code> column of
+      <code>msdb.dbo.sysjobhistory</code> — query it before guessing.
+      Script: <code>scripts/diagnostics/job-failure-detail.sql</code>.
+    </p>
+  </article>
+</main>
+
+<footer>
+  <div class="container">&copy; 2026 Cheryl Smith</div>
+</footer>
+
+</body>
+</html>

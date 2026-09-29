@@ -1,0 +1,3532 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Script Library — Cheryl Smith</title>
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<header class="site-header">
+  <div class="container">
+    <a class="brand" href="index.html">Cheryl Smith</a>
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="scripts.html" class="active">Scripts</a>
+      <a href="gallery.html">Gallery</a>
+      <a href="notes.html">Notes</a>
+    </nav>
+  </div>
+</header>
+
+<main class="container">
+  <h1>Script Library</h1>
+  <p>
+    SQL Server scripts I actually use. To grab one: open the
+    <a href="https://github.com/">GitHub repo</a>, browse to the file,
+    and copy it — or open <strong>Raw</strong> for plain text.
+  </p>
+
+  <section class="script-group">
+    <h2>Diagnostics</h2>
+
+    <div class="script">
+      <h3>Job failure detail</h3>
+      <p>The dbmail "job failed" alert only says which step failed. This shows the step's full error message from msdb job history — the detail the email leaves out.</p>
+      <p><code>scripts/diagnostics/job-failure-detail.sql</code></p>
+    </div>
+
+    <div class="script">
+      <h3>SSIS execution errors</h3>
+      <p>Pulls the full OnError / OnTaskFailed chain from the SSISDB catalog for recent package executions, with a package-name filter.</p>
+      <p><code>scripts/diagnostics/ssis-execution-errors.sql</code></p>
+    </div>
+  </section>
+
+  <section class="script-group">
+    <h2>Maintenance</h2>
+
+    <div class="script">
+      <h3>Index fragmentation check</h3>
+      <p>Quick scan with <code>sys.dm_db_index_physical_stats</code>. Flags indexes at 30%+ fragmentation with 1,000+ pages as rebuild candidates.</p>
+      <p><code>scripts/maintenance/index-fragmentation-check.sql</code></p>
+    </div>
+  </section>
+
+  <section class="script-group">
+    <h2>Agent Jobs</h2>
+
+    <div class="script">
+      <h3>List job schedules</h3>
+      <p>Every SQL Agent job on the instance with its schedule, frequency, and next run time. Handy when inheriting a server.</p>
+      <p><code>scripts/agent-jobs/list-job-schedules.sql</code></p>
+    </div>
+  </section>
+
+  <section class="script-group">
+    <h2>Snippets</h2>
+
+    <div class="script">
+      <h3>Find blocking</h3>
+      <p>Who is blocking whom right now, with the blocked statement text — so you can find the head blocker fast.</p>
+      <p><code>scripts/snippets/find-blocking.sql</code></p>
+    </div>
+  </section>
+  <section class="script-group">
+    <h2>From Email — 2024 (3)</h2>
+    <p class="group-note">Recovered from email attachments and redacted for sharing: servers → <code>AddServer</code>, databases → <code>AddDatabase</code>, companies → <code>AddCompany</code>.</p>
+    <div class="script">
+      <h3>Alldata</h3>
+      <p>Object:  Table [dbo].[Class]    Script Date: 4/28/2024 5:15:40 PM</p>
+      <p><code>scripts/from-email/20240428-AllData.sql</code> <span class="script-date">2024-04-28</span></p>
+    </div>
+    <div class="script">
+      <h3>Nonpivot</h3>
+      <p>Select * into #Student from (</p>
+      <p><code>scripts/from-email/20240428-NonPivot.sql</code> <span class="script-date">2024-04-28</span></p>
+    </div>
+    <div class="script">
+      <h3>Pivot</h3>
+      <p>WITH CTE_Finals as (</p>
+      <p><code>scripts/from-email/20240428-PIVOT.sql</code> <span class="script-date">2024-04-28</span></p>
+    </div>
+  </section>
+
+  <section class="script-group">
+    <h2>From Email — 2023 (184)</h2>
+    <p class="group-note">Recovered from email attachments and redacted for sharing: servers → <code>AddServer</code>, databases → <code>AddDatabase</code>, companies → <code>AddCompany</code>.</p>
+    <div class="script">
+      <h3>Auditexample</h3>
+      <p>Auditing script</p>
+      <p><code>scripts/from-email/20230112-AuditExample.sql</code> <span class="script-date">2023-01-12</span></p>
+    </div>
+    <div class="script">
+      <h3>Audittriggeronlogs</h3>
+      <p>Auditing script</p>
+      <p><code>scripts/from-email/20230112-AuditTriggerOnLogs.sql</code> <span class="script-date">2023-01-12</span></p>
+    </div>
+    <div class="script">
+      <h3>Blitperfmon</h3>
+      <p>Performance monitoring</p>
+      <p><code>scripts/from-email/20230112-BlitPerfMon.sql</code> <span class="script-date">2023-01-12</span></p>
+    </div>
+    <div class="script">
+      <h3>Blitzfirst</h3>
+      <p>Exec [dbo].[sp_BlitzFirst]@ExpertMode = 1</p>
+      <p><code>scripts/from-email/20230112-BlitzFirst.sql</code> <span class="script-date">2023-01-12</span></p>
+    </div>
+    <div class="script">
+      <h3>Createlongrunningtable</h3>
+      <p>USE [AddDatabase]</p>
+      <p><code>scripts/from-email/20230112-CreateLongRunningTable.sql</code> <span class="script-date">2023-01-12</span></p>
+    </div>
+    <div class="script">
+      <h3>Ddltrigger</h3>
+      <p>CREATE DATABASE AddDatabase;</p>
+      <p><code>scripts/from-email/20230112-DDLTrigger.sql</code> <span class="script-date">2023-01-12</span></p>
+    </div>
+    <div class="script">
+      <h3>Databasefileinfo</h3>
+      <p>SELECT DISTINCT DB_NAME(dovs.database_id) DBName,</p>
+      <p><code>scripts/from-email/20230112-DatabaseFileInfo.sql</code> <span class="script-date">2023-01-12</span></p>
+    </div>
+    <div class="script">
+      <h3>Databaseinfo</h3>
+      <p>SELECT  name ,</p>
+      <p><code>scripts/from-email/20230112-DatabaseInfo.sql</code> <span class="script-date">2023-01-12</span></p>
+    </div>
+    <div class="script">
+      <h3>Deadlocks</h3>
+      <p>SET NOCOUNT ON</p>
+      <p><code>scripts/from-email/20230112-Deadlocks.sql</code> <span class="script-date">2023-01-12</span></p>
+    </div>
+    <div class="script">
+      <h3>Enableclr</h3>
+      <p>Sp_configure &#x27;show advanced options&#x27;, 1;</p>
+      <p><code>scripts/from-email/20230112-EnableCLR.sql</code> <span class="script-date">2023-01-12</span></p>
+    </div>
+    <div class="script">
+      <h3>Enabledac</h3>
+      <p>EXEC sp_configure &#x27;remote admin connections&#x27;, 1</p>
+      <p><code>scripts/from-email/20230112-EnableDAC.sql</code> <span class="script-date">2023-01-12</span></p>
+    </div>
+    <div class="script">
+      <h3>Findsysadmins</h3>
+      <p>CREATE TABLE #SysAdmin</p>
+      <p><code>scripts/from-email/20230112-FindSysAdmins.sql</code> <span class="script-date">2023-01-12</span></p>
+    </div>
+    <div class="script">
+      <h3>Forwardedrecords</h3>
+      <p>Check the forwarding record count through sys.dm_db_index_physical_stats</p>
+      <p><code>scripts/from-email/20230112-ForwardedRecords.sql</code> <span class="script-date">2023-01-12</span></p>
+    </div>
+    <div class="script">
+      <h3>Fragmentationsingletable</h3>
+      <p>DECLARE @db_id INT;</p>
+      <p><code>scripts/from-email/20230112-FragmentationSingleTable.sql</code> <span class="script-date">2023-01-12</span></p>
+    </div>
+    <div class="script">
+      <h3>Freeproccache</h3>
+      <p>DECLARE @intDBID INT;</p>
+      <p><code>scripts/from-email/20230112-FreeprocCache.sql</code> <span class="script-date">2023-01-12</span></p>
+    </div>
+    <div class="script">
+      <h3>Longrunningjobs</h3>
+      <p>SELECT job_id,run_date,</p>
+      <p><code>scripts/from-email/20230112-LongRunningJobs.sql</code> <span class="script-date">2023-01-12</span></p>
+    </div>
+    <div class="script">
+      <h3>Longrunningquery</h3>
+      <p>DECLARE @longrunningthreshold int</p>
+      <p><code>scripts/from-email/20230112-LongRunningQuery.sql</code> <span class="script-date">2023-01-12</span></p>
+    </div>
+    <div class="script">
+      <h3>Longrunningqueries</h3>
+      <p>SELECT TOP 100</p>
+      <p><code>scripts/from-email/20230112-LongrunningQueries.sql</code> <span class="script-date">2023-01-12</span></p>
+    </div>
+    <div class="script">
+      <h3>Optimize</h3>
+      <p>Object:  Job [Optimization]    Script Date: 6/6/2018 4:52:22 PM</p>
+      <p><code>scripts/from-email/20230112-Optimize.sql</code> <span class="script-date">2023-01-12</span></p>
+    </div>
+    <div class="script">
+      <h3>Procslongestrunning</h3>
+      <p>OBJECT_NAME(objectid,st.dbid) StoredProcedure</p>
+      <p><code>scripts/from-email/20230112-ProcsLongestRunning.sql</code> <span class="script-date">2023-01-12</span></p>
+    </div>
+    <div class="script">
+      <h3>Querybufferpoolformemoryissues</h3>
+      <p>USE [AddDatabase]</p>
+      <p><code>scripts/from-email/20230112-QueryBufferPoolForMemoryIssues.sql</code> <span class="script-date">2023-01-12</span></p>
+    </div>
+    <div class="script">
+      <h3>Querydatarightnow</h3>
+      <p>SELECT TOP 1000</p>
+      <p><code>scripts/from-email/20230112-QueryDataRightNow.sql</code> <span class="script-date">2023-01-12</span></p>
+    </div>
+    <div class="script">
+      <h3>Queryforperfmon</h3>
+      <p>SELECT CF.CounterValue,cf.dttm,CD.CounterName,cf.valueType</p>
+      <p><code>scripts/from-email/20230112-QueryForPerfmon.sql</code> <span class="script-date">2023-01-12</span></p>
+    </div>
+    <div class="script">
+      <h3>Rawcachequery</h3>
+      <p>SELECT TOP 500</p>
+      <p><code>scripts/from-email/20230112-RawCacheQuery.sql</code> <span class="script-date">2023-01-12</span></p>
+    </div>
+    <div class="script">
+      <h3>Serviceaccounts</h3>
+      <p>SELECT servicename, service_account</p>
+      <p><code>scripts/from-email/20230112-ServiceAccounts.sql</code> <span class="script-date">2023-01-12</span></p>
+    </div>
+    <div class="script">
+      <h3>Setuptempdbalert</h3>
+      <p>DECLARE @xml NVARCHAR(MAX)DECLARE @body NVARCHAR(MAX)</p>
+      <p><code>scripts/from-email/20230112-SetUptempDbAlert.sql</code> <span class="script-date">2023-01-12</span></p>
+    </div>
+    <div class="script">
+      <h3>Sp Whoisactive</h3>
+      <p>Stored procedure</p>
+      <p><code>scripts/from-email/20230112-Sp_WhoIsActive.sql</code> <span class="script-date">2023-01-12</span></p>
+    </div>
+    <div class="script">
+      <h3>Storedprocscreatedmodified</h3>
+      <p>From sys.procedures</p>
+      <p><code>scripts/from-email/20230112-StoredProcsCreatedModified.sql</code> <span class="script-date">2023-01-12</span></p>
+    </div>
+    <div class="script">
+      <h3>Triggersonsystem</h3>
+      <p>Sysobjects.name AS trigger_name</p>
+      <p><code>scripts/from-email/20230112-TriggersOnSystem.sql</code> <span class="script-date">2023-01-12</span></p>
+    </div>
+    <div class="script">
+      <h3>Usingtempdb</h3>
+      <p>Procedure created by Cheryl Smith to capture queries causing extreme TempDB growth</p>
+      <p><code>scripts/from-email/20230112-UsingTempDB.sql</code> <span class="script-date">2023-01-12</span></p>
+    </div>
+    <div class="script">
+      <h3>Waits</h3>
+      <p>DBCC SQLPERF(WAITSTATS)</p>
+      <p><code>scripts/from-email/20230112-Waits.sql</code> <span class="script-date">2023-01-12</span></p>
+    </div>
+    <div class="script">
+      <h3>Whatisusingthetable</h3>
+      <p>See what is using a table</p>
+      <p><code>scripts/from-email/20230112-WhatIsUsingTheTable.sql</code> <span class="script-date">2023-01-12</span></p>
+    </div>
+    <div class="script">
+      <h3>Whatuseslinkedserver</h3>
+      <p>Declare @VName varchar(256)</p>
+      <p><code>scripts/from-email/20230112-WhatUsesLinkedServer.sql</code> <span class="script-date">2023-01-12</span></p>
+    </div>
+    <div class="script">
+      <h3>Whatsincache</h3>
+      <p>Db_name(st.dbid) as database_name,</p>
+      <p><code>scripts/from-email/20230112-WhatsInCache.sql</code> <span class="script-date">2023-01-12</span></p>
+    </div>
+    <div class="script">
+      <h3>Whoisactivequery</h3>
+      <p>Query script</p>
+      <p><code>scripts/from-email/20230112-WhoIsactiveQuery.sql</code> <span class="script-date">2023-01-12</span></p>
+    </div>
+    <div class="script">
+      <h3>Getprocstats</h3>
+      <p>Statistics maintenance</p>
+      <p><code>scripts/from-email/20230112-getProcStats.sql</code> <span class="script-date">2023-01-12</span></p>
+    </div>
+    <div class="script">
+      <h3>Gettotalrowcountsforeachdb</h3>
+      <p>CREATE TABLE  #TableRowCounts  ([databaseNAme] Varchar(100),[TableName] VARCHAR(128), [RowCount] INT) ;</p>
+      <p><code>scripts/from-email/20230112-getTotalRowCountsForEachDB.sql</code> <span class="script-date">2023-01-12</span></p>
+    </div>
+    <div class="script">
+      <h3>Listtriggersontables</h3>
+      <p>Sysobjects.name AS trigger_name</p>
+      <p><code>scripts/from-email/20230112-listTriggersOnTables.sql</code> <span class="script-date">2023-01-12</span></p>
+    </div>
+    <div class="script">
+      <h3>Memorygrants</h3>
+      <p>SELECT mg.granted_memory_kb, mg.session_id, t.text, qp.query_plan</p>
+      <p><code>scripts/from-email/20230112-memoryGrants.sql</code> <span class="script-date">2023-01-12</span></p>
+    </div>
+    <div class="script">
+      <h3>Perfqueryforcpu</h3>
+      <p>With CTEPerf as (</p>
+      <p><code>scripts/from-email/20230112-perfQueryForCPU.sql</code> <span class="script-date">2023-01-12</span></p>
+    </div>
+    <div class="script">
+      <h3>Perfqueryforexcel</h3>
+      <p>Select distinct objectname,countername,instanceName from [dbo].[CounterDetails]</p>
+      <p><code>scripts/from-email/20230112-perfQueryForExcel.sql</code> <span class="script-date">2023-01-12</span></p>
+    </div>
+    <div class="script">
+      <h3>Procsmostio</h3>
+      <p>Exec p_Nucleus_Utility_ETL_Refresh &#x27;SWFL&#x27;, &#x27;REGEN&#x27;, &#x27;ALL&#x27;</p>
+      <p><code>scripts/from-email/20230112-procsMostIO.sql</code> <span class="script-date">2023-01-12</span></p>
+    </div>
+    <div class="script">
+      <h3>Sp 3</h3>
+      <p>CREATE PROCEDURE [dbo].[sp_who3]</p>
+      <p><code>scripts/from-email/20230112-sp_3.sql</code> <span class="script-date">2023-01-12</span></p>
+    </div>
+    <div class="script">
+      <h3>1700Issues</h3>
+      <p>Running a DELETE FROM AddDatabase.DBO.ESR_ADVISOR_LOA--on 1700 server with 19,723,836</p>
+      <p><code>scripts/from-email/20230411-1700Issues.sql</code> <span class="script-date">2023-04-11</span></p>
+    </div>
+    <div class="script">
+      <h3>1700Query</h3>
+      <p>On 1700 INSERT INTO PDWAgentAuthority values from adhoc parameters</p>
+      <p><code>scripts/from-email/20230411-1700Query.sql</code> <span class="script-date">2023-04-11</span></p>
+    </div>
+    <div class="script">
+      <h3>Audit Script</h3>
+      <p>Auditing script</p>
+      <p><code>scripts/from-email/20230411-Audit_script.sql</code> <span class="script-date">2023-04-11</span></p>
+    </div>
+    <div class="script">
+      <h3>B2Bpasswords</h3>
+      <p>Good Afternoon,</p>
+      <p><code>scripts/from-email/20230411-B2Bpasswords.sql</code> <span class="script-date">2023-04-11</span></p>
+    </div>
+    <div class="script">
+      <h3>Backupprogress</h3>
+      <p>SELECT r.session_id</p>
+      <p><code>scripts/from-email/20230411-BackUpProgress.sql</code> <span class="script-date">2023-04-11</span></p>
+    </div>
+    <div class="script">
+      <h3>Blitzcache1Database</h3>
+      <p>Exec sp_BlitzCache @DatabaseName = &#x27;AddDatabase&#x27;</p>
+      <p><code>scripts/from-email/20230411-BlitzCache1database.sql</code> <span class="script-date">2023-04-11</span></p>
+    </div>
+    <div class="script">
+      <h3>Change Owner To Sa</h3>
+      <p>SELECT &#x27;use &#x27;+QUOTENAME(name)+ &#x27; exec sp_changedbowner @loginame =&#x27;&#x27;sa&#x27;&#x27; &#x27; FROM sys.databases AS d WHERE d.database_id&gt;4</p>
+      <p><code>scripts/from-email/20230411-Change_owner_to_sa.sql</code> <span class="script-date">2023-04-11</span></p>
+    </div>
+    <div class="script">
+      <h3>Dbaudit</h3>
+      <p>Select @@SERVERNAME</p>
+      <p><code>scripts/from-email/20230411-DBAudit.sql</code> <span class="script-date">2023-04-11</span></p>
+    </div>
+    <div class="script">
+      <h3>Db Audit</h3>
+      <p>I.	NC2DWSSQL4000</p>
+      <p><code>scripts/from-email/20230411-Db_Audit.sql</code> <span class="script-date">2023-04-11</span></p>
+    </div>
+    <div class="script">
+      <h3>Freeproccache</h3>
+      <p>Free plans for a specific Query</p>
+      <p><code>scripts/from-email/20230411-FreeProcCache.sql</code> <span class="script-date">2023-04-11</span></p>
+    </div>
+    <div class="script">
+      <h3>Indexesneeded</h3>
+      <p>SELECT TOP 25</p>
+      <p><code>scripts/from-email/20230411-IndexesNeeded.sql</code> <span class="script-date">2023-04-11</span></p>
+    </div>
+    <div class="script">
+      <h3>Insertinbatches</h3>
+      <p>DECLARE @Insert_Rows INT;</p>
+      <p><code>scripts/from-email/20230411-InsertInbatches.sql</code> <span class="script-date">2023-04-11</span></p>
+    </div>
+    <div class="script">
+      <h3>Jobduration</h3>
+      <p>With CTEJob as (</p>
+      <p><code>scripts/from-email/20230411-JobDuration.sql</code> <span class="script-date">2023-04-11</span></p>
+    </div>
+    <div class="script">
+      <h3>Killsleepingspids</h3>
+      <p>DECLARE @v_spid INT</p>
+      <p><code>scripts/from-email/20230411-KillSleepingSPIDS.sql</code> <span class="script-date">2023-04-11</span></p>
+    </div>
+    <div class="script">
+      <h3>Linkedpassword</h3>
+      <p>For security reasons the linked server remote logins password is changed with</p>
+      <p><code>scripts/from-email/20230411-LinkedPassword.sql</code> <span class="script-date">2023-04-11</span></p>
+    </div>
+    <div class="script">
+      <h3>Lookingforanobject</h3>
+      <p>Select [name] as ObjectName, Type as ObjectType</p>
+      <p><code>scripts/from-email/20230411-LookingForAnObject.sql</code> <span class="script-date">2023-04-11</span></p>
+    </div>
+    <div class="script">
+      <h3>Managevlfs</h3>
+      <p>First go to gui and reduce</p>
+      <p><code>scripts/from-email/20230411-ManageVLfs.sql</code> <span class="script-date">2023-04-11</span></p>
+    </div>
+    <div class="script">
+      <h3>Missing Index</h3>
+      <p>Missing Index Script</p>
+      <p><code>scripts/from-email/20230411-Missing_index.sql</code> <span class="script-date">2023-04-11</span></p>
+    </div>
+    <div class="script">
+      <h3>Movingbackupfromoneserverrestoringtoanotherserver</h3>
+      <p>RESTORE DATABASE [AddDatabase]</p>
+      <p><code>scripts/from-email/20230411-MovingBackupFromOneServerRestoringToAnotherServer.sql</code> <span class="script-date">2023-04-11</span></p>
+    </div>
+    <div class="script">
+      <h3>Norecentbackups</h3>
+      <p>Databases Missing a Data (aka Full) Back-Up Within Past 24 Hours</p>
+      <p><code>scripts/from-email/20230411-NoRecentBackups.sql</code> <span class="script-date">2023-04-11</span></p>
+    </div>
+    <div class="script">
+      <h3>Nonprodaudit</h3>
+      <p>Select @@SERVERNAME</p>
+      <p><code>scripts/from-email/20230411-NonProdAudit.sql</code> <span class="script-date">2023-04-11</span></p>
+    </div>
+    <div class="script">
+      <h3>Numa</h3>
+      <p>4 soft NUMA nodes with 8 logical CPUs per physical NUMA node.</p>
+      <p><code>scripts/from-email/20230411-Numa.sql</code> <span class="script-date">2023-04-11</span></p>
+    </div>
+    <div class="script">
+      <h3>Prod Pdwagentauthority</h3>
+      <p>SQL Agent script</p>
+      <p><code>scripts/from-email/20230411-PROD_PDWAgentAuthority.sql</code> <span class="script-date">2023-04-11</span></p>
+    </div>
+    <div class="script">
+      <h3>Powershellmovedb</h3>
+      <p>DBA utility script</p>
+      <p><code>scripts/from-email/20230411-PowershellMoveDB.sql</code> <span class="script-date">2023-04-11</span></p>
+    </div>
+    <div class="script">
+      <h3>Pulldatafromstring</h3>
+      <p>DECLARE @STRING VARCHAR(1000)  = &#x27;THE DOG ATE CATS FROM SPACE&#x27;</p>
+      <p><code>scripts/from-email/20230411-PullDatafromString.sql</code> <span class="script-date">2023-04-11</span></p>
+    </div>
+    <div class="script">
+      <h3>Pullqueryoutofcache</h3>
+      <p>DECLARE     @FindSql nvarchar(max) = &#x27;PAMBLKDTALL&#x27;;</p>
+      <p><code>scripts/from-email/20230411-PullQueryOUtOfCache.sql</code> <span class="script-date">2023-04-11</span></p>
+    </div>
+    <div class="script">
+      <h3>Querygrowthfromcapture</h3>
+      <p>File growth monitoring</p>
+      <p><code>scripts/from-email/20230411-QueryGrowthFromCapture.sql</code> <span class="script-date">2023-04-11</span></p>
+    </div>
+    <div class="script">
+      <h3>Resizingtempdb</h3>
+      <p>[Disk] = LEFT(vs.volume_mount_point,16)</p>
+      <p><code>scripts/from-email/20230411-ResizingTempDB.sql</code> <span class="script-date">2023-04-11</span></p>
+    </div>
+    <div class="script">
+      <h3>Sqlquery53</h3>
+      <p>Select * from sys.traces</p>
+      <p><code>scripts/from-email/20230411-SQLQuery53.sql</code> <span class="script-date">2023-04-11</span></p>
+    </div>
+    <div class="script">
+      <h3>Sqlserverstoplogs</h3>
+      <p>CREATE TABLE #ErrorLog(</p>
+      <p><code>scripts/from-email/20230411-SQLServerStopLogs.sql</code> <span class="script-date">2023-04-11</span></p>
+    </div>
+    <div class="script">
+      <h3>Sqllog</h3>
+      <p>Query ErrorLog</p>
+      <p><code>scripts/from-email/20230411-SQlLOG.sql</code> <span class="script-date">2023-04-11</span></p>
+    </div>
+    <div class="script">
+      <h3>Scriptingoutallindexes</h3>
+      <p>Select i.[name] as index_name,</p>
+      <p><code>scripts/from-email/20230411-ScriptingOutAllIndexes.sql</code> <span class="script-date">2023-04-11</span></p>
+    </div>
+    <div class="script">
+      <h3>Serversidetrace</h3>
+      <p>Created by: SQL Server 2017 RC1 Profiler</p>
+      <p><code>scripts/from-email/20230411-ServerSideTrace.sql</code> <span class="script-date">2023-04-11</span></p>
+    </div>
+    <div class="script">
+      <h3>Tai Ob Proj</h3>
+      <p>Back up database [TAI_PROD_MOUNT]</p>
+      <p><code>scripts/from-email/20230411-TAI_OB_Proj.sql</code> <span class="script-date">2023-04-11</span></p>
+    </div>
+    <div class="script">
+      <h3>Tablesizes</h3>
+      <p>S.Name AS SchemaName,</p>
+      <p><code>scripts/from-email/20230411-TableSizes.sql</code> <span class="script-date">2023-04-11</span></p>
+    </div>
+    <div class="script">
+      <h3>Trace Serverside</h3>
+      <p>Created by: SQL Server 2012  Profiler</p>
+      <p><code>scripts/from-email/20230411-Trace_ServerSide.sql</code> <span class="script-date">2023-04-11</span></p>
+    </div>
+    <div class="script">
+      <h3>Truncate Proxy</h3>
+      <p>USE AddDatabase</p>
+      <p><code>scripts/from-email/20230411-Truncate_proxy.sql</code> <span class="script-date">2023-04-11</span></p>
+    </div>
+    <div class="script">
+      <h3>Whatvmisiton</h3>
+      <p>Truncate Table AddDatabase.dbo.CurrentVMInfo</p>
+      <p><code>scripts/from-email/20230411-WhatVMisItOn.sql</code> <span class="script-date">2023-04-11</span></p>
+    </div>
+    <div class="script">
+      <h3>Whoisactivequery</h3>
+      <p>Query script</p>
+      <p><code>scripts/from-email/20230411-WhoIsActiveQuery.sql</code> <span class="script-date">2023-04-11</span></p>
+    </div>
+    <div class="script">
+      <h3>Membersofadgroup</h3>
+      <p>Select name,dbname</p>
+      <p><code>scripts/from-email/20230411-membersofAdgroup.sql</code> <span class="script-date">2023-04-11</span></p>
+    </div>
+    <div class="script">
+      <h3>Scriptallpks</h3>
+      <p>SCRIPT TO GENERATE THE CREATION SCRIPT OF ALL PK AND UNIQUE CONSTRAINTS.</p>
+      <p><code>scripts/from-email/20230411-scriptAllPKs.sql</code> <span class="script-date">2023-04-11</span></p>
+    </div>
+    <div class="script">
+      <h3>Serviceaccounts</h3>
+      <p>Select servicename,service_account,</p>
+      <p><code>scripts/from-email/20230411-serviceAccounts.sql</code> <span class="script-date">2023-04-11</span></p>
+    </div>
+    <div class="script">
+      <h3>Sp Whoisactive</h3>
+      <p>Object:  StoredProcedure [dbo].[sp_WhoIsActive]    Script Date: 05/12/2014 16:05:25</p>
+      <p><code>scripts/from-email/20230411-sp_whoIsActive.sql</code> <span class="script-date">2023-04-11</span></p>
+    </div>
+    <div class="script">
+      <h3>Tracestartstop</h3>
+      <p>SELECT * FROM sys.traces</p>
+      <p><code>scripts/from-email/20230411-traceStartStop.sql</code> <span class="script-date">2023-04-11</span></p>
+    </div>
+    <div class="script">
+      <h3>Xp Instnce Reg Read</h3>
+      <p>GRANT EXECUTE ON [sys].[xp_instance_regread] TO [AddCompany\APP-RFS-DIST-DEV-DB-USER];</p>
+      <p><code>scripts/from-email/20230411-xp_instnce__reg_read.sql</code> <span class="script-date">2023-04-11</span></p>
+    </div>
+    <div class="script">
+      <h3>1700Issues</h3>
+      <p>Running a DELETE FROM AddDatabase.DBO.ESR_ADVISOR_LOA--on 1700 server with 19,723,836</p>
+      <p><code>scripts/from-email/20230503-1700Issues.sql</code> <span class="script-date">2023-05-03</span></p>
+    </div>
+    <div class="script">
+      <h3>1700Query</h3>
+      <p>On 1700 INSERT INTO PDWAgentAuthority values from adhoc parameters</p>
+      <p><code>scripts/from-email/20230503-1700Query.sql</code> <span class="script-date">2023-05-03</span></p>
+    </div>
+    <div class="script">
+      <h3>Audit Script</h3>
+      <p>Auditing script</p>
+      <p><code>scripts/from-email/20230503-Audit_script.sql</code> <span class="script-date">2023-05-03</span></p>
+    </div>
+    <div class="script">
+      <h3>B2Bpasswords</h3>
+      <p>Good Afternoon,</p>
+      <p><code>scripts/from-email/20230503-B2Bpasswords.sql</code> <span class="script-date">2023-05-03</span></p>
+    </div>
+    <div class="script">
+      <h3>Backupprogress</h3>
+      <p>SELECT r.session_id</p>
+      <p><code>scripts/from-email/20230503-BackUpProgress.sql</code> <span class="script-date">2023-05-03</span></p>
+    </div>
+    <div class="script">
+      <h3>Blitzcache1Database</h3>
+      <p>Exec sp_BlitzCache @DatabaseName = &#x27;AddDatabase&#x27;</p>
+      <p><code>scripts/from-email/20230503-BlitzCache1database.sql</code> <span class="script-date">2023-05-03</span></p>
+    </div>
+    <div class="script">
+      <h3>Change Owner To Sa</h3>
+      <p>SELECT &#x27;use &#x27;+QUOTENAME(name)+ &#x27; exec sp_changedbowner @loginame =&#x27;&#x27;sa&#x27;&#x27; &#x27; FROM sys.databases AS d WHERE d.database_id&gt;4</p>
+      <p><code>scripts/from-email/20230503-Change_owner_to_sa.sql</code> <span class="script-date">2023-05-03</span></p>
+    </div>
+    <div class="script">
+      <h3>Dbaudit</h3>
+      <p>Select @@SERVERNAME</p>
+      <p><code>scripts/from-email/20230503-DBAudit.sql</code> <span class="script-date">2023-05-03</span></p>
+    </div>
+    <div class="script">
+      <h3>Db Audit</h3>
+      <p>I.	NC2DWSSQL4000</p>
+      <p><code>scripts/from-email/20230503-Db_Audit.sql</code> <span class="script-date">2023-05-03</span></p>
+    </div>
+    <div class="script">
+      <h3>Freeproccache</h3>
+      <p>Free plans for a specific Query</p>
+      <p><code>scripts/from-email/20230503-FreeProcCache.sql</code> <span class="script-date">2023-05-03</span></p>
+    </div>
+    <div class="script">
+      <h3>Indexesneeded</h3>
+      <p>SELECT TOP 25</p>
+      <p><code>scripts/from-email/20230503-IndexesNeeded.sql</code> <span class="script-date">2023-05-03</span></p>
+    </div>
+    <div class="script">
+      <h3>Insertinbatches</h3>
+      <p>DECLARE @Insert_Rows INT;</p>
+      <p><code>scripts/from-email/20230503-InsertInbatches.sql</code> <span class="script-date">2023-05-03</span></p>
+    </div>
+    <div class="script">
+      <h3>Jobduration</h3>
+      <p>With CTEJob as (</p>
+      <p><code>scripts/from-email/20230503-JobDuration.sql</code> <span class="script-date">2023-05-03</span></p>
+    </div>
+    <div class="script">
+      <h3>Killsleepingspids</h3>
+      <p>DECLARE @v_spid INT</p>
+      <p><code>scripts/from-email/20230503-KillSleepingSPIDS.sql</code> <span class="script-date">2023-05-03</span></p>
+    </div>
+    <div class="script">
+      <h3>Linkedpassword</h3>
+      <p>For security reasons the linked server remote logins password is changed with</p>
+      <p><code>scripts/from-email/20230503-LinkedPassword.sql</code> <span class="script-date">2023-05-03</span></p>
+    </div>
+    <div class="script">
+      <h3>Lookingforanobject</h3>
+      <p>Select [name] as ObjectName, Type as ObjectType</p>
+      <p><code>scripts/from-email/20230503-LookingForAnObject.sql</code> <span class="script-date">2023-05-03</span></p>
+    </div>
+    <div class="script">
+      <h3>Managevlfs</h3>
+      <p>First go to gui and reduce</p>
+      <p><code>scripts/from-email/20230503-ManageVLfs.sql</code> <span class="script-date">2023-05-03</span></p>
+    </div>
+    <div class="script">
+      <h3>Missing Index</h3>
+      <p>Missing Index Script</p>
+      <p><code>scripts/from-email/20230503-Missing_index.sql</code> <span class="script-date">2023-05-03</span></p>
+    </div>
+    <div class="script">
+      <h3>Movingbackupfromoneserverrestoringtoanotherserver</h3>
+      <p>RESTORE DATABASE [AddDatabase]</p>
+      <p><code>scripts/from-email/20230503-MovingBackupFromOneServerRestoringToAnotherServer.sql</code> <span class="script-date">2023-05-03</span></p>
+    </div>
+    <div class="script">
+      <h3>Norecentbackups</h3>
+      <p>Databases Missing a Data (aka Full) Back-Up Within Past 24 Hours</p>
+      <p><code>scripts/from-email/20230503-NoRecentBackups.sql</code> <span class="script-date">2023-05-03</span></p>
+    </div>
+    <div class="script">
+      <h3>Nonprodaudit</h3>
+      <p>Select @@SERVERNAME</p>
+      <p><code>scripts/from-email/20230503-NonProdAudit.sql</code> <span class="script-date">2023-05-03</span></p>
+    </div>
+    <div class="script">
+      <h3>Numa</h3>
+      <p>4 soft NUMA nodes with 8 logical CPUs per physical NUMA node.</p>
+      <p><code>scripts/from-email/20230503-Numa.sql</code> <span class="script-date">2023-05-03</span></p>
+    </div>
+    <div class="script">
+      <h3>Prod Pdwagentauthority</h3>
+      <p>SQL Agent script</p>
+      <p><code>scripts/from-email/20230503-PROD_PDWAgentAuthority.sql</code> <span class="script-date">2023-05-03</span></p>
+    </div>
+    <div class="script">
+      <h3>Powershellmovedb</h3>
+      <p>DBA utility script</p>
+      <p><code>scripts/from-email/20230503-PowershellMoveDB.sql</code> <span class="script-date">2023-05-03</span></p>
+    </div>
+    <div class="script">
+      <h3>Pulldatafromstring</h3>
+      <p>DECLARE @STRING VARCHAR(1000)  = &#x27;THE DOG ATE CATS FROM SPACE&#x27;</p>
+      <p><code>scripts/from-email/20230503-PullDatafromString.sql</code> <span class="script-date">2023-05-03</span></p>
+    </div>
+    <div class="script">
+      <h3>Pullqueryoutofcache</h3>
+      <p>DECLARE     @FindSql nvarchar(max) = &#x27;PAMBLKDTALL&#x27;;</p>
+      <p><code>scripts/from-email/20230503-PullQueryOUtOfCache.sql</code> <span class="script-date">2023-05-03</span></p>
+    </div>
+    <div class="script">
+      <h3>Querygrowthfromcapture</h3>
+      <p>File growth monitoring</p>
+      <p><code>scripts/from-email/20230503-QueryGrowthFromCapture.sql</code> <span class="script-date">2023-05-03</span></p>
+    </div>
+    <div class="script">
+      <h3>Resizingtempdb</h3>
+      <p>[Disk] = LEFT(vs.volume_mount_point,16)</p>
+      <p><code>scripts/from-email/20230503-ResizingTempDB.sql</code> <span class="script-date">2023-05-03</span></p>
+    </div>
+    <div class="script">
+      <h3>Sqlquery53</h3>
+      <p>Select * from sys.traces</p>
+      <p><code>scripts/from-email/20230503-SQLQuery53.sql</code> <span class="script-date">2023-05-03</span></p>
+    </div>
+    <div class="script">
+      <h3>Sqlserverstoplogs</h3>
+      <p>CREATE TABLE #ErrorLog(</p>
+      <p><code>scripts/from-email/20230503-SQLServerStopLogs.sql</code> <span class="script-date">2023-05-03</span></p>
+    </div>
+    <div class="script">
+      <h3>Sqllog</h3>
+      <p>Query ErrorLog</p>
+      <p><code>scripts/from-email/20230503-SQlLOG.sql</code> <span class="script-date">2023-05-03</span></p>
+    </div>
+    <div class="script">
+      <h3>Scriptingoutallindexes</h3>
+      <p>Select i.[name] as index_name,</p>
+      <p><code>scripts/from-email/20230503-ScriptingOutAllIndexes.sql</code> <span class="script-date">2023-05-03</span></p>
+    </div>
+    <div class="script">
+      <h3>Serversidetrace</h3>
+      <p>Created by: SQL Server 2017 RC1 Profiler</p>
+      <p><code>scripts/from-email/20230503-ServerSideTrace.sql</code> <span class="script-date">2023-05-03</span></p>
+    </div>
+    <div class="script">
+      <h3>Tai Ob Proj</h3>
+      <p>Back up database [TAI_PROD_MOUNT]</p>
+      <p><code>scripts/from-email/20230503-TAI_OB_Proj.sql</code> <span class="script-date">2023-05-03</span></p>
+    </div>
+    <div class="script">
+      <h3>Tablesizes</h3>
+      <p>S.Name AS SchemaName,</p>
+      <p><code>scripts/from-email/20230503-TableSizes.sql</code> <span class="script-date">2023-05-03</span></p>
+    </div>
+    <div class="script">
+      <h3>Trace Serverside</h3>
+      <p>Created by: SQL Server 2012  Profiler</p>
+      <p><code>scripts/from-email/20230503-Trace_ServerSide.sql</code> <span class="script-date">2023-05-03</span></p>
+    </div>
+    <div class="script">
+      <h3>Truncate Proxy</h3>
+      <p>USE AddDatabase</p>
+      <p><code>scripts/from-email/20230503-Truncate_proxy.sql</code> <span class="script-date">2023-05-03</span></p>
+    </div>
+    <div class="script">
+      <h3>Whatvmisiton</h3>
+      <p>Truncate Table AddDatabase.dbo.CurrentVMInfo</p>
+      <p><code>scripts/from-email/20230503-WhatVMisItOn.sql</code> <span class="script-date">2023-05-03</span></p>
+    </div>
+    <div class="script">
+      <h3>Whoisactivequery</h3>
+      <p>Query script</p>
+      <p><code>scripts/from-email/20230503-WhoIsActiveQuery.sql</code> <span class="script-date">2023-05-03</span></p>
+    </div>
+    <div class="script">
+      <h3>Membersofadgroup</h3>
+      <p>Select name,dbname</p>
+      <p><code>scripts/from-email/20230503-membersofAdgroup.sql</code> <span class="script-date">2023-05-03</span></p>
+    </div>
+    <div class="script">
+      <h3>Scriptallpks</h3>
+      <p>SCRIPT TO GENERATE THE CREATION SCRIPT OF ALL PK AND UNIQUE CONSTRAINTS.</p>
+      <p><code>scripts/from-email/20230503-scriptAllPKs.sql</code> <span class="script-date">2023-05-03</span></p>
+    </div>
+    <div class="script">
+      <h3>Serviceaccounts</h3>
+      <p>Select servicename,service_account,</p>
+      <p><code>scripts/from-email/20230503-serviceAccounts.sql</code> <span class="script-date">2023-05-03</span></p>
+    </div>
+    <div class="script">
+      <h3>Sp Whoisactive</h3>
+      <p>Object:  StoredProcedure [dbo].[sp_WhoIsActive]    Script Date: 05/12/2014 16:05:25</p>
+      <p><code>scripts/from-email/20230503-sp_whoIsActive.sql</code> <span class="script-date">2023-05-03</span></p>
+    </div>
+    <div class="script">
+      <h3>Tracestartstop</h3>
+      <p>SELECT * FROM sys.traces</p>
+      <p><code>scripts/from-email/20230503-traceStartStop.sql</code> <span class="script-date">2023-05-03</span></p>
+    </div>
+    <div class="script">
+      <h3>Xp Instnce Reg Read</h3>
+      <p>GRANT EXECUTE ON [sys].[xp_instance_regread] TO [AddCompany\APP-RFS-DIST-DEV-DB-USER];</p>
+      <p><code>scripts/from-email/20230503-xp_instnce__reg_read.sql</code> <span class="script-date">2023-05-03</span></p>
+    </div>
+    <div class="script">
+      <h3>Aggroupinfo</h3>
+      <p>WITH AGStatus AS(</p>
+      <p><code>scripts/from-email/20231027-AgGroupInfo.sql</code> <span class="script-date">2023-10-27</span></p>
+    </div>
+    <div class="script">
+      <h3>Allreadswrites</h3>
+      <p>SELECT sum(a.num_of_reads) as AllReads,</p>
+      <p><code>scripts/from-email/20231027-AllreadsWrites.sql</code> <span class="script-date">2023-10-27</span></p>
+    </div>
+    <div class="script">
+      <h3>Blitz Againstall</h3>
+      <p>USE AddDatabase</p>
+      <p><code>scripts/from-email/20231027-BLITZ-AgainstAll.sql</code> <span class="script-date">2023-10-27</span></p>
+    </div>
+    <div class="script">
+      <h3>Blitz</h3>
+      <p>USE AddDatabase</p>
+      <p><code>scripts/from-email/20231027-BLITZ.sql</code> <span class="script-date">2023-10-27</span></p>
+    </div>
+    <div class="script">
+      <h3>Backupdetail</h3>
+      <p>SELECT top 1 server_name, database_name, &#x27;&#x27;,</p>
+      <p><code>scripts/from-email/20231027-BackupDetail.sql</code> <span class="script-date">2023-10-27</span></p>
+    </div>
+    <div class="script">
+      <h3>Cpuvisible</h3>
+      <p>Sys.dm_os_schedulers</p>
+      <p><code>scripts/from-email/20231027-CPUVisible.sql</code> <span class="script-date">2023-10-27</span></p>
+    </div>
+    <div class="script">
+      <h3>Changeautogrowthforalldatabases</h3>
+      <p>MODIFICATION REQUIRED for AUTOGROWTH -- See line 64 below</p>
+      <p><code>scripts/from-email/20231027-ChangeAutogrowthForAllDatabases.sql</code> <span class="script-date">2023-10-27</span></p>
+    </div>
+    <div class="script">
+      <h3>Changecompatibilty</h3>
+      <p>FROM sys.databases</p>
+      <p><code>scripts/from-email/20231027-ChangeCompatibilty.sql</code> <span class="script-date">2023-10-27</span></p>
+    </div>
+    <div class="script">
+      <h3>Clusternodepairs</h3>
+      <p>SELECT NodeName, status_description, is_current_owner</p>
+      <p><code>scripts/from-email/20231027-ClusterNodePairs.sql</code> <span class="script-date">2023-10-27</span></p>
+    </div>
+    <div class="script">
+      <h3>Copyonlybackup</h3>
+      <p>Backup / restore script</p>
+      <p><code>scripts/from-email/20231027-CopyOnlybackup.sql</code> <span class="script-date">2023-10-27</span></p>
+    </div>
+    <div class="script">
+      <h3>Dac</h3>
+      <p>Job 1 (Daily 7 pm EST)</p>
+      <p><code>scripts/from-email/20231027-DAC.sql</code> <span class="script-date">2023-10-27</span></p>
+    </div>
+    <div class="script">
+      <h3>Dbatools Io Issues Capture</h3>
+      <p>Insert into AddDatabase.dbo.IO_ISSUES</p>
+      <p><code>scripts/from-email/20231027-DBATools_IO_ISSUES_Capture.sql</code> <span class="script-date">2023-10-27</span></p>
+    </div>
+    <div class="script">
+      <h3>Databasegrowthrateautogrow</h3>
+      <p>Transact-SQL script to analyse the database size growth using backup history.</p>
+      <p><code>scripts/from-email/20231027-DatabaseGrowthRateAutoGrow.sql</code> <span class="script-date">2023-10-27</span></p>
+    </div>
+    <div class="script">
+      <h3>Drivespace</h3>
+      <p>EXEC MASTER..xp_fixeddrives</p>
+      <p><code>scripts/from-email/20231027-DriveSpace.sql</code> <span class="script-date">2023-10-27</span></p>
+    </div>
+    <div class="script">
+      <h3>Extendeddrivespace</h3>
+      <p>SELECT DISTINCT DB_NAME(dovs.database_id) DBName,</p>
+      <p><code>scripts/from-email/20231027-ExtendedDriveSpace.sql</code> <span class="script-date">2023-10-27</span></p>
+    </div>
+    <div class="script">
+      <h3>Fqdn</h3>
+      <p>DECLARE @Domain NVARCHAR(100)</p>
+      <p><code>scripts/from-email/20231027-FQDN.sql</code> <span class="script-date">2023-10-27</span></p>
+    </div>
+    <div class="script">
+      <h3>Freespaceondrives</h3>
+      <p>EXEC MASTER..xp_fixeddrives</p>
+      <p><code>scripts/from-email/20231027-FreeSpaceOnDrives.sql</code> <span class="script-date">2023-10-27</span></p>
+    </div>
+    <div class="script">
+      <h3>Io</h3>
+      <p>WITH IO_Per_DB</p>
+      <p><code>scripts/from-email/20231027-IO.sql</code> <span class="script-date">2023-10-27</span></p>
+    </div>
+    <div class="script">
+      <h3>Increasequerytimeout</h3>
+      <p>Sp_configure &#x27;show advanced options&#x27;, 1;</p>
+      <p><code>scripts/from-email/20231027-IncreaseQueryTimeOut.sql</code> <span class="script-date">2023-10-27</span></p>
+    </div>
+    <div class="script">
+      <h3>Insertintodefaulttrace</h3>
+      <p>DECLARE @path NVARCHAR(260)</p>
+      <p><code>scripts/from-email/20231027-InsertIntoDefaultTrace.sql</code> <span class="script-date">2023-10-27</span></p>
+    </div>
+    <div class="script">
+      <h3>Iostall</h3>
+      <p>SELECT a.io_stall, a.io_stall_read_ms, a.io_stall_write_ms, a.num_of_reads,</p>
+      <p><code>scripts/from-email/20231027-IoStall.sql</code> <span class="script-date">2023-10-27</span></p>
+    </div>
+    <div class="script">
+      <h3>Kill Multiple</h3>
+      <p>DECLARE @sql NVARCHAR(max) = &#x27;&#x27;</p>
+      <p><code>scripts/from-email/20231027-Kill_Multiple.sql</code> <span class="script-date">2023-10-27</span></p>
+    </div>
+    <div class="script">
+      <h3>Listallcolumnsintable</h3>
+      <p>SELECT   SchemaName = c.table_schema,</p>
+      <p><code>scripts/from-email/20231027-ListAllColumnsInTable.sql</code> <span class="script-date">2023-10-27</span></p>
+    </div>
+    <div class="script">
+      <h3>Logbackups</h3>
+      <p>SELECT   d.name,</p>
+      <p><code>scripts/from-email/20231027-Logbackups.sql</code> <span class="script-date">2023-10-27</span></p>
+    </div>
+    <div class="script">
+      <h3>Lookforautogrowthpercentsettings</h3>
+      <p>S.[name] AS [Logical Name]</p>
+      <p><code>scripts/from-email/20231027-LookForAutogrowthPercentSettings.sql</code> <span class="script-date">2023-10-27</span></p>
+    </div>
+    <div class="script">
+      <h3>Memory</h3>
+      <p>SELECT &#x27;Page File&#x27; AS MemoryType</p>
+      <p><code>scripts/from-email/20231027-Memory.sql</code> <span class="script-date">2023-10-27</span></p>
+    </div>
+    <div class="script">
+      <h3>Numrecordsintables</h3>
+      <p>CREATE TABLE #RowCounts(NumberOfRows BIGINT,TableName VARCHAR(128))</p>
+      <p><code>scripts/from-email/20231027-NumRecordsInTables.sql</code> <span class="script-date">2023-10-27</span></p>
+    </div>
+    <div class="script">
+      <h3>Perfmon</h3>
+      <p>SELECT  MachineName ,</p>
+      <p><code>scripts/from-email/20231027-Perfmon.sql</code> <span class="script-date">2023-10-27</span></p>
+    </div>
+    <div class="script">
+      <h3>Permissions</h3>
+      <p>[UserName] = CASE princ.[type]</p>
+      <p><code>scripts/from-email/20231027-Permissions.sql</code> <span class="script-date">2023-10-27</span></p>
+    </div>
+    <div class="script">
+      <h3>Portinfo</h3>
+      <p>SELECT SERVERPROPERTY(&#x27;ComputerNamePhysicalNetBIOS&#x27;) as NetBiosName--based on active cluster</p>
+      <p><code>scripts/from-email/20231027-PortInfo.sql</code> <span class="script-date">2023-10-27</span></p>
+    </div>
+    <div class="script">
+      <h3>Queryjobinfo</h3>
+      <p>Select * FROM</p>
+      <p><code>scripts/from-email/20231027-QueryJobInfo.sql</code> <span class="script-date">2023-10-27</span></p>
+    </div>
+    <div class="script">
+      <h3>Ringbuffer</h3>
+      <p>Drop table RingBuffermemoryIssues</p>
+      <p><code>scripts/from-email/20231027-RingBuffer.sql</code> <span class="script-date">2023-10-27</span></p>
+    </div>
+    <div class="script">
+      <h3>Sccmserverlist</h3>
+      <p>NC2PWCM101\NC2PWCM1010</p>
+      <p><code>scripts/from-email/20231027-SCCMServerList.sql</code> <span class="script-date">2023-10-27</span></p>
+    </div>
+    <div class="script">
+      <h3>Sfdc Create Db Script</h3>
+      <p>Object:  Database [AddDatabase]    Script Date: 10/14/2019 10:13:53 AM</p>
+      <p><code>scripts/from-email/20231027-SFDC_Create_DB_Script.sql</code> <span class="script-date">2023-10-27</span></p>
+    </div>
+    <div class="script">
+      <h3>Sqlquery2</h3>
+      <p>Dbcc freeproccache</p>
+      <p><code>scripts/from-email/20231027-SQLQuery2.sql</code> <span class="script-date">2023-10-27</span></p>
+    </div>
+    <div class="script">
+      <h3>Sqlquery21</h3>
+      <p>Insert into testData</p>
+      <p><code>scripts/from-email/20231027-SQLQuery21.sql</code> <span class="script-date">2023-10-27</span></p>
+    </div>
+    <div class="script">
+      <h3>Scriptalllogins</h3>
+      <p>This Script Generates A script to Create all Logins, Server Roles</p>
+      <p><code>scripts/from-email/20231027-ScriptAllLogins.sql</code> <span class="script-date">2023-10-27</span></p>
+    </div>
+    <div class="script">
+      <h3>Seeifindexmaintenancejobisrunningnow</h3>
+      <p>IF OBJECT_ID(&#x27;tempdb..#xp_results&#x27;) IS NOT NULL</p>
+      <p><code>scripts/from-email/20231027-SeeIfIndexMaintenanceJobIsRunningNow.sql</code> <span class="script-date">2023-10-27</span></p>
+    </div>
+    <div class="script">
+      <h3>Servicerestarttime</h3>
+      <p>SELECT sqlserver_start_time FROM sys.dm_os_sys_info</p>
+      <p><code>scripts/from-email/20231027-ServiceRestartTime.sql</code> <span class="script-date">2023-10-27</span></p>
+    </div>
+    <div class="script">
+      <h3>Setalltosimple</h3>
+      <p>This script will set recovery model to Simple on all databases</p>
+      <p><code>scripts/from-email/20231027-SetAllToSIMPLE.sql</code> <span class="script-date">2023-10-27</span></p>
+    </div>
+    <div class="script">
+      <h3>Suspect</h3>
+      <p>EXEC sp_resetstatus [AddDatabase];</p>
+      <p><code>scripts/from-email/20231027-Suspect.sql</code> <span class="script-date">2023-10-27</span></p>
+    </div>
+    <div class="script">
+      <h3>Worstio</h3>
+      <p>Worst performing I/O bound queries</p>
+      <p><code>scripts/from-email/20231027-WorstIO.sql</code> <span class="script-date">2023-10-27</span></p>
+    </div>
+    <div class="script">
+      <h3>Databasegrowth</h3>
+      <p>Select DB_NAME(mf.database_id) database_name</p>
+      <p><code>scripts/from-email/20231027-databasegrowth.sql</code> <span class="script-date">2023-10-27</span></p>
+    </div>
+    <div class="script">
+      <h3>Dblistallservers</h3>
+      <p>SELECT distinct</p>
+      <p><code>scripts/from-email/20231027-dbListAllServers.sql</code> <span class="script-date">2023-10-27</span></p>
+    </div>
+    <div class="script">
+      <h3>Defaulttrace</h3>
+      <p>SELECT  TE.name AS [EventName] ,</p>
+      <p><code>scripts/from-email/20231027-defaulttrace.sql</code> <span class="script-date">2023-10-27</span></p>
+    </div>
+    <div class="script">
+      <h3>Deletelargeamount</h3>
+      <p>Cleanup / delete script</p>
+      <p><code>scripts/from-email/20231027-deleteLargeAmount.sql</code> <span class="script-date">2023-10-27</span></p>
+    </div>
+    <div class="script">
+      <h3>Jobinfo</h3>
+      <p>Sysjobs.name job_name</p>
+      <p><code>scripts/from-email/20231027-jobinfo.sql</code> <span class="script-date">2023-10-27</span></p>
+    </div>
+    <div class="script">
+      <h3>Jobinfo2</h3>
+      <p>Sysjobs.name job_name</p>
+      <p><code>scripts/from-email/20231027-jobinfo2.sql</code> <span class="script-date">2023-10-27</span></p>
+    </div>
+    <div class="script">
+      <h3>Memorychanges</h3>
+      <p>NC2PWCSQL2700\NC2PWCSQL2700--58000 out of 63</p>
+      <p><code>scripts/from-email/20231027-memoryChanges.sql</code> <span class="script-date">2023-10-27</span></p>
+    </div>
+    <div class="script">
+      <h3>Ports</h3>
+      <p>Select distinct local_net_address, local_tcp_port from sys.dm_exec_connections where local_net_address is not null</p>
+      <p><code>scripts/from-email/20231027-ports.sql</code> <span class="script-date">2023-10-27</span></p>
+    </div>
+    <div class="script">
+      <h3>Readdindexmaintenancetoallservers</h3>
+      <p>IF EXISTS (SELECT job_id FROM msdb.dbo.sysjobs_view WHERE name = N&#x27;DBA - IndexOptimize - USER_DATABASES&#x27;)</p>
+      <p><code>scripts/from-email/20231027-reAddIndexMaintenanceToAllServers.sql</code> <span class="script-date">2023-10-27</span></p>
+    </div>
+  </section>
+
+  <section class="script-group">
+    <h2>From Email — 2022 (147)</h2>
+    <p class="group-note">Recovered from email attachments and redacted for sharing: servers → <code>AddServer</code>, databases → <code>AddDatabase</code>, companies → <code>AddCompany</code>.</p>
+    <div class="script">
+      <h3>Aggroupinfo</h3>
+      <p>WITH AGStatus AS(</p>
+      <p><code>scripts/from-email/20220411-AgGroupInfo.sql</code> <span class="script-date">2022-04-11</span></p>
+    </div>
+    <div class="script">
+      <h3>Allreadswrites</h3>
+      <p>SELECT sum(a.num_of_reads) as AllReads,</p>
+      <p><code>scripts/from-email/20220411-AllreadsWrites.sql</code> <span class="script-date">2022-04-11</span></p>
+    </div>
+    <div class="script">
+      <h3>Blitz Againstall</h3>
+      <p>USE AddDatabase</p>
+      <p><code>scripts/from-email/20220411-BLITZ-AgainstAll.sql</code> <span class="script-date">2022-04-11</span></p>
+    </div>
+    <div class="script">
+      <h3>Blitz</h3>
+      <p>USE AddDatabase</p>
+      <p><code>scripts/from-email/20220411-BLITZ.sql</code> <span class="script-date">2022-04-11</span></p>
+    </div>
+    <div class="script">
+      <h3>Backupdetail</h3>
+      <p>SELECT top 1 server_name, database_name, &#x27;&#x27;,</p>
+      <p><code>scripts/from-email/20220411-BackupDetail.sql</code> <span class="script-date">2022-04-11</span></p>
+    </div>
+    <div class="script">
+      <h3>Cpuvisible</h3>
+      <p>Sys.dm_os_schedulers</p>
+      <p><code>scripts/from-email/20220411-CPUVisible.sql</code> <span class="script-date">2022-04-11</span></p>
+    </div>
+    <div class="script">
+      <h3>Changeautogrowthforalldatabases</h3>
+      <p>MODIFICATION REQUIRED for AUTOGROWTH -- See line 64 below</p>
+      <p><code>scripts/from-email/20220411-ChangeAutogrowthForAllDatabases.sql</code> <span class="script-date">2022-04-11</span></p>
+    </div>
+    <div class="script">
+      <h3>Changecompatibilty</h3>
+      <p>FROM sys.databases</p>
+      <p><code>scripts/from-email/20220411-ChangeCompatibilty.sql</code> <span class="script-date">2022-04-11</span></p>
+    </div>
+    <div class="script">
+      <h3>Clusternodepairs</h3>
+      <p>SELECT NodeName, status_description, is_current_owner</p>
+      <p><code>scripts/from-email/20220411-ClusterNodePairs.sql</code> <span class="script-date">2022-04-11</span></p>
+    </div>
+    <div class="script">
+      <h3>Copyonlybackup</h3>
+      <p>Backup / restore script</p>
+      <p><code>scripts/from-email/20220411-CopyOnlybackup.sql</code> <span class="script-date">2022-04-11</span></p>
+    </div>
+    <div class="script">
+      <h3>Dac</h3>
+      <p>Job 1 (Daily 7 pm EST)</p>
+      <p><code>scripts/from-email/20220411-DAC.sql</code> <span class="script-date">2022-04-11</span></p>
+    </div>
+    <div class="script">
+      <h3>Dbatools Io Issues Capture</h3>
+      <p>Insert into AddDatabase.dbo.IO_ISSUES</p>
+      <p><code>scripts/from-email/20220411-DBATools_IO_ISSUES_Capture.sql</code> <span class="script-date">2022-04-11</span></p>
+    </div>
+    <div class="script">
+      <h3>Databasegrowthrateautogrow</h3>
+      <p>Transact-SQL script to analyse the database size growth using backup history.</p>
+      <p><code>scripts/from-email/20220411-DatabaseGrowthRateAutoGrow.sql</code> <span class="script-date">2022-04-11</span></p>
+    </div>
+    <div class="script">
+      <h3>Drivespace</h3>
+      <p>EXEC MASTER..xp_fixeddrives</p>
+      <p><code>scripts/from-email/20220411-DriveSpace.sql</code> <span class="script-date">2022-04-11</span></p>
+    </div>
+    <div class="script">
+      <h3>Extendeddrivespace</h3>
+      <p>SELECT DISTINCT DB_NAME(dovs.database_id) DBName,</p>
+      <p><code>scripts/from-email/20220411-ExtendedDriveSpace.sql</code> <span class="script-date">2022-04-11</span></p>
+    </div>
+    <div class="script">
+      <h3>Fqdn</h3>
+      <p>DECLARE @Domain NVARCHAR(100)</p>
+      <p><code>scripts/from-email/20220411-FQDN.sql</code> <span class="script-date">2022-04-11</span></p>
+    </div>
+    <div class="script">
+      <h3>Freespaceondrives</h3>
+      <p>EXEC MASTER..xp_fixeddrives</p>
+      <p><code>scripts/from-email/20220411-FreeSpaceOnDrives.sql</code> <span class="script-date">2022-04-11</span></p>
+    </div>
+    <div class="script">
+      <h3>Io</h3>
+      <p>WITH IO_Per_DB</p>
+      <p><code>scripts/from-email/20220411-IO.sql</code> <span class="script-date">2022-04-11</span></p>
+    </div>
+    <div class="script">
+      <h3>Increasequerytimeout</h3>
+      <p>Sp_configure &#x27;show advanced options&#x27;, 1;</p>
+      <p><code>scripts/from-email/20220411-IncreaseQueryTimeOut.sql</code> <span class="script-date">2022-04-11</span></p>
+    </div>
+    <div class="script">
+      <h3>Insertintodefaulttrace</h3>
+      <p>DECLARE @path NVARCHAR(260)</p>
+      <p><code>scripts/from-email/20220411-InsertIntoDefaultTrace.sql</code> <span class="script-date">2022-04-11</span></p>
+    </div>
+    <div class="script">
+      <h3>Iostall</h3>
+      <p>SELECT a.io_stall, a.io_stall_read_ms, a.io_stall_write_ms, a.num_of_reads,</p>
+      <p><code>scripts/from-email/20220411-IoStall.sql</code> <span class="script-date">2022-04-11</span></p>
+    </div>
+    <div class="script">
+      <h3>Kill Multiple</h3>
+      <p>DECLARE @sql NVARCHAR(max) = &#x27;&#x27;</p>
+      <p><code>scripts/from-email/20220411-Kill_Multiple.sql</code> <span class="script-date">2022-04-11</span></p>
+    </div>
+    <div class="script">
+      <h3>Listallcolumnsintable</h3>
+      <p>SELECT   SchemaName = c.table_schema,</p>
+      <p><code>scripts/from-email/20220411-ListAllColumnsInTable.sql</code> <span class="script-date">2022-04-11</span></p>
+    </div>
+    <div class="script">
+      <h3>Logbackups</h3>
+      <p>SELECT   d.name,</p>
+      <p><code>scripts/from-email/20220411-Logbackups.sql</code> <span class="script-date">2022-04-11</span></p>
+    </div>
+    <div class="script">
+      <h3>Lookforautogrowthpercentsettings</h3>
+      <p>S.[name] AS [Logical Name]</p>
+      <p><code>scripts/from-email/20220411-LookForAutogrowthPercentSettings.sql</code> <span class="script-date">2022-04-11</span></p>
+    </div>
+    <div class="script">
+      <h3>Memory</h3>
+      <p>SELECT &#x27;Page File&#x27; AS MemoryType</p>
+      <p><code>scripts/from-email/20220411-Memory.sql</code> <span class="script-date">2022-04-11</span></p>
+    </div>
+    <div class="script">
+      <h3>Numrecordsintables</h3>
+      <p>CREATE TABLE #RowCounts(NumberOfRows BIGINT,TableName VARCHAR(128))</p>
+      <p><code>scripts/from-email/20220411-NumRecordsInTables.sql</code> <span class="script-date">2022-04-11</span></p>
+    </div>
+    <div class="script">
+      <h3>Perfmon</h3>
+      <p>SELECT  MachineName ,</p>
+      <p><code>scripts/from-email/20220411-Perfmon.sql</code> <span class="script-date">2022-04-11</span></p>
+    </div>
+    <div class="script">
+      <h3>Permissions</h3>
+      <p>[UserName] = CASE princ.[type]</p>
+      <p><code>scripts/from-email/20220411-Permissions.sql</code> <span class="script-date">2022-04-11</span></p>
+    </div>
+    <div class="script">
+      <h3>Portinfo</h3>
+      <p>SELECT SERVERPROPERTY(&#x27;ComputerNamePhysicalNetBIOS&#x27;) as NetBiosName--based on active cluster</p>
+      <p><code>scripts/from-email/20220411-PortInfo.sql</code> <span class="script-date">2022-04-11</span></p>
+    </div>
+    <div class="script">
+      <h3>Queryjobinfo</h3>
+      <p>Select * FROM</p>
+      <p><code>scripts/from-email/20220411-QueryJobInfo.sql</code> <span class="script-date">2022-04-11</span></p>
+    </div>
+    <div class="script">
+      <h3>Ringbuffer</h3>
+      <p>Drop table RingBuffermemoryIssues</p>
+      <p><code>scripts/from-email/20220411-RingBuffer.sql</code> <span class="script-date">2022-04-11</span></p>
+    </div>
+    <div class="script">
+      <h3>Sccmserverlist</h3>
+      <p>NC2PWCM101\NC2PWCM1010</p>
+      <p><code>scripts/from-email/20220411-SCCMServerList.sql</code> <span class="script-date">2022-04-11</span></p>
+    </div>
+    <div class="script">
+      <h3>Sfdc Create Db Script</h3>
+      <p>Object:  Database [AddDatabase]    Script Date: 10/14/2019 10:13:53 AM</p>
+      <p><code>scripts/from-email/20220411-SFDC_Create_DB_Script.sql</code> <span class="script-date">2022-04-11</span></p>
+    </div>
+    <div class="script">
+      <h3>Sqlquery2</h3>
+      <p>Dbcc freeproccache</p>
+      <p><code>scripts/from-email/20220411-SQLQuery2.sql</code> <span class="script-date">2022-04-11</span></p>
+    </div>
+    <div class="script">
+      <h3>Sqlquery21</h3>
+      <p>Insert into testData</p>
+      <p><code>scripts/from-email/20220411-SQLQuery21.sql</code> <span class="script-date">2022-04-11</span></p>
+    </div>
+    <div class="script">
+      <h3>Scriptalllogins</h3>
+      <p>This Script Generates A script to Create all Logins, Server Roles</p>
+      <p><code>scripts/from-email/20220411-ScriptAllLogins.sql</code> <span class="script-date">2022-04-11</span></p>
+    </div>
+    <div class="script">
+      <h3>Seeifindexmaintenancejobisrunningnow</h3>
+      <p>IF OBJECT_ID(&#x27;tempdb..#xp_results&#x27;) IS NOT NULL</p>
+      <p><code>scripts/from-email/20220411-SeeIfIndexMaintenanceJobIsRunningNow.sql</code> <span class="script-date">2022-04-11</span></p>
+    </div>
+    <div class="script">
+      <h3>Servicerestarttime</h3>
+      <p>SELECT sqlserver_start_time FROM sys.dm_os_sys_info</p>
+      <p><code>scripts/from-email/20220411-ServiceRestartTime.sql</code> <span class="script-date">2022-04-11</span></p>
+    </div>
+    <div class="script">
+      <h3>Setalltosimple</h3>
+      <p>This script will set recovery model to Simple on all databases</p>
+      <p><code>scripts/from-email/20220411-SetAllToSIMPLE.sql</code> <span class="script-date">2022-04-11</span></p>
+    </div>
+    <div class="script">
+      <h3>Suspect</h3>
+      <p>EXEC sp_resetstatus [AddDatabase];</p>
+      <p><code>scripts/from-email/20220411-Suspect.sql</code> <span class="script-date">2022-04-11</span></p>
+    </div>
+    <div class="script">
+      <h3>Worstio</h3>
+      <p>Worst performing I/O bound queries</p>
+      <p><code>scripts/from-email/20220411-WorstIO.sql</code> <span class="script-date">2022-04-11</span></p>
+    </div>
+    <div class="script">
+      <h3>Databasegrowth</h3>
+      <p>Select DB_NAME(mf.database_id) database_name</p>
+      <p><code>scripts/from-email/20220411-databasegrowth.sql</code> <span class="script-date">2022-04-11</span></p>
+    </div>
+    <div class="script">
+      <h3>Dblistallservers</h3>
+      <p>SELECT distinct</p>
+      <p><code>scripts/from-email/20220411-dbListAllServers.sql</code> <span class="script-date">2022-04-11</span></p>
+    </div>
+    <div class="script">
+      <h3>Defaulttrace</h3>
+      <p>SELECT  TE.name AS [EventName] ,</p>
+      <p><code>scripts/from-email/20220411-defaulttrace.sql</code> <span class="script-date">2022-04-11</span></p>
+    </div>
+    <div class="script">
+      <h3>Deletelargeamount</h3>
+      <p>Cleanup / delete script</p>
+      <p><code>scripts/from-email/20220411-deleteLargeAmount.sql</code> <span class="script-date">2022-04-11</span></p>
+    </div>
+    <div class="script">
+      <h3>Jobinfo</h3>
+      <p>Sysjobs.name job_name</p>
+      <p><code>scripts/from-email/20220411-jobinfo.sql</code> <span class="script-date">2022-04-11</span></p>
+    </div>
+    <div class="script">
+      <h3>Jobinfo2</h3>
+      <p>Sysjobs.name job_name</p>
+      <p><code>scripts/from-email/20220411-jobinfo2.sql</code> <span class="script-date">2022-04-11</span></p>
+    </div>
+    <div class="script">
+      <h3>Memorychanges</h3>
+      <p>NC2PWCSQL2700\NC2PWCSQL2700--58000 out of 63</p>
+      <p><code>scripts/from-email/20220411-memoryChanges.sql</code> <span class="script-date">2022-04-11</span></p>
+    </div>
+    <div class="script">
+      <h3>Ports</h3>
+      <p>Select distinct local_net_address, local_tcp_port from sys.dm_exec_connections where local_net_address is not null</p>
+      <p><code>scripts/from-email/20220411-ports.sql</code> <span class="script-date">2022-04-11</span></p>
+    </div>
+    <div class="script">
+      <h3>Readdindexmaintenancetoallservers</h3>
+      <p>IF EXISTS (SELECT job_id FROM msdb.dbo.sysjobs_view WHERE name = N&#x27;DBA - IndexOptimize - USER_DATABASES&#x27;)</p>
+      <p><code>scripts/from-email/20220411-reAddIndexMaintenanceToAllServers.sql</code> <span class="script-date">2022-04-11</span></p>
+    </div>
+    <div class="script">
+      <h3>1700Issues</h3>
+      <p>Running a DELETE FROM AddDatabase.DBO.ESR_ADVISOR_LOA--on 1700 server with 19,723,836</p>
+      <p><code>scripts/from-email/20220415-1700Issues.sql</code> <span class="script-date">2022-04-15</span></p>
+    </div>
+    <div class="script">
+      <h3>1700Query</h3>
+      <p>On 1700 INSERT INTO PDWAgentAuthority values from adhoc parameters</p>
+      <p><code>scripts/from-email/20220415-1700Query.sql</code> <span class="script-date">2022-04-15</span></p>
+    </div>
+    <div class="script">
+      <h3>Aggroupinfo</h3>
+      <p>WITH AGStatus AS(</p>
+      <p><code>scripts/from-email/20220415-AgGroupInfo.sql</code> <span class="script-date">2022-04-15</span></p>
+    </div>
+    <div class="script">
+      <h3>Allreadswrites</h3>
+      <p>SELECT sum(a.num_of_reads) as AllReads,</p>
+      <p><code>scripts/from-email/20220415-AllreadsWrites.sql</code> <span class="script-date">2022-04-15</span></p>
+    </div>
+    <div class="script">
+      <h3>Audit Script</h3>
+      <p>Auditing script</p>
+      <p><code>scripts/from-email/20220415-Audit_script.sql</code> <span class="script-date">2022-04-15</span></p>
+    </div>
+    <div class="script">
+      <h3>B2Bpasswords</h3>
+      <p>Good Afternoon,</p>
+      <p><code>scripts/from-email/20220415-B2Bpasswords.sql</code> <span class="script-date">2022-04-15</span></p>
+    </div>
+    <div class="script">
+      <h3>Blitz Againstall</h3>
+      <p>USE AddDatabase</p>
+      <p><code>scripts/from-email/20220415-BLITZ-AgainstAll.sql</code> <span class="script-date">2022-04-15</span></p>
+    </div>
+    <div class="script">
+      <h3>Blitz</h3>
+      <p>USE AddDatabase</p>
+      <p><code>scripts/from-email/20220415-BLITZ.sql</code> <span class="script-date">2022-04-15</span></p>
+    </div>
+    <div class="script">
+      <h3>Backupprogress</h3>
+      <p>SELECT r.session_id</p>
+      <p><code>scripts/from-email/20220415-BackUpProgress.sql</code> <span class="script-date">2022-04-15</span></p>
+    </div>
+    <div class="script">
+      <h3>Backupdetail</h3>
+      <p>SELECT top 1 server_name, database_name, &#x27;&#x27;,</p>
+      <p><code>scripts/from-email/20220415-BackupDetail.sql</code> <span class="script-date">2022-04-15</span></p>
+    </div>
+    <div class="script">
+      <h3>Blitzcache1Database</h3>
+      <p>Exec sp_BlitzCache @DatabaseName = &#x27;AddDatabase&#x27;</p>
+      <p><code>scripts/from-email/20220415-BlitzCache1database.sql</code> <span class="script-date">2022-04-15</span></p>
+    </div>
+    <div class="script">
+      <h3>Cpuvisible</h3>
+      <p>Sys.dm_os_schedulers</p>
+      <p><code>scripts/from-email/20220415-CPUVisible.sql</code> <span class="script-date">2022-04-15</span></p>
+    </div>
+    <div class="script">
+      <h3>Changeautogrowthforalldatabases</h3>
+      <p>MODIFICATION REQUIRED for AUTOGROWTH -- See line 64 below</p>
+      <p><code>scripts/from-email/20220415-ChangeAutogrowthForAllDatabases.sql</code> <span class="script-date">2022-04-15</span></p>
+    </div>
+    <div class="script">
+      <h3>Changecompatibilty</h3>
+      <p>FROM sys.databases</p>
+      <p><code>scripts/from-email/20220415-ChangeCompatibilty.sql</code> <span class="script-date">2022-04-15</span></p>
+    </div>
+    <div class="script">
+      <h3>Change Owner To Sa</h3>
+      <p>SELECT &#x27;use &#x27;+QUOTENAME(name)+ &#x27; exec sp_changedbowner @loginame =&#x27;&#x27;sa&#x27;&#x27; &#x27; FROM sys.databases AS d WHERE d.database_id&gt;4</p>
+      <p><code>scripts/from-email/20220415-Change_owner_to_sa.sql</code> <span class="script-date">2022-04-15</span></p>
+    </div>
+    <div class="script">
+      <h3>Clusternodepairs</h3>
+      <p>SELECT NodeName, status_description, is_current_owner</p>
+      <p><code>scripts/from-email/20220415-ClusterNodePairs.sql</code> <span class="script-date">2022-04-15</span></p>
+    </div>
+    <div class="script">
+      <h3>Copyonlybackup</h3>
+      <p>Backup / restore script</p>
+      <p><code>scripts/from-email/20220415-CopyOnlybackup.sql</code> <span class="script-date">2022-04-15</span></p>
+    </div>
+    <div class="script">
+      <h3>Dac</h3>
+      <p>Job 1 (Daily 7 pm EST)</p>
+      <p><code>scripts/from-email/20220415-DAC.sql</code> <span class="script-date">2022-04-15</span></p>
+    </div>
+    <div class="script">
+      <h3>Dbatools Io Issues Capture</h3>
+      <p>Insert into AddDatabase.dbo.IO_ISSUES</p>
+      <p><code>scripts/from-email/20220415-DBATools_IO_ISSUES_Capture.sql</code> <span class="script-date">2022-04-15</span></p>
+    </div>
+    <div class="script">
+      <h3>Dbaudit</h3>
+      <p>Select @@SERVERNAME</p>
+      <p><code>scripts/from-email/20220415-DBAudit.sql</code> <span class="script-date">2022-04-15</span></p>
+    </div>
+    <div class="script">
+      <h3>Databasegrowthrateautogrow</h3>
+      <p>Transact-SQL script to analyse the database size growth using backup history.</p>
+      <p><code>scripts/from-email/20220415-DatabaseGrowthRateAutoGrow.sql</code> <span class="script-date">2022-04-15</span></p>
+    </div>
+    <div class="script">
+      <h3>Db Audit</h3>
+      <p>I.	NC2DWSSQL4000</p>
+      <p><code>scripts/from-email/20220415-Db_Audit.sql</code> <span class="script-date">2022-04-15</span></p>
+    </div>
+    <div class="script">
+      <h3>Drivespace</h3>
+      <p>EXEC MASTER..xp_fixeddrives</p>
+      <p><code>scripts/from-email/20220415-DriveSpace.sql</code> <span class="script-date">2022-04-15</span></p>
+    </div>
+    <div class="script">
+      <h3>Extendeddrivespace</h3>
+      <p>SELECT DISTINCT DB_NAME(dovs.database_id) DBName,</p>
+      <p><code>scripts/from-email/20220415-ExtendedDriveSpace.sql</code> <span class="script-date">2022-04-15</span></p>
+    </div>
+    <div class="script">
+      <h3>Fqdn</h3>
+      <p>DECLARE @Domain NVARCHAR(100)</p>
+      <p><code>scripts/from-email/20220415-FQDN.sql</code> <span class="script-date">2022-04-15</span></p>
+    </div>
+    <div class="script">
+      <h3>Freeproccache</h3>
+      <p>Free plans for a specific Query</p>
+      <p><code>scripts/from-email/20220415-FreeProcCache.sql</code> <span class="script-date">2022-04-15</span></p>
+    </div>
+    <div class="script">
+      <h3>Freespaceondrives</h3>
+      <p>EXEC MASTER..xp_fixeddrives</p>
+      <p><code>scripts/from-email/20220415-FreeSpaceOnDrives.sql</code> <span class="script-date">2022-04-15</span></p>
+    </div>
+    <div class="script">
+      <h3>Io</h3>
+      <p>WITH IO_Per_DB</p>
+      <p><code>scripts/from-email/20220415-IO.sql</code> <span class="script-date">2022-04-15</span></p>
+    </div>
+    <div class="script">
+      <h3>Increasequerytimeout</h3>
+      <p>Sp_configure &#x27;show advanced options&#x27;, 1;</p>
+      <p><code>scripts/from-email/20220415-IncreaseQueryTimeOut.sql</code> <span class="script-date">2022-04-15</span></p>
+    </div>
+    <div class="script">
+      <h3>Indexesneeded</h3>
+      <p>SELECT TOP 25</p>
+      <p><code>scripts/from-email/20220415-IndexesNeeded.sql</code> <span class="script-date">2022-04-15</span></p>
+    </div>
+    <div class="script">
+      <h3>Insertinbatches</h3>
+      <p>DECLARE @Insert_Rows INT;</p>
+      <p><code>scripts/from-email/20220415-InsertInbatches.sql</code> <span class="script-date">2022-04-15</span></p>
+    </div>
+    <div class="script">
+      <h3>Insertintodefaulttrace</h3>
+      <p>DECLARE @path NVARCHAR(260)</p>
+      <p><code>scripts/from-email/20220415-InsertIntoDefaultTrace.sql</code> <span class="script-date">2022-04-15</span></p>
+    </div>
+    <div class="script">
+      <h3>Iostall</h3>
+      <p>SELECT a.io_stall, a.io_stall_read_ms, a.io_stall_write_ms, a.num_of_reads,</p>
+      <p><code>scripts/from-email/20220415-IoStall.sql</code> <span class="script-date">2022-04-15</span></p>
+    </div>
+    <div class="script">
+      <h3>Jobduration</h3>
+      <p>With CTEJob as (</p>
+      <p><code>scripts/from-email/20220415-JobDuration.sql</code> <span class="script-date">2022-04-15</span></p>
+    </div>
+    <div class="script">
+      <h3>Killsleepingspids</h3>
+      <p>DECLARE @v_spid INT</p>
+      <p><code>scripts/from-email/20220415-KillSleepingSPIDS.sql</code> <span class="script-date">2022-04-15</span></p>
+    </div>
+    <div class="script">
+      <h3>Kill Multiple</h3>
+      <p>DECLARE @sql NVARCHAR(max) = &#x27;&#x27;</p>
+      <p><code>scripts/from-email/20220415-Kill_Multiple.sql</code> <span class="script-date">2022-04-15</span></p>
+    </div>
+    <div class="script">
+      <h3>Linkedpassword</h3>
+      <p>For security reasons the linked server remote logins password is changed with</p>
+      <p><code>scripts/from-email/20220415-LinkedPassword.sql</code> <span class="script-date">2022-04-15</span></p>
+    </div>
+    <div class="script">
+      <h3>Listallcolumnsintable</h3>
+      <p>SELECT   SchemaName = c.table_schema,</p>
+      <p><code>scripts/from-email/20220415-ListAllColumnsInTable.sql</code> <span class="script-date">2022-04-15</span></p>
+    </div>
+    <div class="script">
+      <h3>Logbackups</h3>
+      <p>SELECT   d.name,</p>
+      <p><code>scripts/from-email/20220415-Logbackups.sql</code> <span class="script-date">2022-04-15</span></p>
+    </div>
+    <div class="script">
+      <h3>Lookforautogrowthpercentsettings</h3>
+      <p>S.[name] AS [Logical Name]</p>
+      <p><code>scripts/from-email/20220415-LookForAutogrowthPercentSettings.sql</code> <span class="script-date">2022-04-15</span></p>
+    </div>
+    <div class="script">
+      <h3>Lookingforanobject</h3>
+      <p>Select [name] as ObjectName, Type as ObjectType</p>
+      <p><code>scripts/from-email/20220415-LookingForAnObject.sql</code> <span class="script-date">2022-04-15</span></p>
+    </div>
+    <div class="script">
+      <h3>Managevlfs</h3>
+      <p>First go to gui and reduce</p>
+      <p><code>scripts/from-email/20220415-ManageVLfs.sql</code> <span class="script-date">2022-04-15</span></p>
+    </div>
+    <div class="script">
+      <h3>Memory</h3>
+      <p>SELECT &#x27;Page File&#x27; AS MemoryType</p>
+      <p><code>scripts/from-email/20220415-Memory.sql</code> <span class="script-date">2022-04-15</span></p>
+    </div>
+    <div class="script">
+      <h3>Missing Index</h3>
+      <p>Missing Index Script</p>
+      <p><code>scripts/from-email/20220415-Missing_index.sql</code> <span class="script-date">2022-04-15</span></p>
+    </div>
+    <div class="script">
+      <h3>Movingbackupfromoneserverrestoringtoanotherserver</h3>
+      <p>RESTORE DATABASE [AddDatabase]</p>
+      <p><code>scripts/from-email/20220415-MovingBackupFromOneServerRestoringToAnotherServer.sql</code> <span class="script-date">2022-04-15</span></p>
+    </div>
+    <div class="script">
+      <h3>Norecentbackups</h3>
+      <p>Databases Missing a Data (aka Full) Back-Up Within Past 24 Hours</p>
+      <p><code>scripts/from-email/20220415-NoRecentBackups.sql</code> <span class="script-date">2022-04-15</span></p>
+    </div>
+    <div class="script">
+      <h3>Nonprodaudit</h3>
+      <p>Select @@SERVERNAME</p>
+      <p><code>scripts/from-email/20220415-NonProdAudit.sql</code> <span class="script-date">2022-04-15</span></p>
+    </div>
+    <div class="script">
+      <h3>Numrecordsintables</h3>
+      <p>CREATE TABLE #RowCounts(NumberOfRows BIGINT,TableName VARCHAR(128))</p>
+      <p><code>scripts/from-email/20220415-NumRecordsInTables.sql</code> <span class="script-date">2022-04-15</span></p>
+    </div>
+    <div class="script">
+      <h3>Numa</h3>
+      <p>4 soft NUMA nodes with 8 logical CPUs per physical NUMA node.</p>
+      <p><code>scripts/from-email/20220415-Numa.sql</code> <span class="script-date">2022-04-15</span></p>
+    </div>
+    <div class="script">
+      <h3>Prod Pdwagentauthority</h3>
+      <p>SQL Agent script</p>
+      <p><code>scripts/from-email/20220415-PROD_PDWAgentAuthority.sql</code> <span class="script-date">2022-04-15</span></p>
+    </div>
+    <div class="script">
+      <h3>Perfmon</h3>
+      <p>SELECT  MachineName ,</p>
+      <p><code>scripts/from-email/20220415-Perfmon.sql</code> <span class="script-date">2022-04-15</span></p>
+    </div>
+    <div class="script">
+      <h3>Permissions</h3>
+      <p>[UserName] = CASE princ.[type]</p>
+      <p><code>scripts/from-email/20220415-Permissions.sql</code> <span class="script-date">2022-04-15</span></p>
+    </div>
+    <div class="script">
+      <h3>Portinfo</h3>
+      <p>SELECT SERVERPROPERTY(&#x27;ComputerNamePhysicalNetBIOS&#x27;) as NetBiosName--based on active cluster</p>
+      <p><code>scripts/from-email/20220415-PortInfo.sql</code> <span class="script-date">2022-04-15</span></p>
+    </div>
+    <div class="script">
+      <h3>Powershellmovedb</h3>
+      <p>DBA utility script</p>
+      <p><code>scripts/from-email/20220415-PowershellMoveDB.sql</code> <span class="script-date">2022-04-15</span></p>
+    </div>
+    <div class="script">
+      <h3>Pulldatafromstring</h3>
+      <p>DECLARE @STRING VARCHAR(1000)  = &#x27;THE DOG ATE CATS FROM SPACE&#x27;</p>
+      <p><code>scripts/from-email/20220415-PullDatafromString.sql</code> <span class="script-date">2022-04-15</span></p>
+    </div>
+    <div class="script">
+      <h3>Pullqueryoutofcache</h3>
+      <p>DECLARE     @FindSql nvarchar(max) = &#x27;PAMBLKDTALL&#x27;;</p>
+      <p><code>scripts/from-email/20220415-PullQueryOUtOfCache.sql</code> <span class="script-date">2022-04-15</span></p>
+    </div>
+    <div class="script">
+      <h3>Querygrowthfromcapture</h3>
+      <p>File growth monitoring</p>
+      <p><code>scripts/from-email/20220415-QueryGrowthFromCapture.sql</code> <span class="script-date">2022-04-15</span></p>
+    </div>
+    <div class="script">
+      <h3>Queryjobinfo</h3>
+      <p>Select * FROM</p>
+      <p><code>scripts/from-email/20220415-QueryJobInfo.sql</code> <span class="script-date">2022-04-15</span></p>
+    </div>
+    <div class="script">
+      <h3>Resizingtempdb</h3>
+      <p>[Disk] = LEFT(vs.volume_mount_point,16)</p>
+      <p><code>scripts/from-email/20220415-ResizingTempDB.sql</code> <span class="script-date">2022-04-15</span></p>
+    </div>
+    <div class="script">
+      <h3>Ringbuffer</h3>
+      <p>Drop table RingBuffermemoryIssues</p>
+      <p><code>scripts/from-email/20220415-RingBuffer.sql</code> <span class="script-date">2022-04-15</span></p>
+    </div>
+    <div class="script">
+      <h3>Sccmserverlist</h3>
+      <p>NC2PWCM101\NC2PWCM1010</p>
+      <p><code>scripts/from-email/20220415-SCCMServerList.sql</code> <span class="script-date">2022-04-15</span></p>
+    </div>
+    <div class="script">
+      <h3>Sfdc Create Db Script</h3>
+      <p>Object:  Database [AddDatabase]    Script Date: 10/14/2019 10:13:53 AM</p>
+      <p><code>scripts/from-email/20220415-SFDC_Create_DB_Script.sql</code> <span class="script-date">2022-04-15</span></p>
+    </div>
+    <div class="script">
+      <h3>Sqlquery2</h3>
+      <p>Dbcc freeproccache</p>
+      <p><code>scripts/from-email/20220415-SQLQuery2.sql</code> <span class="script-date">2022-04-15</span></p>
+    </div>
+    <div class="script">
+      <h3>Sqlquery21</h3>
+      <p>Insert into testData</p>
+      <p><code>scripts/from-email/20220415-SQLQuery21.sql</code> <span class="script-date">2022-04-15</span></p>
+    </div>
+    <div class="script">
+      <h3>Sqlquery53</h3>
+      <p>Select * from sys.traces</p>
+      <p><code>scripts/from-email/20220415-SQLQuery53.sql</code> <span class="script-date">2022-04-15</span></p>
+    </div>
+    <div class="script">
+      <h3>Sqlserverstoplogs</h3>
+      <p>CREATE TABLE #ErrorLog(</p>
+      <p><code>scripts/from-email/20220415-SQLServerStopLogs.sql</code> <span class="script-date">2022-04-15</span></p>
+    </div>
+    <div class="script">
+      <h3>Sqllog</h3>
+      <p>Query ErrorLog</p>
+      <p><code>scripts/from-email/20220415-SQlLOG.sql</code> <span class="script-date">2022-04-15</span></p>
+    </div>
+    <div class="script">
+      <h3>Scriptalllogins</h3>
+      <p>This Script Generates A script to Create all Logins, Server Roles</p>
+      <p><code>scripts/from-email/20220415-ScriptAllLogins.sql</code> <span class="script-date">2022-04-15</span></p>
+    </div>
+    <div class="script">
+      <h3>Scriptingoutallindexes</h3>
+      <p>Select i.[name] as index_name,</p>
+      <p><code>scripts/from-email/20220415-ScriptingOutAllIndexes.sql</code> <span class="script-date">2022-04-15</span></p>
+    </div>
+    <div class="script">
+      <h3>Seeifindexmaintenancejobisrunningnow</h3>
+      <p>IF OBJECT_ID(&#x27;tempdb..#xp_results&#x27;) IS NOT NULL</p>
+      <p><code>scripts/from-email/20220415-SeeIfIndexMaintenanceJobIsRunningNow.sql</code> <span class="script-date">2022-04-15</span></p>
+    </div>
+    <div class="script">
+      <h3>Serversidetrace</h3>
+      <p>Created by: SQL Server 2017 RC1 Profiler</p>
+      <p><code>scripts/from-email/20220415-ServerSideTrace.sql</code> <span class="script-date">2022-04-15</span></p>
+    </div>
+    <div class="script">
+      <h3>Servicerestarttime</h3>
+      <p>SELECT sqlserver_start_time FROM sys.dm_os_sys_info</p>
+      <p><code>scripts/from-email/20220415-ServiceRestartTime.sql</code> <span class="script-date">2022-04-15</span></p>
+    </div>
+    <div class="script">
+      <h3>Setalltosimple</h3>
+      <p>This script will set recovery model to Simple on all databases</p>
+      <p><code>scripts/from-email/20220415-SetAllToSIMPLE.sql</code> <span class="script-date">2022-04-15</span></p>
+    </div>
+    <div class="script">
+      <h3>Suspect</h3>
+      <p>EXEC sp_resetstatus [AddDatabase];</p>
+      <p><code>scripts/from-email/20220415-Suspect.sql</code> <span class="script-date">2022-04-15</span></p>
+    </div>
+    <div class="script">
+      <h3>Tai Ob Proj</h3>
+      <p>Back up database [TAI_PROD_MOUNT]</p>
+      <p><code>scripts/from-email/20220415-TAI_OB_Proj.sql</code> <span class="script-date">2022-04-15</span></p>
+    </div>
+    <div class="script">
+      <h3>Tablesizes</h3>
+      <p>S.Name AS SchemaName,</p>
+      <p><code>scripts/from-email/20220415-TableSizes.sql</code> <span class="script-date">2022-04-15</span></p>
+    </div>
+    <div class="script">
+      <h3>Trace Serverside</h3>
+      <p>Created by: SQL Server 2012  Profiler</p>
+      <p><code>scripts/from-email/20220415-Trace_ServerSide.sql</code> <span class="script-date">2022-04-15</span></p>
+    </div>
+    <div class="script">
+      <h3>Truncate Proxy</h3>
+      <p>USE AddDatabase</p>
+      <p><code>scripts/from-email/20220415-Truncate_proxy.sql</code> <span class="script-date">2022-04-15</span></p>
+    </div>
+    <div class="script">
+      <h3>Whatvmisiton</h3>
+      <p>Truncate Table AddDatabase.dbo.CurrentVMInfo</p>
+      <p><code>scripts/from-email/20220415-WhatVMisItOn.sql</code> <span class="script-date">2022-04-15</span></p>
+    </div>
+    <div class="script">
+      <h3>Whoisactivequery</h3>
+      <p>Query script</p>
+      <p><code>scripts/from-email/20220415-WhoIsActiveQuery.sql</code> <span class="script-date">2022-04-15</span></p>
+    </div>
+    <div class="script">
+      <h3>Worstio</h3>
+      <p>Worst performing I/O bound queries</p>
+      <p><code>scripts/from-email/20220415-WorstIO.sql</code> <span class="script-date">2022-04-15</span></p>
+    </div>
+    <div class="script">
+      <h3>Databasegrowth</h3>
+      <p>Select DB_NAME(mf.database_id) database_name</p>
+      <p><code>scripts/from-email/20220415-databasegrowth.sql</code> <span class="script-date">2022-04-15</span></p>
+    </div>
+    <div class="script">
+      <h3>Dblistallservers</h3>
+      <p>SELECT distinct</p>
+      <p><code>scripts/from-email/20220415-dbListAllServers.sql</code> <span class="script-date">2022-04-15</span></p>
+    </div>
+    <div class="script">
+      <h3>Defaulttrace</h3>
+      <p>SELECT  TE.name AS [EventName] ,</p>
+      <p><code>scripts/from-email/20220415-defaulttrace.sql</code> <span class="script-date">2022-04-15</span></p>
+    </div>
+    <div class="script">
+      <h3>Deletelargeamount</h3>
+      <p>Cleanup / delete script</p>
+      <p><code>scripts/from-email/20220415-deleteLargeAmount.sql</code> <span class="script-date">2022-04-15</span></p>
+    </div>
+    <div class="script">
+      <h3>Jobinfo</h3>
+      <p>Sysjobs.name job_name</p>
+      <p><code>scripts/from-email/20220415-jobinfo.sql</code> <span class="script-date">2022-04-15</span></p>
+    </div>
+    <div class="script">
+      <h3>Jobinfo2</h3>
+      <p>Sysjobs.name job_name</p>
+      <p><code>scripts/from-email/20220415-jobinfo2.sql</code> <span class="script-date">2022-04-15</span></p>
+    </div>
+    <div class="script">
+      <h3>Membersofadgroup</h3>
+      <p>Select name,dbname</p>
+      <p><code>scripts/from-email/20220415-membersofAdgroup.sql</code> <span class="script-date">2022-04-15</span></p>
+    </div>
+    <div class="script">
+      <h3>Memorychanges</h3>
+      <p>NC2PWCSQL2700\NC2PWCSQL2700--58000 out of 63</p>
+      <p><code>scripts/from-email/20220415-memoryChanges.sql</code> <span class="script-date">2022-04-15</span></p>
+    </div>
+    <div class="script">
+      <h3>Ports</h3>
+      <p>Select distinct local_net_address, local_tcp_port from sys.dm_exec_connections where local_net_address is not null</p>
+      <p><code>scripts/from-email/20220415-ports.sql</code> <span class="script-date">2022-04-15</span></p>
+    </div>
+    <div class="script">
+      <h3>Readdindexmaintenancetoallservers</h3>
+      <p>IF EXISTS (SELECT job_id FROM msdb.dbo.sysjobs_view WHERE name = N&#x27;DBA - IndexOptimize - USER_DATABASES&#x27;)</p>
+      <p><code>scripts/from-email/20220415-reAddIndexMaintenanceToAllServers.sql</code> <span class="script-date">2022-04-15</span></p>
+    </div>
+    <div class="script">
+      <h3>Scriptallpks</h3>
+      <p>SCRIPT TO GENERATE THE CREATION SCRIPT OF ALL PK AND UNIQUE CONSTRAINTS.</p>
+      <p><code>scripts/from-email/20220415-scriptAllPKs.sql</code> <span class="script-date">2022-04-15</span></p>
+    </div>
+    <div class="script">
+      <h3>Serviceaccounts</h3>
+      <p>Select servicename,service_account,</p>
+      <p><code>scripts/from-email/20220415-serviceAccounts.sql</code> <span class="script-date">2022-04-15</span></p>
+    </div>
+    <div class="script">
+      <h3>Sp Whoisactive</h3>
+      <p>Object:  StoredProcedure [dbo].[sp_WhoIsActive]    Script Date: 05/12/2014 16:05:25</p>
+      <p><code>scripts/from-email/20220415-sp_whoIsActive.sql</code> <span class="script-date">2022-04-15</span></p>
+    </div>
+    <div class="script">
+      <h3>Tracestartstop</h3>
+      <p>SELECT * FROM sys.traces</p>
+      <p><code>scripts/from-email/20220415-traceStartStop.sql</code> <span class="script-date">2022-04-15</span></p>
+    </div>
+    <div class="script">
+      <h3>Xp Instnce Reg Read</h3>
+      <p>GRANT EXECUTE ON [sys].[xp_instance_regread] TO [AddCompany\APP-RFS-DIST-DEV-DB-USER];</p>
+      <p><code>scripts/from-email/20220415-xp_instnce__reg_read.sql</code> <span class="script-date">2022-04-15</span></p>
+    </div>
+  </section>
+
+  <section class="script-group">
+    <h2>From Email — 2020 (104)</h2>
+    <p class="group-note">Recovered from email attachments and redacted for sharing: servers → <code>AddServer</code>, databases → <code>AddDatabase</code>, companies → <code>AddCompany</code>.</p>
+    <div class="script">
+      <h3>1700Issues</h3>
+      <p>Running a DELETE FROM AddDatabase.DBO.ESR_ADVISOR_LOA--on 1700 server with 19,723,836</p>
+      <p><code>scripts/from-email/20200910-1700Issues.sql</code> <span class="script-date">2020-09-10</span></p>
+    </div>
+    <div class="script">
+      <h3>1700Query</h3>
+      <p>On 1700 INSERT INTO PDWAgentAuthority values from adhoc parameters</p>
+      <p><code>scripts/from-email/20200910-1700Query.sql</code> <span class="script-date">2020-09-10</span></p>
+    </div>
+    <div class="script">
+      <h3>Aggroupinfo</h3>
+      <p>WITH AGStatus AS(</p>
+      <p><code>scripts/from-email/20200910-AgGroupInfo.sql</code> <span class="script-date">2020-09-10</span></p>
+    </div>
+    <div class="script">
+      <h3>Allreadswrites</h3>
+      <p>SELECT sum(a.num_of_reads) as AllReads,</p>
+      <p><code>scripts/from-email/20200910-AllreadsWrites.sql</code> <span class="script-date">2020-09-10</span></p>
+    </div>
+    <div class="script">
+      <h3>Audit Script</h3>
+      <p>Auditing script</p>
+      <p><code>scripts/from-email/20200910-Audit_script.sql</code> <span class="script-date">2020-09-10</span></p>
+    </div>
+    <div class="script">
+      <h3>B2Bpasswords</h3>
+      <p>Good Afternoon,</p>
+      <p><code>scripts/from-email/20200910-B2Bpasswords.sql</code> <span class="script-date">2020-09-10</span></p>
+    </div>
+    <div class="script">
+      <h3>Blitz Againstall</h3>
+      <p>USE AddDatabase</p>
+      <p><code>scripts/from-email/20200910-BLITZ-AgainstAll.sql</code> <span class="script-date">2020-09-10</span></p>
+    </div>
+    <div class="script">
+      <h3>Blitz</h3>
+      <p>USE AddDatabase</p>
+      <p><code>scripts/from-email/20200910-BLITZ.sql</code> <span class="script-date">2020-09-10</span></p>
+    </div>
+    <div class="script">
+      <h3>Backupprogress</h3>
+      <p>SELECT r.session_id</p>
+      <p><code>scripts/from-email/20200910-BackUpProgress.sql</code> <span class="script-date">2020-09-10</span></p>
+    </div>
+    <div class="script">
+      <h3>Backupdetail</h3>
+      <p>SELECT top 1 server_name, database_name, &#x27;&#x27;,</p>
+      <p><code>scripts/from-email/20200910-BackupDetail.sql</code> <span class="script-date">2020-09-10</span></p>
+    </div>
+    <div class="script">
+      <h3>Blitzcache1Database</h3>
+      <p>Exec sp_BlitzCache @DatabaseName = &#x27;AddDatabase&#x27;</p>
+      <p><code>scripts/from-email/20200910-BlitzCache1database.sql</code> <span class="script-date">2020-09-10</span></p>
+    </div>
+    <div class="script">
+      <h3>Cpuvisible</h3>
+      <p>Sys.dm_os_schedulers</p>
+      <p><code>scripts/from-email/20200910-CPUVisible.sql</code> <span class="script-date">2020-09-10</span></p>
+    </div>
+    <div class="script">
+      <h3>Changeautogrowthforalldatabases</h3>
+      <p>MODIFICATION REQUIRED for AUTOGROWTH -- See line 64 below</p>
+      <p><code>scripts/from-email/20200910-ChangeAutogrowthForAllDatabases.sql</code> <span class="script-date">2020-09-10</span></p>
+    </div>
+    <div class="script">
+      <h3>Changecompatibilty</h3>
+      <p>FROM sys.databases</p>
+      <p><code>scripts/from-email/20200910-ChangeCompatibilty.sql</code> <span class="script-date">2020-09-10</span></p>
+    </div>
+    <div class="script">
+      <h3>Change Owner To Sa</h3>
+      <p>SELECT &#x27;use &#x27;+QUOTENAME(name)+ &#x27; exec sp_changedbowner @loginame =&#x27;&#x27;sa&#x27;&#x27; &#x27; FROM sys.databases AS d WHERE d.database_id&gt;4</p>
+      <p><code>scripts/from-email/20200910-Change_owner_to_sa.sql</code> <span class="script-date">2020-09-10</span></p>
+    </div>
+    <div class="script">
+      <h3>Clusternodepairs</h3>
+      <p>SELECT NodeName, status_description, is_current_owner</p>
+      <p><code>scripts/from-email/20200910-ClusterNodePairs.sql</code> <span class="script-date">2020-09-10</span></p>
+    </div>
+    <div class="script">
+      <h3>Copyonlybackup</h3>
+      <p>Backup / restore script</p>
+      <p><code>scripts/from-email/20200910-CopyOnlybackup.sql</code> <span class="script-date">2020-09-10</span></p>
+    </div>
+    <div class="script">
+      <h3>Dac</h3>
+      <p>Job 1 (Daily 7 pm EST)</p>
+      <p><code>scripts/from-email/20200910-DAC.sql</code> <span class="script-date">2020-09-10</span></p>
+    </div>
+    <div class="script">
+      <h3>Dbatools Io Issues Capture</h3>
+      <p>Insert into AddDatabase.dbo.IO_ISSUES</p>
+      <p><code>scripts/from-email/20200910-DBATools_IO_ISSUES_Capture.sql</code> <span class="script-date">2020-09-10</span></p>
+    </div>
+    <div class="script">
+      <h3>Dbaudit</h3>
+      <p>Select @@SERVERNAME</p>
+      <p><code>scripts/from-email/20200910-DBAudit.sql</code> <span class="script-date">2020-09-10</span></p>
+    </div>
+    <div class="script">
+      <h3>Databasegrowthrateautogrow</h3>
+      <p>Transact-SQL script to analyse the database size growth using backup history.</p>
+      <p><code>scripts/from-email/20200910-DatabaseGrowthRateAutoGrow.sql</code> <span class="script-date">2020-09-10</span></p>
+    </div>
+    <div class="script">
+      <h3>Db Audit</h3>
+      <p>I.	NC2DWSSQL4000</p>
+      <p><code>scripts/from-email/20200910-Db_Audit.sql</code> <span class="script-date">2020-09-10</span></p>
+    </div>
+    <div class="script">
+      <h3>Drivespace</h3>
+      <p>EXEC MASTER..xp_fixeddrives</p>
+      <p><code>scripts/from-email/20200910-DriveSpace.sql</code> <span class="script-date">2020-09-10</span></p>
+    </div>
+    <div class="script">
+      <h3>Extendeddrivespace</h3>
+      <p>SELECT DISTINCT DB_NAME(dovs.database_id) DBName,</p>
+      <p><code>scripts/from-email/20200910-ExtendedDriveSpace.sql</code> <span class="script-date">2020-09-10</span></p>
+    </div>
+    <div class="script">
+      <h3>Fqdn</h3>
+      <p>DECLARE @Domain NVARCHAR(100)</p>
+      <p><code>scripts/from-email/20200910-FQDN.sql</code> <span class="script-date">2020-09-10</span></p>
+    </div>
+    <div class="script">
+      <h3>Freeproccache</h3>
+      <p>Free plans for a specific Query</p>
+      <p><code>scripts/from-email/20200910-FreeProcCache.sql</code> <span class="script-date">2020-09-10</span></p>
+    </div>
+    <div class="script">
+      <h3>Freespaceondrives</h3>
+      <p>EXEC MASTER..xp_fixeddrives</p>
+      <p><code>scripts/from-email/20200910-FreeSpaceOnDrives.sql</code> <span class="script-date">2020-09-10</span></p>
+    </div>
+    <div class="script">
+      <h3>Io</h3>
+      <p>WITH IO_Per_DB</p>
+      <p><code>scripts/from-email/20200910-IO.sql</code> <span class="script-date">2020-09-10</span></p>
+    </div>
+    <div class="script">
+      <h3>Increasequerytimeout</h3>
+      <p>Sp_configure &#x27;show advanced options&#x27;, 1;</p>
+      <p><code>scripts/from-email/20200910-IncreaseQueryTimeOut.sql</code> <span class="script-date">2020-09-10</span></p>
+    </div>
+    <div class="script">
+      <h3>Indexesneeded</h3>
+      <p>SELECT TOP 25</p>
+      <p><code>scripts/from-email/20200910-IndexesNeeded.sql</code> <span class="script-date">2020-09-10</span></p>
+    </div>
+    <div class="script">
+      <h3>Insertinbatches</h3>
+      <p>DECLARE @Insert_Rows INT;</p>
+      <p><code>scripts/from-email/20200910-InsertInbatches.sql</code> <span class="script-date">2020-09-10</span></p>
+    </div>
+    <div class="script">
+      <h3>Insertintodefaulttrace</h3>
+      <p>DECLARE @path NVARCHAR(260)</p>
+      <p><code>scripts/from-email/20200910-InsertIntoDefaultTrace.sql</code> <span class="script-date">2020-09-10</span></p>
+    </div>
+    <div class="script">
+      <h3>Iostall</h3>
+      <p>SELECT a.io_stall, a.io_stall_read_ms, a.io_stall_write_ms, a.num_of_reads,</p>
+      <p><code>scripts/from-email/20200910-IoStall.sql</code> <span class="script-date">2020-09-10</span></p>
+    </div>
+    <div class="script">
+      <h3>Jobduration</h3>
+      <p>With CTEJob as (</p>
+      <p><code>scripts/from-email/20200910-JobDuration.sql</code> <span class="script-date">2020-09-10</span></p>
+    </div>
+    <div class="script">
+      <h3>Killsleepingspids</h3>
+      <p>DECLARE @v_spid INT</p>
+      <p><code>scripts/from-email/20200910-KillSleepingSPIDS.sql</code> <span class="script-date">2020-09-10</span></p>
+    </div>
+    <div class="script">
+      <h3>Kill Multiple</h3>
+      <p>DECLARE @sql NVARCHAR(max) = &#x27;&#x27;</p>
+      <p><code>scripts/from-email/20200910-Kill_Multiple.sql</code> <span class="script-date">2020-09-10</span></p>
+    </div>
+    <div class="script">
+      <h3>Linkedpassword</h3>
+      <p>For security reasons the linked server remote logins password is changed with</p>
+      <p><code>scripts/from-email/20200910-LinkedPassword.sql</code> <span class="script-date">2020-09-10</span></p>
+    </div>
+    <div class="script">
+      <h3>Listallcolumnsintable</h3>
+      <p>SELECT   SchemaName = c.table_schema,</p>
+      <p><code>scripts/from-email/20200910-ListAllColumnsInTable.sql</code> <span class="script-date">2020-09-10</span></p>
+    </div>
+    <div class="script">
+      <h3>Logbackups</h3>
+      <p>SELECT   d.name,</p>
+      <p><code>scripts/from-email/20200910-Logbackups.sql</code> <span class="script-date">2020-09-10</span></p>
+    </div>
+    <div class="script">
+      <h3>Lookforautogrowthpercentsettings</h3>
+      <p>S.[name] AS [Logical Name]</p>
+      <p><code>scripts/from-email/20200910-LookForAutogrowthPercentSettings.sql</code> <span class="script-date">2020-09-10</span></p>
+    </div>
+    <div class="script">
+      <h3>Lookingforanobject</h3>
+      <p>Select [name] as ObjectName, Type as ObjectType</p>
+      <p><code>scripts/from-email/20200910-LookingForAnObject.sql</code> <span class="script-date">2020-09-10</span></p>
+    </div>
+    <div class="script">
+      <h3>Managevlfs</h3>
+      <p>First go to gui and reduce</p>
+      <p><code>scripts/from-email/20200910-ManageVLfs.sql</code> <span class="script-date">2020-09-10</span></p>
+    </div>
+    <div class="script">
+      <h3>Memory</h3>
+      <p>SELECT &#x27;Page File&#x27; AS MemoryType</p>
+      <p><code>scripts/from-email/20200910-Memory.sql</code> <span class="script-date">2020-09-10</span></p>
+    </div>
+    <div class="script">
+      <h3>Missing Index</h3>
+      <p>Missing Index Script</p>
+      <p><code>scripts/from-email/20200910-Missing_index.sql</code> <span class="script-date">2020-09-10</span></p>
+    </div>
+    <div class="script">
+      <h3>Movingbackupfromoneserverrestoringtoanotherserver</h3>
+      <p>RESTORE DATABASE [AddDatabase]</p>
+      <p><code>scripts/from-email/20200910-MovingBackupFromOneServerRestoringToAnotherServer.sql</code> <span class="script-date">2020-09-10</span></p>
+    </div>
+    <div class="script">
+      <h3>Norecentbackups</h3>
+      <p>Databases Missing a Data (aka Full) Back-Up Within Past 24 Hours</p>
+      <p><code>scripts/from-email/20200910-NoRecentBackups.sql</code> <span class="script-date">2020-09-10</span></p>
+    </div>
+    <div class="script">
+      <h3>Nonprodaudit</h3>
+      <p>Select @@SERVERNAME</p>
+      <p><code>scripts/from-email/20200910-NonProdAudit.sql</code> <span class="script-date">2020-09-10</span></p>
+    </div>
+    <div class="script">
+      <h3>Numrecordsintables</h3>
+      <p>CREATE TABLE #RowCounts(NumberOfRows BIGINT,TableName VARCHAR(128))</p>
+      <p><code>scripts/from-email/20200910-NumRecordsInTables.sql</code> <span class="script-date">2020-09-10</span></p>
+    </div>
+    <div class="script">
+      <h3>Numa</h3>
+      <p>4 soft NUMA nodes with 8 logical CPUs per physical NUMA node.</p>
+      <p><code>scripts/from-email/20200910-Numa.sql</code> <span class="script-date">2020-09-10</span></p>
+    </div>
+    <div class="script">
+      <h3>Prod Pdwagentauthority</h3>
+      <p>SQL Agent script</p>
+      <p><code>scripts/from-email/20200910-PROD_PDWAgentAuthority.sql</code> <span class="script-date">2020-09-10</span></p>
+    </div>
+    <div class="script">
+      <h3>Perfmon</h3>
+      <p>SELECT  MachineName ,</p>
+      <p><code>scripts/from-email/20200910-Perfmon.sql</code> <span class="script-date">2020-09-10</span></p>
+    </div>
+    <div class="script">
+      <h3>Permissions</h3>
+      <p>[UserName] = CASE princ.[type]</p>
+      <p><code>scripts/from-email/20200910-Permissions.sql</code> <span class="script-date">2020-09-10</span></p>
+    </div>
+    <div class="script">
+      <h3>Portinfo</h3>
+      <p>SELECT SERVERPROPERTY(&#x27;ComputerNamePhysicalNetBIOS&#x27;) as NetBiosName--based on active cluster</p>
+      <p><code>scripts/from-email/20200910-PortInfo.sql</code> <span class="script-date">2020-09-10</span></p>
+    </div>
+    <div class="script">
+      <h3>Powershellmovedb</h3>
+      <p>DBA utility script</p>
+      <p><code>scripts/from-email/20200910-PowershellMoveDB.sql</code> <span class="script-date">2020-09-10</span></p>
+    </div>
+    <div class="script">
+      <h3>Pulldatafromstring</h3>
+      <p>DECLARE @STRING VARCHAR(1000)  = &#x27;THE DOG ATE CATS FROM SPACE&#x27;</p>
+      <p><code>scripts/from-email/20200910-PullDatafromString.sql</code> <span class="script-date">2020-09-10</span></p>
+    </div>
+    <div class="script">
+      <h3>Pullqueryoutofcache</h3>
+      <p>DECLARE     @FindSql nvarchar(max) = &#x27;PAMBLKDTALL&#x27;;</p>
+      <p><code>scripts/from-email/20200910-PullQueryOUtOfCache.sql</code> <span class="script-date">2020-09-10</span></p>
+    </div>
+    <div class="script">
+      <h3>Querygrowthfromcapture</h3>
+      <p>File growth monitoring</p>
+      <p><code>scripts/from-email/20200910-QueryGrowthFromCapture.sql</code> <span class="script-date">2020-09-10</span></p>
+    </div>
+    <div class="script">
+      <h3>Queryjobinfo</h3>
+      <p>Select * FROM</p>
+      <p><code>scripts/from-email/20200910-QueryJobInfo.sql</code> <span class="script-date">2020-09-10</span></p>
+    </div>
+    <div class="script">
+      <h3>Resizingtempdb</h3>
+      <p>[Disk] = LEFT(vs.volume_mount_point,16)</p>
+      <p><code>scripts/from-email/20200910-ResizingTempDB.sql</code> <span class="script-date">2020-09-10</span></p>
+    </div>
+    <div class="script">
+      <h3>Ringbuffer</h3>
+      <p>Drop table RingBuffermemoryIssues</p>
+      <p><code>scripts/from-email/20200910-RingBuffer.sql</code> <span class="script-date">2020-09-10</span></p>
+    </div>
+    <div class="script">
+      <h3>Sccmserverlist</h3>
+      <p>NC2PWCM101\NC2PWCM1010</p>
+      <p><code>scripts/from-email/20200910-SCCMServerList.sql</code> <span class="script-date">2020-09-10</span></p>
+    </div>
+    <div class="script">
+      <h3>Sfdc Create Db Script</h3>
+      <p>Object:  Database [AddDatabase]    Script Date: 10/14/2019 10:13:53 AM</p>
+      <p><code>scripts/from-email/20200910-SFDC_Create_DB_Script.sql</code> <span class="script-date">2020-09-10</span></p>
+    </div>
+    <div class="script">
+      <h3>Sqlquery2</h3>
+      <p>Dbcc freeproccache</p>
+      <p><code>scripts/from-email/20200910-SQLQuery2.sql</code> <span class="script-date">2020-09-10</span></p>
+    </div>
+    <div class="script">
+      <h3>Sqlquery21</h3>
+      <p>Insert into testData</p>
+      <p><code>scripts/from-email/20200910-SQLQuery21.sql</code> <span class="script-date">2020-09-10</span></p>
+    </div>
+    <div class="script">
+      <h3>Sqlquery53</h3>
+      <p>Select * from sys.traces</p>
+      <p><code>scripts/from-email/20200910-SQLQuery53.sql</code> <span class="script-date">2020-09-10</span></p>
+    </div>
+    <div class="script">
+      <h3>Sqlserverstoplogs</h3>
+      <p>CREATE TABLE #ErrorLog(</p>
+      <p><code>scripts/from-email/20200910-SQLServerStopLogs.sql</code> <span class="script-date">2020-09-10</span></p>
+    </div>
+    <div class="script">
+      <h3>Sqllog</h3>
+      <p>Query ErrorLog</p>
+      <p><code>scripts/from-email/20200910-SQlLOG.sql</code> <span class="script-date">2020-09-10</span></p>
+    </div>
+    <div class="script">
+      <h3>Scriptalllogins</h3>
+      <p>This Script Generates A script to Create all Logins, Server Roles</p>
+      <p><code>scripts/from-email/20200910-ScriptAllLogins.sql</code> <span class="script-date">2020-09-10</span></p>
+    </div>
+    <div class="script">
+      <h3>Scriptingoutallindexes</h3>
+      <p>Select i.[name] as index_name,</p>
+      <p><code>scripts/from-email/20200910-ScriptingOutAllIndexes.sql</code> <span class="script-date">2020-09-10</span></p>
+    </div>
+    <div class="script">
+      <h3>Seeifindexmaintenancejobisrunningnow</h3>
+      <p>IF OBJECT_ID(&#x27;tempdb..#xp_results&#x27;) IS NOT NULL</p>
+      <p><code>scripts/from-email/20200910-SeeIfIndexMaintenanceJobIsRunningNow.sql</code> <span class="script-date">2020-09-10</span></p>
+    </div>
+    <div class="script">
+      <h3>Serversidetrace</h3>
+      <p>Created by: SQL Server 2017 RC1 Profiler</p>
+      <p><code>scripts/from-email/20200910-ServerSideTrace.sql</code> <span class="script-date">2020-09-10</span></p>
+    </div>
+    <div class="script">
+      <h3>Servicerestarttime</h3>
+      <p>SELECT sqlserver_start_time FROM sys.dm_os_sys_info</p>
+      <p><code>scripts/from-email/20200910-ServiceRestartTime.sql</code> <span class="script-date">2020-09-10</span></p>
+    </div>
+    <div class="script">
+      <h3>Setalltosimple</h3>
+      <p>This script will set recovery model to Simple on all databases</p>
+      <p><code>scripts/from-email/20200910-SetAllToSIMPLE.sql</code> <span class="script-date">2020-09-10</span></p>
+    </div>
+    <div class="script">
+      <h3>Suspect</h3>
+      <p>EXEC sp_resetstatus [AddDatabase];</p>
+      <p><code>scripts/from-email/20200910-Suspect.sql</code> <span class="script-date">2020-09-10</span></p>
+    </div>
+    <div class="script">
+      <h3>Tai Ob Proj</h3>
+      <p>Back up database [TAI_PROD_MOUNT]</p>
+      <p><code>scripts/from-email/20200910-TAI_OB_Proj.sql</code> <span class="script-date">2020-09-10</span></p>
+    </div>
+    <div class="script">
+      <h3>Tablesizes</h3>
+      <p>S.Name AS SchemaName,</p>
+      <p><code>scripts/from-email/20200910-TableSizes.sql</code> <span class="script-date">2020-09-10</span></p>
+    </div>
+    <div class="script">
+      <h3>Trace Serverside</h3>
+      <p>Created by: SQL Server 2012  Profiler</p>
+      <p><code>scripts/from-email/20200910-Trace_ServerSide.sql</code> <span class="script-date">2020-09-10</span></p>
+    </div>
+    <div class="script">
+      <h3>Truncate Proxy</h3>
+      <p>USE AddDatabase</p>
+      <p><code>scripts/from-email/20200910-Truncate_proxy.sql</code> <span class="script-date">2020-09-10</span></p>
+    </div>
+    <div class="script">
+      <h3>Whatvmisiton</h3>
+      <p>Truncate Table AddDatabase.dbo.CurrentVMInfo</p>
+      <p><code>scripts/from-email/20200910-WhatVMisItOn.sql</code> <span class="script-date">2020-09-10</span></p>
+    </div>
+    <div class="script">
+      <h3>Whoisactivequery</h3>
+      <p>Query script</p>
+      <p><code>scripts/from-email/20200910-WhoIsActiveQuery.sql</code> <span class="script-date">2020-09-10</span></p>
+    </div>
+    <div class="script">
+      <h3>Worstio</h3>
+      <p>Worst performing I/O bound queries</p>
+      <p><code>scripts/from-email/20200910-WorstIO.sql</code> <span class="script-date">2020-09-10</span></p>
+    </div>
+    <div class="script">
+      <h3>Databasegrowth</h3>
+      <p>Select DB_NAME(mf.database_id) database_name</p>
+      <p><code>scripts/from-email/20200910-databasegrowth.sql</code> <span class="script-date">2020-09-10</span></p>
+    </div>
+    <div class="script">
+      <h3>Dblistallservers</h3>
+      <p>SELECT distinct</p>
+      <p><code>scripts/from-email/20200910-dbListAllServers.sql</code> <span class="script-date">2020-09-10</span></p>
+    </div>
+    <div class="script">
+      <h3>Defaulttrace</h3>
+      <p>SELECT  TE.name AS [EventName] ,</p>
+      <p><code>scripts/from-email/20200910-defaulttrace.sql</code> <span class="script-date">2020-09-10</span></p>
+    </div>
+    <div class="script">
+      <h3>Deletelargeamount</h3>
+      <p>Cleanup / delete script</p>
+      <p><code>scripts/from-email/20200910-deleteLargeAmount.sql</code> <span class="script-date">2020-09-10</span></p>
+    </div>
+    <div class="script">
+      <h3>Jobinfo</h3>
+      <p>Sysjobs.name job_name</p>
+      <p><code>scripts/from-email/20200910-jobinfo.sql</code> <span class="script-date">2020-09-10</span></p>
+    </div>
+    <div class="script">
+      <h3>Jobinfo2</h3>
+      <p>Sysjobs.name job_name</p>
+      <p><code>scripts/from-email/20200910-jobinfo2.sql</code> <span class="script-date">2020-09-10</span></p>
+    </div>
+    <div class="script">
+      <h3>Membersofadgroup</h3>
+      <p>Select name,dbname</p>
+      <p><code>scripts/from-email/20200910-membersofAdgroup.sql</code> <span class="script-date">2020-09-10</span></p>
+    </div>
+    <div class="script">
+      <h3>Memorychanges</h3>
+      <p>NC2PWCSQL2700\NC2PWCSQL2700--58000 out of 63</p>
+      <p><code>scripts/from-email/20200910-memoryChanges.sql</code> <span class="script-date">2020-09-10</span></p>
+    </div>
+    <div class="script">
+      <h3>Ports</h3>
+      <p>Select distinct local_net_address, local_tcp_port from sys.dm_exec_connections where local_net_address is not null</p>
+      <p><code>scripts/from-email/20200910-ports.sql</code> <span class="script-date">2020-09-10</span></p>
+    </div>
+    <div class="script">
+      <h3>Readdindexmaintenancetoallservers</h3>
+      <p>IF EXISTS (SELECT job_id FROM msdb.dbo.sysjobs_view WHERE name = N&#x27;DBA - IndexOptimize - USER_DATABASES&#x27;)</p>
+      <p><code>scripts/from-email/20200910-reAddIndexMaintenanceToAllServers.sql</code> <span class="script-date">2020-09-10</span></p>
+    </div>
+    <div class="script">
+      <h3>Scriptallpks</h3>
+      <p>SCRIPT TO GENERATE THE CREATION SCRIPT OF ALL PK AND UNIQUE CONSTRAINTS.</p>
+      <p><code>scripts/from-email/20200910-scriptAllPKs.sql</code> <span class="script-date">2020-09-10</span></p>
+    </div>
+    <div class="script">
+      <h3>Serviceaccounts</h3>
+      <p>Select servicename,service_account,</p>
+      <p><code>scripts/from-email/20200910-serviceAccounts.sql</code> <span class="script-date">2020-09-10</span></p>
+    </div>
+    <div class="script">
+      <h3>Sp Whoisactive</h3>
+      <p>Object:  StoredProcedure [dbo].[sp_WhoIsActive]    Script Date: 05/12/2014 16:05:25</p>
+      <p><code>scripts/from-email/20200910-sp_whoIsActive.sql</code> <span class="script-date">2020-09-10</span></p>
+    </div>
+    <div class="script">
+      <h3>Tracestartstop</h3>
+      <p>SELECT * FROM sys.traces</p>
+      <p><code>scripts/from-email/20200910-traceStartStop.sql</code> <span class="script-date">2020-09-10</span></p>
+    </div>
+    <div class="script">
+      <h3>Xp Instnce Reg Read</h3>
+      <p>GRANT EXECUTE ON [sys].[xp_instance_regread] TO [AddCompany\APP-RFS-DIST-DEV-DB-USER];</p>
+      <p><code>scripts/from-email/20200910-xp_instnce__reg_read.sql</code> <span class="script-date">2020-09-10</span></p>
+    </div>
+    <div class="script">
+      <h3>Querybufferpoolformemoryissues</h3>
+      <p>USE [AddDatabase]</p>
+      <p><code>scripts/from-email/20200929-QueryBufferPoolForMemoryIssues.sql</code> <span class="script-date">2020-09-29</span></p>
+    </div>
+    <div class="script">
+      <h3>Step1Commandexecuteprocforindexjob</h3>
+      <p>Index maintenance script</p>
+      <p><code>scripts/from-email/20200929-Step1CommandExecuteProcForIndexJob.sql</code> <span class="script-date">2020-09-29</span></p>
+    </div>
+    <div class="script">
+      <h3>Step2Createtablecommandlog</h3>
+      <p>Table script</p>
+      <p><code>scripts/from-email/20200929-Step2CreateTableCommandLog.sql</code> <span class="script-date">2020-09-29</span></p>
+    </div>
+    <div class="script">
+      <h3>Step3Indexoptimize</h3>
+      <p>Index maintenance script</p>
+      <p><code>scripts/from-email/20200929-Step3IndexOptimize.sql</code> <span class="script-date">2020-09-29</span></p>
+    </div>
+    <div class="script">
+      <h3>Step4Executeindexproc</h3>
+      <p>Use AddDatabase</p>
+      <p><code>scripts/from-email/20200929-Step4ExecuteIndexProc.sql</code> <span class="script-date">2020-09-29</span></p>
+    </div>
+    <div class="script">
+      <h3>Whenstatslastupdated</h3>
+      <p>SELECT OBJECT_NAME(object_id) AS [ObjectName]       ,[name] AS [StatisticName]</p>
+      <p><code>scripts/from-email/20200929-WhenStatsLastUpdated.sql</code> <span class="script-date">2020-09-29</span></p>
+    </div>
+    <div class="script">
+      <h3>Capturetest</h3>
+      <p>Object:  Job [captureTest]    Script Date: 10/2/2020 2:42:15 PM</p>
+      <p><code>scripts/from-email/20201002-Capturetest.sql</code> <span class="script-date">2020-10-02</span></p>
+    </div>
+    <div class="script">
+      <h3>Sp Whoisactive</h3>
+      <p>USE [AddDatabase]</p>
+      <p><code>scripts/from-email/20201002-sp_whoIsActive.sql</code> <span class="script-date">2020-10-02</span></p>
+    </div>
+  </section>
+
+  <section class="script-group">
+    <h2>From Email — 2019 (129)</h2>
+    <p class="group-note">Recovered from email attachments and redacted for sharing: servers → <code>AddServer</code>, databases → <code>AddDatabase</code>, companies → <code>AddCompany</code>.</p>
+    <div class="script">
+      <h3>Auditexample</h3>
+      <p>Auditing script</p>
+      <p><code>scripts/from-email/20190813-AuditExample.sql</code> <span class="script-date">2019-08-13</span></p>
+    </div>
+    <div class="script">
+      <h3>Audittriggeronlogs</h3>
+      <p>Auditing script</p>
+      <p><code>scripts/from-email/20190813-AuditTriggerOnLogs.sql</code> <span class="script-date">2019-08-13</span></p>
+    </div>
+    <div class="script">
+      <h3>Blitperfmon</h3>
+      <p>Performance monitoring</p>
+      <p><code>scripts/from-email/20190813-BlitPerfMon.sql</code> <span class="script-date">2019-08-13</span></p>
+    </div>
+    <div class="script">
+      <h3>Blitzfirst</h3>
+      <p>Exec [dbo].[sp_BlitzFirst]@ExpertMode = 1</p>
+      <p><code>scripts/from-email/20190813-BlitzFirst.sql</code> <span class="script-date">2019-08-13</span></p>
+    </div>
+    <div class="script">
+      <h3>Cdcontables</h3>
+      <p>USE AddDatabase</p>
+      <p><code>scripts/from-email/20190813-CDCOnTables.sql</code> <span class="script-date">2019-08-13</span></p>
+    </div>
+    <div class="script">
+      <h3>Cdc Testing</h3>
+      <p>Enable CDC (Change Data Capture)</p>
+      <p><code>scripts/from-email/20190813-CDC_TESTING.sql</code> <span class="script-date">2019-08-13</span></p>
+    </div>
+    <div class="script">
+      <h3>Capturereplicationlatency</h3>
+      <p>USE distribution</p>
+      <p><code>scripts/from-email/20190813-CaptureReplicationLatency.sql</code> <span class="script-date">2019-08-13</span></p>
+    </div>
+    <div class="script">
+      <h3>Createlongrunningtable</h3>
+      <p>USE [AddDatabase]</p>
+      <p><code>scripts/from-email/20190813-CreateLongRunningTable.sql</code> <span class="script-date">2019-08-13</span></p>
+    </div>
+    <div class="script">
+      <h3>Ddltrigger</h3>
+      <p>CREATE DATABASE AddDatabase;</p>
+      <p><code>scripts/from-email/20190813-DDLTrigger.sql</code> <span class="script-date">2019-08-13</span></p>
+    </div>
+    <div class="script">
+      <h3>Ddl Trig</h3>
+      <p>Emails to let you know when database is created</p>
+      <p><code>scripts/from-email/20190813-DDl_Trig.sql</code> <span class="script-date">2019-08-13</span></p>
+    </div>
+    <div class="script">
+      <h3>Databasefileinfo</h3>
+      <p>SELECT DISTINCT DB_NAME(dovs.database_id) DBName,</p>
+      <p><code>scripts/from-email/20190813-DatabaseFileInfo.sql</code> <span class="script-date">2019-08-13</span></p>
+    </div>
+    <div class="script">
+      <h3>Databaseinfo</h3>
+      <p>SELECT  name ,</p>
+      <p><code>scripts/from-email/20190813-DatabaseInfo.sql</code> <span class="script-date">2019-08-13</span></p>
+    </div>
+    <div class="script">
+      <h3>Databasemailtroubleshooting</h3>
+      <p>SELECT is_broker_enabled FROM sys.databases WHERE name = &#x27;msdb&#x27;;</p>
+      <p><code>scripts/from-email/20190813-DatabaseMailTroubleShooting.sql</code> <span class="script-date">2019-08-13</span></p>
+    </div>
+    <div class="script">
+      <h3>Deadlockextendedevents</h3>
+      <p>DATEADD(mi, DATEDIFF(mi, GETUTCDATE(), CURRENT_TIMESTAMP), DeadlockEventXML.value(&#x27;(event/@timestamp)[1]&#x27;, &#x27;datetime2&#x27;)) AS [EventTime],</p>
+      <p><code>scripts/from-email/20190813-DeadlockExtendedEvents.sql</code> <span class="script-date">2019-08-13</span></p>
+    </div>
+    <div class="script">
+      <h3>Deadlocks</h3>
+      <p>SET NOCOUNT ON</p>
+      <p><code>scripts/from-email/20190813-Deadlocks.sql</code> <span class="script-date">2019-08-13</span></p>
+    </div>
+    <div class="script">
+      <h3>Enablecdc Onalldatabases</h3>
+      <p>EXEC sys.sp_cdc_enable_db</p>
+      <p><code>scripts/from-email/20190813-EnableCDC_onAllDatabases.sql</code> <span class="script-date">2019-08-13</span></p>
+    </div>
+    <div class="script">
+      <h3>Enableclr</h3>
+      <p>Sp_configure &#x27;show advanced options&#x27;, 1;</p>
+      <p><code>scripts/from-email/20190813-EnableCLR.sql</code> <span class="script-date">2019-08-13</span></p>
+    </div>
+    <div class="script">
+      <h3>Enabledac</h3>
+      <p>EXEC sp_configure &#x27;remote admin connections&#x27;, 1</p>
+      <p><code>scripts/from-email/20190813-EnableDAC.sql</code> <span class="script-date">2019-08-13</span></p>
+    </div>
+    <div class="script">
+      <h3>Extendedevents</h3>
+      <p>CREATE EVENT SESSION [FailedQueries_n] ON SERVER</p>
+      <p><code>scripts/from-email/20190813-ExtendedEvents.sql</code> <span class="script-date">2019-08-13</span></p>
+    </div>
+    <div class="script">
+      <h3>Extendedeventsquery</h3>
+      <p>;WITH CTEExtended AS(</p>
+      <p><code>scripts/from-email/20190813-ExtendedEventsQuery.sql</code> <span class="script-date">2019-08-13</span></p>
+    </div>
+    <div class="script">
+      <h3>Findsysadmins</h3>
+      <p>CREATE TABLE #SysAdmin</p>
+      <p><code>scripts/from-email/20190813-FindSysAdmins.sql</code> <span class="script-date">2019-08-13</span></p>
+    </div>
+    <div class="script">
+      <h3>Foreachdb</h3>
+      <p>Exec sp_MsForEachDB</p>
+      <p><code>scripts/from-email/20190813-ForEachDB.sql</code> <span class="script-date">2019-08-13</span></p>
+    </div>
+    <div class="script">
+      <h3>Forwardedrecords</h3>
+      <p>Check the forwarding record count through sys.dm_db_index_physical_stats</p>
+      <p><code>scripts/from-email/20190813-ForwardedRecords.sql</code> <span class="script-date">2019-08-13</span></p>
+    </div>
+    <div class="script">
+      <h3>Fragmentationsingletable</h3>
+      <p>DECLARE @db_id INT;</p>
+      <p><code>scripts/from-email/20190813-FragmentationSingleTable.sql</code> <span class="script-date">2019-08-13</span></p>
+    </div>
+    <div class="script">
+      <h3>Freeproccache</h3>
+      <p>DECLARE @intDBID INT;</p>
+      <p><code>scripts/from-email/20190813-FreeprocCache.sql</code> <span class="script-date">2019-08-13</span></p>
+    </div>
+    <div class="script">
+      <h3>Longrunningjobs</h3>
+      <p>SELECT job_id,run_date,</p>
+      <p><code>scripts/from-email/20190813-LongRunningJobs.sql</code> <span class="script-date">2019-08-13</span></p>
+    </div>
+    <div class="script">
+      <h3>Longrunningquery</h3>
+      <p>DECLARE @longrunningthreshold int</p>
+      <p><code>scripts/from-email/20190813-LongRunningQuery.sql</code> <span class="script-date">2019-08-13</span></p>
+    </div>
+    <div class="script">
+      <h3>Longrunningqueries</h3>
+      <p>SELECT TOP 100</p>
+      <p><code>scripts/from-email/20190813-LongrunningQueries.sql</code> <span class="script-date">2019-08-13</span></p>
+    </div>
+    <div class="script">
+      <h3>Optimize</h3>
+      <p>Object:  Job [Optimization]    Script Date: 6/6/2018 4:52:22 PM</p>
+      <p><code>scripts/from-email/20190813-Optimize.sql</code> <span class="script-date">2019-08-13</span></p>
+    </div>
+    <div class="script">
+      <h3>Optimizequery</h3>
+      <p>Query script</p>
+      <p><code>scripts/from-email/20190813-OptimizeQuery.sql</code> <span class="script-date">2019-08-13</span></p>
+    </div>
+    <div class="script">
+      <h3>Procslongestrunning</h3>
+      <p>OBJECT_NAME(objectid,st.dbid) StoredProcedure</p>
+      <p><code>scripts/from-email/20190813-ProcsLongestRunning.sql</code> <span class="script-date">2019-08-13</span></p>
+    </div>
+    <div class="script">
+      <h3>Querybufferpoolformemoryissues</h3>
+      <p>USE [AddDatabase]</p>
+      <p><code>scripts/from-email/20190813-QueryBufferPoolForMemoryIssues.sql</code> <span class="script-date">2019-08-13</span></p>
+    </div>
+    <div class="script">
+      <h3>Querydatarightnow</h3>
+      <p>SELECT TOP 1000</p>
+      <p><code>scripts/from-email/20190813-QueryDataRightNow.sql</code> <span class="script-date">2019-08-13</span></p>
+    </div>
+    <div class="script">
+      <h3>Queryforperfmon</h3>
+      <p>SELECT CF.CounterValue,cf.dttm,CD.CounterName,cf.valueType</p>
+      <p><code>scripts/from-email/20190813-QueryForPerfmon.sql</code> <span class="script-date">2019-08-13</span></p>
+    </div>
+    <div class="script">
+      <h3>Queryperf</h3>
+      <p>SELECT  MachineName ,</p>
+      <p><code>scripts/from-email/20190813-QueryPerf.sql</code> <span class="script-date">2019-08-13</span></p>
+    </div>
+    <div class="script">
+      <h3>Rawcachequery</h3>
+      <p>SELECT TOP 500</p>
+      <p><code>scripts/from-email/20190813-RawCacheQuery.sql</code> <span class="script-date">2019-08-13</span></p>
+    </div>
+    <div class="script">
+      <h3>Replicationinfo</h3>
+      <p>Execute at the Distributor in the master database</p>
+      <p><code>scripts/from-email/20190813-Replicationinfo.sql</code> <span class="script-date">2019-08-13</span></p>
+    </div>
+    <div class="script">
+      <h3>Serviceaccounts</h3>
+      <p>SELECT servicename, service_account</p>
+      <p><code>scripts/from-email/20190813-ServiceAccounts.sql</code> <span class="script-date">2019-08-13</span></p>
+    </div>
+    <div class="script">
+      <h3>Setuptempdbalert</h3>
+      <p>DECLARE @xml NVARCHAR(MAX)DECLARE @body NVARCHAR(MAX)</p>
+      <p><code>scripts/from-email/20190813-SetUptempDbAlert.sql</code> <span class="script-date">2019-08-13</span></p>
+    </div>
+    <div class="script">
+      <h3>Sp Whoisactive</h3>
+      <p>Stored procedure</p>
+      <p><code>scripts/from-email/20190813-Sp_WhoIsActive.sql</code> <span class="script-date">2019-08-13</span></p>
+    </div>
+    <div class="script">
+      <h3>Storedprocscreatedmodified</h3>
+      <p>From sys.procedures</p>
+      <p><code>scripts/from-email/20190813-StoredProcsCreatedModified.sql</code> <span class="script-date">2019-08-13</span></p>
+    </div>
+    <div class="script">
+      <h3>Totalarticlesbeingreplicated</h3>
+      <p>Use [distribution]</p>
+      <p><code>scripts/from-email/20190813-TotalArticlesBeingReplicated.sql</code> <span class="script-date">2019-08-13</span></p>
+    </div>
+    <div class="script">
+      <h3>Triggersonsystem</h3>
+      <p>Sysobjects.name AS trigger_name</p>
+      <p><code>scripts/from-email/20190813-TriggersOnSystem.sql</code> <span class="script-date">2019-08-13</span></p>
+    </div>
+    <div class="script">
+      <h3>Troubleshootingdatabasemail</h3>
+      <p>SELECT is_broker_enabled FROM sys.databases WHERE name = &#x27;msdb&#x27;;</p>
+      <p><code>scripts/from-email/20190813-TroubleShootingDatabaseMail.sql</code> <span class="script-date">2019-08-13</span></p>
+    </div>
+    <div class="script">
+      <h3>Troubleshootingdbmail</h3>
+      <p>SELECT is_broker_enabled FROM sys.databases WHERE name = &#x27;msdb&#x27;;</p>
+      <p><code>scripts/from-email/20190813-TroubleShootingDbMail.sql</code> <span class="script-date">2019-08-13</span></p>
+    </div>
+    <div class="script">
+      <h3>Usingtempdb</h3>
+      <p>Procedure created by Cheryl Smith to capture queries causing extreme TempDB growth</p>
+      <p><code>scripts/from-email/20190813-UsingTempDB.sql</code> <span class="script-date">2019-08-13</span></p>
+    </div>
+    <div class="script">
+      <h3>Waits</h3>
+      <p>DBCC SQLPERF(WAITSTATS)</p>
+      <p><code>scripts/from-email/20190813-Waits.sql</code> <span class="script-date">2019-08-13</span></p>
+    </div>
+    <div class="script">
+      <h3>Waitsoveraspecificperiod</h3>
+      <p>Get waiting task types over an 2 min period</p>
+      <p><code>scripts/from-email/20190813-WaitsOverASpecificPeriod.sql</code> <span class="script-date">2019-08-13</span></p>
+    </div>
+    <div class="script">
+      <h3>Whatisusingthetable</h3>
+      <p>See what is using a table</p>
+      <p><code>scripts/from-email/20190813-WhatIsUsingTheTable.sql</code> <span class="script-date">2019-08-13</span></p>
+    </div>
+    <div class="script">
+      <h3>Whatuseslinkedserver</h3>
+      <p>Declare @VName varchar(256)</p>
+      <p><code>scripts/from-email/20190813-WhatUsesLinkedServer.sql</code> <span class="script-date">2019-08-13</span></p>
+    </div>
+    <div class="script">
+      <h3>Whatsincache</h3>
+      <p>Db_name(st.dbid) as database_name,</p>
+      <p><code>scripts/from-email/20190813-WhatsInCache.sql</code> <span class="script-date">2019-08-13</span></p>
+    </div>
+    <div class="script">
+      <h3>Whoisactivequery2</h3>
+      <p>Select [dd hh:mm:ss.mss],start_time,collection_time,session_id,database_name,</p>
+      <p><code>scripts/from-email/20190813-WhoIsActiveQuery2.sql</code> <span class="script-date">2019-08-13</span></p>
+    </div>
+    <div class="script">
+      <h3>Whoisactivequery</h3>
+      <p>Query script</p>
+      <p><code>scripts/from-email/20190813-WhoIsactiveQuery.sql</code> <span class="script-date">2019-08-13</span></p>
+    </div>
+    <div class="script">
+      <h3>Flushproccacheforadb</h3>
+      <p>DECLARE @intDBID INT;</p>
+      <p><code>scripts/from-email/20190813-flushProcCacheForADb.sql</code> <span class="script-date">2019-08-13</span></p>
+    </div>
+    <div class="script">
+      <h3>Getprocstats</h3>
+      <p>Statistics maintenance</p>
+      <p><code>scripts/from-email/20190813-getProcStats.sql</code> <span class="script-date">2019-08-13</span></p>
+    </div>
+    <div class="script">
+      <h3>Gettotalrowcountsforeachdb</h3>
+      <p>CREATE TABLE  #TableRowCounts  ([databaseNAme] Varchar(100),[TableName] VARCHAR(128), [RowCount] INT) ;</p>
+      <p><code>scripts/from-email/20190813-getTotalRowCountsForEachDB.sql</code> <span class="script-date">2019-08-13</span></p>
+    </div>
+    <div class="script">
+      <h3>Listtriggersontables</h3>
+      <p>Sysobjects.name AS trigger_name</p>
+      <p><code>scripts/from-email/20190813-listTriggersOnTables.sql</code> <span class="script-date">2019-08-13</span></p>
+    </div>
+    <div class="script">
+      <h3>Memorygrants</h3>
+      <p>SELECT mg.granted_memory_kb, mg.session_id, t.text, qp.query_plan</p>
+      <p><code>scripts/from-email/20190813-memoryGrants.sql</code> <span class="script-date">2019-08-13</span></p>
+    </div>
+    <div class="script">
+      <h3>Perfqueryforcpu</h3>
+      <p>With CTEPerf as (</p>
+      <p><code>scripts/from-email/20190813-perfQueryForCPU.sql</code> <span class="script-date">2019-08-13</span></p>
+    </div>
+    <div class="script">
+      <h3>Perfqueryforexcel</h3>
+      <p>Select distinct objectname,countername,instanceName from [dbo].[CounterDetails]</p>
+      <p><code>scripts/from-email/20190813-perfQueryForExcel.sql</code> <span class="script-date">2019-08-13</span></p>
+    </div>
+    <div class="script">
+      <h3>Procsmostio</h3>
+      <p>Exec p_Nucleus_Utility_ETL_Refresh &#x27;SWFL&#x27;, &#x27;REGEN&#x27;, &#x27;ALL&#x27;</p>
+      <p><code>scripts/from-email/20190813-procsMostIO.sql</code> <span class="script-date">2019-08-13</span></p>
+    </div>
+    <div class="script">
+      <h3>Queryhash</h3>
+      <p>SELECT  deqs.query_hash ,</p>
+      <p><code>scripts/from-email/20190813-queryhash.sql</code> <span class="script-date">2019-08-13</span></p>
+    </div>
+    <div class="script">
+      <h3>Sp 3</h3>
+      <p>CREATE PROCEDURE [dbo].[sp_who3]</p>
+      <p><code>scripts/from-email/20190813-sp_3.sql</code> <span class="script-date">2019-08-13</span></p>
+    </div>
+    <div class="script">
+      <h3>Auditexample</h3>
+      <p>Auditing script</p>
+      <p><code>scripts/from-email/20190910-AuditExample.sql</code> <span class="script-date">2019-09-10</span></p>
+    </div>
+    <div class="script">
+      <h3>Audittriggeronlogs</h3>
+      <p>Auditing script</p>
+      <p><code>scripts/from-email/20190910-AuditTriggerOnLogs.sql</code> <span class="script-date">2019-09-10</span></p>
+    </div>
+    <div class="script">
+      <h3>Blitperfmon</h3>
+      <p>Performance monitoring</p>
+      <p><code>scripts/from-email/20190910-BlitPerfMon.sql</code> <span class="script-date">2019-09-10</span></p>
+    </div>
+    <div class="script">
+      <h3>Blitzfirst</h3>
+      <p>Exec [dbo].[sp_BlitzFirst]@ExpertMode = 1</p>
+      <p><code>scripts/from-email/20190910-BlitzFirst.sql</code> <span class="script-date">2019-09-10</span></p>
+    </div>
+    <div class="script">
+      <h3>Createlongrunningtable</h3>
+      <p>USE [AddDatabase]</p>
+      <p><code>scripts/from-email/20190910-CreateLongRunningTable.sql</code> <span class="script-date">2019-09-10</span></p>
+    </div>
+    <div class="script">
+      <h3>Ddltrigger</h3>
+      <p>CREATE DATABASE AddDatabase;</p>
+      <p><code>scripts/from-email/20190910-DDLTrigger.sql</code> <span class="script-date">2019-09-10</span></p>
+    </div>
+    <div class="script">
+      <h3>Databasefileinfo</h3>
+      <p>SELECT DISTINCT DB_NAME(dovs.database_id) DBName,</p>
+      <p><code>scripts/from-email/20190910-DatabaseFileInfo.sql</code> <span class="script-date">2019-09-10</span></p>
+    </div>
+    <div class="script">
+      <h3>Databaseinfo</h3>
+      <p>SELECT  name ,</p>
+      <p><code>scripts/from-email/20190910-DatabaseInfo.sql</code> <span class="script-date">2019-09-10</span></p>
+    </div>
+    <div class="script">
+      <h3>Deadlocks</h3>
+      <p>SET NOCOUNT ON</p>
+      <p><code>scripts/from-email/20190910-Deadlocks.sql</code> <span class="script-date">2019-09-10</span></p>
+    </div>
+    <div class="script">
+      <h3>Enableclr</h3>
+      <p>Sp_configure &#x27;show advanced options&#x27;, 1;</p>
+      <p><code>scripts/from-email/20190910-EnableCLR.sql</code> <span class="script-date">2019-09-10</span></p>
+    </div>
+    <div class="script">
+      <h3>Enabledac</h3>
+      <p>EXEC sp_configure &#x27;remote admin connections&#x27;, 1</p>
+      <p><code>scripts/from-email/20190910-EnableDAC.sql</code> <span class="script-date">2019-09-10</span></p>
+    </div>
+    <div class="script">
+      <h3>Findsysadmins</h3>
+      <p>CREATE TABLE #SysAdmin</p>
+      <p><code>scripts/from-email/20190910-FindSysAdmins.sql</code> <span class="script-date">2019-09-10</span></p>
+    </div>
+    <div class="script">
+      <h3>Forwardedrecords</h3>
+      <p>Check the forwarding record count through sys.dm_db_index_physical_stats</p>
+      <p><code>scripts/from-email/20190910-ForwardedRecords.sql</code> <span class="script-date">2019-09-10</span></p>
+    </div>
+    <div class="script">
+      <h3>Fragmentationsingletable</h3>
+      <p>DECLARE @db_id INT;</p>
+      <p><code>scripts/from-email/20190910-FragmentationSingleTable.sql</code> <span class="script-date">2019-09-10</span></p>
+    </div>
+    <div class="script">
+      <h3>Freeproccache</h3>
+      <p>DECLARE @intDBID INT;</p>
+      <p><code>scripts/from-email/20190910-FreeprocCache.sql</code> <span class="script-date">2019-09-10</span></p>
+    </div>
+    <div class="script">
+      <h3>Longrunningjobs</h3>
+      <p>SELECT job_id,run_date,</p>
+      <p><code>scripts/from-email/20190910-LongRunningJobs.sql</code> <span class="script-date">2019-09-10</span></p>
+    </div>
+    <div class="script">
+      <h3>Longrunningquery</h3>
+      <p>DECLARE @longrunningthreshold int</p>
+      <p><code>scripts/from-email/20190910-LongRunningQuery.sql</code> <span class="script-date">2019-09-10</span></p>
+    </div>
+    <div class="script">
+      <h3>Longrunningqueries</h3>
+      <p>SELECT TOP 100</p>
+      <p><code>scripts/from-email/20190910-LongrunningQueries.sql</code> <span class="script-date">2019-09-10</span></p>
+    </div>
+    <div class="script">
+      <h3>Optimize</h3>
+      <p>Object:  Job [Optimization]    Script Date: 6/6/2018 4:52:22 PM</p>
+      <p><code>scripts/from-email/20190910-Optimize.sql</code> <span class="script-date">2019-09-10</span></p>
+    </div>
+    <div class="script">
+      <h3>Procslongestrunning</h3>
+      <p>OBJECT_NAME(objectid,st.dbid) StoredProcedure</p>
+      <p><code>scripts/from-email/20190910-ProcsLongestRunning.sql</code> <span class="script-date">2019-09-10</span></p>
+    </div>
+    <div class="script">
+      <h3>Querybufferpoolformemoryissues</h3>
+      <p>USE [AddDatabase]</p>
+      <p><code>scripts/from-email/20190910-QueryBufferPoolForMemoryIssues.sql</code> <span class="script-date">2019-09-10</span></p>
+    </div>
+    <div class="script">
+      <h3>Querydatarightnow</h3>
+      <p>SELECT TOP 1000</p>
+      <p><code>scripts/from-email/20190910-QueryDataRightNow.sql</code> <span class="script-date">2019-09-10</span></p>
+    </div>
+    <div class="script">
+      <h3>Queryforperfmon</h3>
+      <p>SELECT CF.CounterValue,cf.dttm,CD.CounterName,cf.valueType</p>
+      <p><code>scripts/from-email/20190910-QueryForPerfmon.sql</code> <span class="script-date">2019-09-10</span></p>
+    </div>
+    <div class="script">
+      <h3>Rawcachequery</h3>
+      <p>SELECT TOP 500</p>
+      <p><code>scripts/from-email/20190910-RawCacheQuery.sql</code> <span class="script-date">2019-09-10</span></p>
+    </div>
+    <div class="script">
+      <h3>Serviceaccounts</h3>
+      <p>SELECT servicename, service_account</p>
+      <p><code>scripts/from-email/20190910-ServiceAccounts.sql</code> <span class="script-date">2019-09-10</span></p>
+    </div>
+    <div class="script">
+      <h3>Setuptempdbalert</h3>
+      <p>DECLARE @xml NVARCHAR(MAX)DECLARE @body NVARCHAR(MAX)</p>
+      <p><code>scripts/from-email/20190910-SetUptempDbAlert.sql</code> <span class="script-date">2019-09-10</span></p>
+    </div>
+    <div class="script">
+      <h3>Sp Whoisactive</h3>
+      <p>Stored procedure</p>
+      <p><code>scripts/from-email/20190910-Sp_WhoIsActive.sql</code> <span class="script-date">2019-09-10</span></p>
+    </div>
+    <div class="script">
+      <h3>Storedprocscreatedmodified</h3>
+      <p>From sys.procedures</p>
+      <p><code>scripts/from-email/20190910-StoredProcsCreatedModified.sql</code> <span class="script-date">2019-09-10</span></p>
+    </div>
+    <div class="script">
+      <h3>Triggersonsystem</h3>
+      <p>Sysobjects.name AS trigger_name</p>
+      <p><code>scripts/from-email/20190910-TriggersOnSystem.sql</code> <span class="script-date">2019-09-10</span></p>
+    </div>
+    <div class="script">
+      <h3>Usingtempdb</h3>
+      <p>Procedure created by Cheryl Smith to capture queries causing extreme TempDB growth</p>
+      <p><code>scripts/from-email/20190910-UsingTempDB.sql</code> <span class="script-date">2019-09-10</span></p>
+    </div>
+    <div class="script">
+      <h3>Waits</h3>
+      <p>DBCC SQLPERF(WAITSTATS)</p>
+      <p><code>scripts/from-email/20190910-Waits.sql</code> <span class="script-date">2019-09-10</span></p>
+    </div>
+    <div class="script">
+      <h3>Whatisusingthetable</h3>
+      <p>See what is using a table</p>
+      <p><code>scripts/from-email/20190910-WhatIsUsingTheTable.sql</code> <span class="script-date">2019-09-10</span></p>
+    </div>
+    <div class="script">
+      <h3>Whatuseslinkedserver</h3>
+      <p>Declare @VName varchar(256)</p>
+      <p><code>scripts/from-email/20190910-WhatUsesLinkedServer.sql</code> <span class="script-date">2019-09-10</span></p>
+    </div>
+    <div class="script">
+      <h3>Whatsincache</h3>
+      <p>Db_name(st.dbid) as database_name,</p>
+      <p><code>scripts/from-email/20190910-WhatsInCache.sql</code> <span class="script-date">2019-09-10</span></p>
+    </div>
+    <div class="script">
+      <h3>Whoisactivequery</h3>
+      <p>Query script</p>
+      <p><code>scripts/from-email/20190910-WhoIsactiveQuery.sql</code> <span class="script-date">2019-09-10</span></p>
+    </div>
+    <div class="script">
+      <h3>Getprocstats</h3>
+      <p>Statistics maintenance</p>
+      <p><code>scripts/from-email/20190910-getProcStats.sql</code> <span class="script-date">2019-09-10</span></p>
+    </div>
+    <div class="script">
+      <h3>Gettotalrowcountsforeachdb</h3>
+      <p>CREATE TABLE  #TableRowCounts  ([databaseNAme] Varchar(100),[TableName] VARCHAR(128), [RowCount] INT) ;</p>
+      <p><code>scripts/from-email/20190910-getTotalRowCountsForEachDB.sql</code> <span class="script-date">2019-09-10</span></p>
+    </div>
+    <div class="script">
+      <h3>Listtriggersontables</h3>
+      <p>Sysobjects.name AS trigger_name</p>
+      <p><code>scripts/from-email/20190910-listTriggersOnTables.sql</code> <span class="script-date">2019-09-10</span></p>
+    </div>
+    <div class="script">
+      <h3>Memorygrants</h3>
+      <p>SELECT mg.granted_memory_kb, mg.session_id, t.text, qp.query_plan</p>
+      <p><code>scripts/from-email/20190910-memoryGrants.sql</code> <span class="script-date">2019-09-10</span></p>
+    </div>
+    <div class="script">
+      <h3>Perfqueryforcpu</h3>
+      <p>With CTEPerf as (</p>
+      <p><code>scripts/from-email/20190910-perfQueryForCPU.sql</code> <span class="script-date">2019-09-10</span></p>
+    </div>
+    <div class="script">
+      <h3>Perfqueryforexcel</h3>
+      <p>Select distinct objectname,countername,instanceName from [dbo].[CounterDetails]</p>
+      <p><code>scripts/from-email/20190910-perfQueryForExcel.sql</code> <span class="script-date">2019-09-10</span></p>
+    </div>
+    <div class="script">
+      <h3>Procsmostio</h3>
+      <p>Exec p_Nucleus_Utility_ETL_Refresh &#x27;SWFL&#x27;, &#x27;REGEN&#x27;, &#x27;ALL&#x27;</p>
+      <p><code>scripts/from-email/20190910-procsMostIO.sql</code> <span class="script-date">2019-09-10</span></p>
+    </div>
+    <div class="script">
+      <h3>Sp 3</h3>
+      <p>CREATE PROCEDURE [dbo].[sp_who3]</p>
+      <p><code>scripts/from-email/20190910-sp_3.sql</code> <span class="script-date">2019-09-10</span></p>
+    </div>
+    <div class="script">
+      <h3>Checkindexfragmentation</h3>
+      <p>Insert into AddDatabase.dbo.IndexFrag</p>
+      <p><code>scripts/from-email/20190930-CheckIndexFragmentation.sql</code> <span class="script-date">2019-09-30</span></p>
+    </div>
+    <div class="script">
+      <h3>Createlongrunningtable</h3>
+      <p>USE [AddDatabase]</p>
+      <p><code>scripts/from-email/20190930-CreateLongRunningTable.sql</code> <span class="script-date">2019-09-30</span></p>
+    </div>
+    <div class="script">
+      <h3>Databaseinfo</h3>
+      <p>SELECT  name ,</p>
+      <p><code>scripts/from-email/20190930-DatabaseInfo.sql</code> <span class="script-date">2019-09-30</span></p>
+    </div>
+    <div class="script">
+      <h3>Dropindex</h3>
+      <p>Unused Index Script</p>
+      <p><code>scripts/from-email/20190930-DropIndex.sql</code> <span class="script-date">2019-09-30</span></p>
+    </div>
+    <div class="script">
+      <h3>Enableclr</h3>
+      <p>Sp_configure &#x27;show advanced options&#x27;, 1;</p>
+      <p><code>scripts/from-email/20190930-EnableCLR.sql</code> <span class="script-date">2019-09-30</span></p>
+    </div>
+    <div class="script">
+      <h3>Enabledac</h3>
+      <p>EXEC sp_configure &#x27;remote admin connections&#x27;, 1</p>
+      <p><code>scripts/from-email/20190930-EnableDAC.sql</code> <span class="script-date">2019-09-30</span></p>
+    </div>
+    <div class="script">
+      <h3>Findsysadmins</h3>
+      <p>CREATE TABLE #SysAdmin</p>
+      <p><code>scripts/from-email/20190930-FindSysAdmins.sql</code> <span class="script-date">2019-09-30</span></p>
+    </div>
+    <div class="script">
+      <h3>Jobfailures</h3>
+      <p>EXEC msdb.dbo.sp_add_operator @name=N&#x27;DBA&#x27;,</p>
+      <p><code>scripts/from-email/20190930-JObFailures.sql</code> <span class="script-date">2019-09-30</span></p>
+    </div>
+    <div class="script">
+      <h3>Jobinfo</h3>
+      <p>SELECT --j.job_id,</p>
+      <p><code>scripts/from-email/20190930-JobInfo.sql</code> <span class="script-date">2019-09-30</span></p>
+    </div>
+    <div class="script">
+      <h3>Jobtrigger</h3>
+      <p>SET ANSI_NULLS ON</p>
+      <p><code>scripts/from-email/20190930-JobTrigger.sql</code> <span class="script-date">2019-09-30</span></p>
+    </div>
+    <div class="script">
+      <h3>Longrunningquery</h3>
+      <p>DECLARE @longrunningthreshold int</p>
+      <p><code>scripts/from-email/20190930-LongRunningQuery.sql</code> <span class="script-date">2019-09-30</span></p>
+    </div>
+    <div class="script">
+      <h3>Longrunningqueries</h3>
+      <p>SELECT TOP 100</p>
+      <p><code>scripts/from-email/20190930-LongrunningQueries.sql</code> <span class="script-date">2019-09-30</span></p>
+    </div>
+    <div class="script">
+      <h3>Maintenancesolution</h3>
+      <p>DBA utility script</p>
+      <p><code>scripts/from-email/20190930-MaintenanceSolution.sql</code> <span class="script-date">2019-09-30</span></p>
+    </div>
+    <div class="script">
+      <h3>Missingindexes</h3>
+      <p>Missing Index Script</p>
+      <p><code>scripts/from-email/20190930-MissingIndexes.sql</code> <span class="script-date">2019-09-30</span></p>
+    </div>
+    <div class="script">
+      <h3>Querybufferpoolformemoryissues</h3>
+      <p>USE [AddDatabase]</p>
+      <p><code>scripts/from-email/20190930-QueryBufferPoolForMemoryIssues.sql</code> <span class="script-date">2019-09-30</span></p>
+    </div>
+    <div class="script">
+      <h3>Queryforperfmon</h3>
+      <p>SELECT CF.CounterValue,cf.dttm,CD.CounterName,cf.valueType</p>
+      <p><code>scripts/from-email/20190930-QueryForPerfmon.sql</code> <span class="script-date">2019-09-30</span></p>
+    </div>
+    <div class="script">
+      <h3>Reducevlfs</h3>
+      <p>First go to gui and reduce</p>
+      <p><code>scripts/from-email/20190930-ReduceVLFs.sql</code> <span class="script-date">2019-09-30</span></p>
+    </div>
+    <div class="script">
+      <h3>Sqllog</h3>
+      <p>Query ErrorLog</p>
+      <p><code>scripts/from-email/20190930-SQLLOG.sql</code> <span class="script-date">2019-09-30</span></p>
+    </div>
+    <div class="script">
+      <h3>Setalljobstepstogotonextstep</h3>
+      <p>SET QUOTED_IDENTIFIER ON</p>
+      <p><code>scripts/from-email/20190930-SetAllJobStepsToGoToNextStep.sql</code> <span class="script-date">2019-09-30</span></p>
+    </div>
+    <div class="script">
+      <h3>Sp Whoisactive</h3>
+      <p>Stored procedure</p>
+      <p><code>scripts/from-email/20190930-Sp_WhoIsActive.sql</code> <span class="script-date">2019-09-30</span></p>
+    </div>
+    <div class="script">
+      <h3>Thoroughjobinfo</h3>
+      <p>Created by Solihin Ho - https://solihinho.wordpress.com</p>
+      <p><code>scripts/from-email/20190930-ThoroughJobInfo.sql</code> <span class="script-date">2019-09-30</span></p>
+    </div>
+    <div class="script">
+      <h3>Whenwillbackupcomplete</h3>
+      <p>SELECT����� command, percent_complete,</p>
+      <p><code>scripts/from-email/20190930-WhenWillbackUpComplete.sql</code> <span class="script-date">2019-09-30</span></p>
+    </div>
+    <div class="script">
+      <h3>Sp 3</h3>
+      <p>CREATE PROCEDURE [dbo].[sp_who3]</p>
+      <p><code>scripts/from-email/20190930-sp_3.sql</code> <span class="script-date">2019-09-30</span></p>
+    </div>
+  </section>
+
+  <section class="script-group">
+    <h2>From Email — 2018 (112)</h2>
+    <p class="group-note">Recovered from email attachments and redacted for sharing: servers → <code>AddServer</code>, databases → <code>AddDatabase</code>, companies → <code>AddCompany</code>.</p>
+    <div class="script">
+      <h3>Alluserdatabases</h3>
+      <p>FROM master.dbo.sysdatabases</p>
+      <p><code>scripts/from-email/20180314-AllUserDatabases.sql</code> <span class="script-date">2018-03-14</span></p>
+    </div>
+    <div class="script">
+      <h3>Allusersalldatabases</h3>
+      <p>DECLARE @DB_USers TABLE</p>
+      <p><code>scripts/from-email/20180314-AllUsersAllDatabases.sql</code> <span class="script-date">2018-03-14</span></p>
+    </div>
+    <div class="script">
+      <h3>Attachdbfromnetworkdrive</h3>
+      <p>First you have to enable trace flag 1807</p>
+      <p><code>scripts/from-email/20180314-AttachDBfromNetworkDrive.sql</code> <span class="script-date">2018-03-14</span></p>
+    </div>
+    <div class="script">
+      <h3>Attachfromnetwork</h3>
+      <p>CREATE DATABASE Perfmon</p>
+      <p><code>scripts/from-email/20180314-AttachFromNetwork.sql</code> <span class="script-date">2018-03-14</span></p>
+    </div>
+    <div class="script">
+      <h3>Backupacrossnetwork</h3>
+      <p>BACKUP DATABASE [AddDatabase]</p>
+      <p><code>scripts/from-email/20180314-BackUpAcrossNetwork.sql</code> <span class="script-date">2018-03-14</span></p>
+    </div>
+    <div class="script">
+      <h3>Backupinfo</h3>
+      <p>DECLARE @counter SMALLINT</p>
+      <p><code>scripts/from-email/20180314-BackUpInfo.sql</code> <span class="script-date">2018-03-14</span></p>
+    </div>
+    <div class="script">
+      <h3>Backupmultipleuserdatabases</h3>
+      <p>Backup / restore script</p>
+      <p><code>scripts/from-email/20180314-BackUpMultipleUserDatabases.sql</code> <span class="script-date">2018-03-14</span></p>
+    </div>
+    <div class="script">
+      <h3>Backupsystemdatabases</h3>
+      <p>Backup ReportServer Database</p>
+      <p><code>scripts/from-email/20180314-BackUpSystemDatabases.sql</code> <span class="script-date">2018-03-14</span></p>
+    </div>
+    <div class="script">
+      <h3>Backuptociffshare</h3>
+      <p>EXEC sp_configure &#x27;show advanced options&#x27;, 1</p>
+      <p><code>scripts/from-email/20180314-BackUpToCiffShare.sql</code> <span class="script-date">2018-03-14</span></p>
+    </div>
+    <div class="script">
+      <h3>Backup Progress</h3>
+      <p>Manually Start a Job</p>
+      <p><code>scripts/from-email/20180314-Backup_Progress.sql</code> <span class="script-date">2018-03-14</span></p>
+    </div>
+    <div class="script">
+      <h3>Capturedeadlocksextendedevents</h3>
+      <p>Make sure this path exists before you start the trace!</p>
+      <p><code>scripts/from-email/20180314-CaptureDeadlocksExtendedEvents.sql</code> <span class="script-date">2018-03-14</span></p>
+    </div>
+    <div class="script">
+      <h3>Changepropertyownerdatabasetosa</h3>
+      <p>ALTER AUTHORIZATION ON DATABASE::TL_REPORTS TO sa;</p>
+      <p><code>scripts/from-email/20180314-ChangePropertyOwnerDatabaseToSA.sql</code> <span class="script-date">2018-03-14</span></p>
+    </div>
+    <div class="script">
+      <h3>Checksum</h3>
+      <p>ALTER DATABASE [AddDatabase] SET PAGE_VERIFY CHECKSUM</p>
+      <p><code>scripts/from-email/20180314-CheckSum.sql</code> <span class="script-date">2018-03-14</span></p>
+    </div>
+    <div class="script">
+      <h3>Copybackupstonetworkpath</h3>
+      <p>DECLARE @cmd VARCHAR(255)</p>
+      <p><code>scripts/from-email/20180314-CopyBackupsToNetworkPath.sql</code> <span class="script-date">2018-03-14</span></p>
+    </div>
+    <div class="script">
+      <h3>Createlongrunningtable</h3>
+      <p>USE [AddDatabase]</p>
+      <p><code>scripts/from-email/20180314-CreateLongRunningTable.sql</code> <span class="script-date">2018-03-14</span></p>
+    </div>
+    <div class="script">
+      <h3>Dbaoperatorscript</h3>
+      <p>Object:  Operator [DBA]    Script Date: 05/21/2014 15:26:04</p>
+      <p><code>scripts/from-email/20180314-DBAOperatorScript.sql</code> <span class="script-date">2018-03-14</span></p>
+    </div>
+    <div class="script">
+      <h3>Dbmailinfo</h3>
+      <p>Database Mail</p>
+      <p><code>scripts/from-email/20180314-DBMailInfo.sql</code> <span class="script-date">2018-03-14</span></p>
+    </div>
+    <div class="script">
+      <h3>Dbmirroringwarningemail</h3>
+      <p>DECLARE @state VARCHAR(30)</p>
+      <p><code>scripts/from-email/20180314-DBMirroringWarningEmail.sql</code> <span class="script-date">2018-03-14</span></p>
+    </div>
+    <div class="script">
+      <h3>Dbsnotusedsincelaststartup</h3>
+      <p>Select [name] from sys.databases</p>
+      <p><code>scripts/from-email/20180314-DBsNotUsedSinceLastStartup.sql</code> <span class="script-date">2018-03-14</span></p>
+    </div>
+    <div class="script">
+      <h3>Databasesettings</h3>
+      <p>CONVERT(VARCHAR(25), DB.name) AS dbName,</p>
+      <p><code>scripts/from-email/20180314-DatabaseSettings.sql</code> <span class="script-date">2018-03-14</span></p>
+    </div>
+    <div class="script">
+      <h3>Deadlockssincelastserverrestart</h3>
+      <p>SELECT *,cntr_value AS NumOfDeadLocks</p>
+      <p><code>scripts/from-email/20180314-DeadlocksSinceLastServerRestart.sql</code> <span class="script-date">2018-03-14</span></p>
+    </div>
+    <div class="script">
+      <h3>Deletealldatabasespartofaschema</h3>
+      <p>DECLARE @SqlStatement VARCHAR(MAX)</p>
+      <p><code>scripts/from-email/20180314-DeleteAllDatabasesPartOfASchema.sql</code> <span class="script-date">2018-03-14</span></p>
+    </div>
+    <div class="script">
+      <h3>Deleteolddbmailqueue</h3>
+      <p>DECLARE @GETDATE datetime</p>
+      <p><code>scripts/from-email/20180314-DeleteOldDBMailQueue.sql</code> <span class="script-date">2018-03-14</span></p>
+    </div>
+    <div class="script">
+      <h3>Dropallconstraints</h3>
+      <p>DECLARE @SQL varchar(4000)=&#x27;&#x27;</p>
+      <p><code>scripts/from-email/20180314-DropAllConstraints.sql</code> <span class="script-date">2018-03-14</span></p>
+    </div>
+    <div class="script">
+      <h3>Enablecmdshell</h3>
+      <p>To allow advanced options to be changed.</p>
+      <p><code>scripts/from-email/20180314-EnableCmdShell.sql</code> <span class="script-date">2018-03-14</span></p>
+    </div>
+    <div class="script">
+      <h3>Findsysadmins</h3>
+      <p>CREATE TABLE #SysAdmin</p>
+      <p><code>scripts/from-email/20180314-FindSysAdmins.sql</code> <span class="script-date">2018-03-14</span></p>
+    </div>
+    <div class="script">
+      <h3>Generatehtmltablefromcodeandemail</h3>
+      <p>Step 2: generate html table</p>
+      <p><code>scripts/from-email/20180314-GenerateHTMLTableFromCodeAndEmail.sql</code> <span class="script-date">2018-03-14</span></p>
+    </div>
+    <div class="script">
+      <h3>Lasttimesqlstarted</h3>
+      <p>Select * from sys.dm_os_sys_info</p>
+      <p><code>scripts/from-email/20180314-LastTimeSQLStarted.sql</code> <span class="script-date">2018-03-14</span></p>
+    </div>
+    <div class="script">
+      <h3>Lastbackupbydatabasename</h3>
+      <p>SELECT distinct top 25</p>
+      <p><code>scripts/from-email/20180314-LastbackUpByDatabaseName.sql</code> <span class="script-date">2018-03-14</span></p>
+    </div>
+    <div class="script">
+      <h3>Lastbackupdates</h3>
+      <p>SELECT d.name, MAX(b.backup_finish_date) AS last_backup_finish_date</p>
+      <p><code>scripts/from-email/20180314-LastbackUpDates.sql</code> <span class="script-date">2018-03-14</span></p>
+    </div>
+    <div class="script">
+      <h3>Longrunningquery</h3>
+      <p>DECLARE @longrunningthreshold int</p>
+      <p><code>scripts/from-email/20180314-LongRunningQuery.sql</code> <span class="script-date">2018-03-14</span></p>
+    </div>
+    <div class="script">
+      <h3>Loopinbatches</h3>
+      <p>Below we set a variable to hold the count of the records in the original table to use to stop the loop when the second table reaches the same as th...</p>
+      <p><code>scripts/from-email/20180314-LoopInBatches.sql</code> <span class="script-date">2018-03-14</span></p>
+    </div>
+    <div class="script">
+      <h3>Loopinbatchesfaster</h3>
+      <p>Below we set a variable to hold the count of the records in the original table to use to stop the loop when the second table reaches the same as th...</p>
+      <p><code>scripts/from-email/20180314-LoopInBatchesFaster.sql</code> <span class="script-date">2018-03-14</span></p>
+    </div>
+    <div class="script">
+      <h3>Memorypressure</h3>
+      <p>Counter	Recommended value</p>
+      <p><code>scripts/from-email/20180314-MemoryPressure.sql</code> <span class="script-date">2018-03-14</span></p>
+    </div>
+    <div class="script">
+      <h3>Mirroringcheckstatus</h3>
+      <p>Select d.name,d.database_id,</p>
+      <p><code>scripts/from-email/20180314-MirroringCheckStatus.sql</code> <span class="script-date">2018-03-14</span></p>
+    </div>
+    <div class="script">
+      <h3>Movetempdbandsplit</h3>
+      <p>Alter database tempdb</p>
+      <p><code>scripts/from-email/20180314-MoveTempDBAndSplit.sql</code> <span class="script-date">2018-03-14</span></p>
+    </div>
+    <div class="script">
+      <h3>Notusedsharepoint</h3>
+      <p>DBA utility script</p>
+      <p><code>scripts/from-email/20180314-NotUsedSharepoint.sql</code> <span class="script-date">2018-03-14</span></p>
+    </div>
+    <div class="script">
+      <h3>Osinfo</h3>
+      <p>SELECT        a.Name0, a.Is_Virtual_Machine0, b.Caption00 AS OS, a.Creation_Date0</p>
+      <p><code>scripts/from-email/20180314-OSInfo.sql</code> <span class="script-date">2018-03-14</span></p>
+    </div>
+    <div class="script">
+      <h3>Queryallservers</h3>
+      <p>Query script</p>
+      <p><code>scripts/from-email/20180314-QueryAllServers.sql</code> <span class="script-date">2018-03-14</span></p>
+    </div>
+    <div class="script">
+      <h3>Querybufferpoolformemoryissues</h3>
+      <p>USE [AddDatabase]</p>
+      <p><code>scripts/from-email/20180314-QueryBufferPoolForMemoryIssues.sql</code> <span class="script-date">2018-03-14</span></p>
+    </div>
+    <div class="script">
+      <h3>Queryforperfmon</h3>
+      <p>SELECT CF.CounterValue,cf.dttm,CD.CounterName,cf.valueType</p>
+      <p><code>scripts/from-email/20180314-QueryForPerfmon.sql</code> <span class="script-date">2018-03-14</span></p>
+    </div>
+    <div class="script">
+      <h3>Restorepercent</h3>
+      <p>SELECT percent_complete,</p>
+      <p><code>scripts/from-email/20180314-RestorePercent.sql</code> <span class="script-date">2018-03-14</span></p>
+    </div>
+    <div class="script">
+      <h3>Sccmindexmaintenance</h3>
+      <p>Object:  Job [IndexMaintenance]    Script Date: 06/24/2014 09:59:10</p>
+      <p><code>scripts/from-email/20180314-SCCMIndexMaintenance.sql</code> <span class="script-date">2018-03-14</span></p>
+    </div>
+    <div class="script">
+      <h3>Sccmlongrunning</h3>
+      <p>Object:  Job [LongRunning]    Script Date: 06/24/2014 09:59:31</p>
+      <p><code>scripts/from-email/20180314-SCCMLongRunning.sql</code> <span class="script-date">2018-03-14</span></p>
+    </div>
+    <div class="script">
+      <h3>Sqlquery6.Xdl</h3>
+      <p>Query script</p>
+      <p><code>scripts/from-email/20180314-SQLQuery6.xdl.sql</code> <span class="script-date">2018-03-14</span></p>
+    </div>
+    <div class="script">
+      <h3>Sccmqueryforfindingsoftwarefilenames</h3>
+      <p>Select  sys.User_Name0,SYS.Netbios_Name0 as &#x27;Computer Name&#x27;,OPSYS.Caption0 AS &#x27;Operating System&#x27;,</p>
+      <p><code>scripts/from-email/20180314-SccmQueryForFindingSoftwareFilenames.sql</code> <span class="script-date">2018-03-14</span></p>
+    </div>
+    <div class="script">
+      <h3>Serverapplicationsearch</h3>
+      <p>Use AddDatabase</p>
+      <p><code>scripts/from-email/20180314-ServerApplicationSearch.sql</code> <span class="script-date">2018-03-14</span></p>
+    </div>
+    <div class="script">
+      <h3>Serverinfo</h3>
+      <p>Server-level script</p>
+      <p><code>scripts/from-email/20180314-ServerInfo.sql</code> <span class="script-date">2018-03-14</span></p>
+    </div>
+    <div class="script">
+      <h3>Serviceaccounts</h3>
+      <p>SELECT * FROM sys.dm_server_services</p>
+      <p><code>scripts/from-email/20180314-ServiceAccounts.sql</code> <span class="script-date">2018-03-14</span></p>
+    </div>
+    <div class="script">
+      <h3>Settraceflagon</h3>
+      <p>DBCC TRACEON (1807,-1);</p>
+      <p><code>scripts/from-email/20180314-SetTraceFlagOn.sql</code> <span class="script-date">2018-03-14</span></p>
+    </div>
+    <div class="script">
+      <h3>Sharepointgrowth</h3>
+      <p>Script for SelectTopNRows command from SSMS</p>
+      <p><code>scripts/from-email/20180314-SharepointGrowth.sql</code> <span class="script-date">2018-03-14</span></p>
+    </div>
+    <div class="script">
+      <h3>Startstopdbmail</h3>
+      <p>Exec sysmail_stop_sp</p>
+      <p><code>scripts/from-email/20180314-StartStopDBMail.sql</code> <span class="script-date">2018-03-14</span></p>
+    </div>
+    <div class="script">
+      <h3>Step1Commandexecuteprocforindexjob</h3>
+      <p>Index maintenance script</p>
+      <p><code>scripts/from-email/20180314-Step1CommandExecuteProcForIndexJob.sql</code> <span class="script-date">2018-03-14</span></p>
+    </div>
+    <div class="script">
+      <h3>Step2Createtablecommandlog</h3>
+      <p>Table script</p>
+      <p><code>scripts/from-email/20180314-Step2CreateTableCommandLog.sql</code> <span class="script-date">2018-03-14</span></p>
+    </div>
+    <div class="script">
+      <h3>Step3Indexoptimize</h3>
+      <p>Index maintenance script</p>
+      <p><code>scripts/from-email/20180314-Step3IndexOptimize.sql</code> <span class="script-date">2018-03-14</span></p>
+    </div>
+    <div class="script">
+      <h3>Step4Executeindexproc</h3>
+      <p>Use AddDatabase</p>
+      <p><code>scripts/from-email/20180314-Step4ExecuteIndexProc.sql</code> <span class="script-date">2018-03-14</span></p>
+    </div>
+    <div class="script">
+      <h3>Tllinkscript</h3>
+      <p>Object:  Database AddDatabase    Script Date: 2/28/01 8:08:18 PM</p>
+      <p><code>scripts/from-email/20180314-TLLINKScript.SQL</code> <span class="script-date">2018-03-14</span></p>
+    </div>
+    <div class="script">
+      <h3>Tablesizes</h3>
+      <p>SET NOCOUNT ON</p>
+      <p><code>scripts/from-email/20180314-TableSizes.sql</code> <span class="script-date">2018-03-14</span></p>
+    </div>
+    <div class="script">
+      <h3>Testing</h3>
+      <p>Insert into dbo.tblTest1(Name,Something)</p>
+      <p><code>scripts/from-email/20180314-Testing.sql</code> <span class="script-date">2018-03-14</span></p>
+    </div>
+    <div class="script">
+      <h3>Testingdidyougetdbmail</h3>
+      <p>EXEC sp_send_dbmail @recipients = &#x27;cheryl.smith@AddCompany.com&#x27;</p>
+      <p><code>scripts/from-email/20180314-TestingDidYouGetDBMail.sql</code> <span class="script-date">2018-03-14</span></p>
+    </div>
+    <div class="script">
+      <h3>Troubledsccmquery</h3>
+      <p>SELECT     UDS.OSID AS OSID, UDS.OSArch AS OSArch, UDS.OSName AS OSName, UDS.Name AS Name, UDS.RatingType AS RatingType, UDS.SolutionType AS Soluti...</p>
+      <p><code>scripts/from-email/20180314-TroubledSCCMQuery.sql</code> <span class="script-date">2018-03-14</span></p>
+    </div>
+    <div class="script">
+      <h3>Vsquery</h3>
+      <p>SELECT        ROUND(MAX(CF.CounterValue), 0) AS Value, &#x27;0&#x27; as Goal</p>
+      <p><code>scripts/from-email/20180314-VSQuery.sql</code> <span class="script-date">2018-03-14</span></p>
+    </div>
+    <div class="script">
+      <h3>Whatsizewillthebackupbe</h3>
+      <p>To determine what size a backup will be look at reserved</p>
+      <p><code>scripts/from-email/20180314-WhatSizeWillTheBackUpBe.sql</code> <span class="script-date">2018-03-14</span></p>
+    </div>
+    <div class="script">
+      <h3>Whenstatslastupdated</h3>
+      <p>SELECT OBJECT_NAME(object_id) AS [ObjectName]       ,[name] AS [StatisticName]</p>
+      <p><code>scripts/from-email/20180314-WhenStatsLastUpdated.sql</code> <span class="script-date">2018-03-14</span></p>
+    </div>
+    <div class="script">
+      <h3>Diskinfo</h3>
+      <p>SELECT V.* FROM [v_GS_DISK] V--Disk info by server</p>
+      <p><code>scripts/from-email/20180314-diskInfo.sql</code> <span class="script-date">2018-03-14</span></p>
+    </div>
+    <div class="script">
+      <h3>Findroxio</h3>
+      <p>Name0 as System,--v_R_System</p>
+      <p><code>scripts/from-email/20180314-findRoxio.sql</code> <span class="script-date">2018-03-14</span></p>
+    </div>
+    <div class="script">
+      <h3>Querybufferpoolformemoryissues</h3>
+      <p>USE [AddDatabase]</p>
+      <p><code>scripts/from-email/20180409-QueryBufferPoolForMemoryIssues.sql</code> <span class="script-date">2018-04-09</span></p>
+    </div>
+    <div class="script">
+      <h3>Step1Commandexecuteprocforindexjob</h3>
+      <p>Index maintenance script</p>
+      <p><code>scripts/from-email/20180409-Step1CommandExecuteProcForIndexJob.sql</code> <span class="script-date">2018-04-09</span></p>
+    </div>
+    <div class="script">
+      <h3>Step2Createtablecommandlog</h3>
+      <p>Table script</p>
+      <p><code>scripts/from-email/20180409-Step2CreateTableCommandLog.sql</code> <span class="script-date">2018-04-09</span></p>
+    </div>
+    <div class="script">
+      <h3>Step3Indexoptimize</h3>
+      <p>Index maintenance script</p>
+      <p><code>scripts/from-email/20180409-Step3IndexOptimize.sql</code> <span class="script-date">2018-04-09</span></p>
+    </div>
+    <div class="script">
+      <h3>Step4Executeindexproc</h3>
+      <p>Use AddDatabase</p>
+      <p><code>scripts/from-email/20180409-Step4ExecuteIndexProc.sql</code> <span class="script-date">2018-04-09</span></p>
+    </div>
+    <div class="script">
+      <h3>Whenstatslastupdated</h3>
+      <p>SELECT OBJECT_NAME(object_id) AS [ObjectName]       ,[name] AS [StatisticName]</p>
+      <p><code>scripts/from-email/20180409-WhenStatsLastUpdated.sql</code> <span class="script-date">2018-04-09</span></p>
+    </div>
+    <div class="script">
+      <h3>Querybufferpoolformemoryissues</h3>
+      <p>USE [AddDatabase]</p>
+      <p><code>scripts/from-email/20180410-QueryBufferPoolForMemoryIssues.sql</code> <span class="script-date">2018-04-10</span></p>
+    </div>
+    <div class="script">
+      <h3>Step1Commandexecuteprocforindexjob</h3>
+      <p>Index maintenance script</p>
+      <p><code>scripts/from-email/20180410-Step1CommandExecuteProcForIndexJob.sql</code> <span class="script-date">2018-04-10</span></p>
+    </div>
+    <div class="script">
+      <h3>Step2Createtablecommandlog</h3>
+      <p>Table script</p>
+      <p><code>scripts/from-email/20180410-Step2CreateTableCommandLog.sql</code> <span class="script-date">2018-04-10</span></p>
+    </div>
+    <div class="script">
+      <h3>Step3Indexoptimize</h3>
+      <p>Index maintenance script</p>
+      <p><code>scripts/from-email/20180410-Step3IndexOptimize.sql</code> <span class="script-date">2018-04-10</span></p>
+    </div>
+    <div class="script">
+      <h3>Step4Executeindexproc</h3>
+      <p>Use AddDatabase</p>
+      <p><code>scripts/from-email/20180410-Step4ExecuteIndexProc.sql</code> <span class="script-date">2018-04-10</span></p>
+    </div>
+    <div class="script">
+      <h3>Whenstatslastupdated</h3>
+      <p>SELECT OBJECT_NAME(object_id) AS [ObjectName]       ,[name] AS [StatisticName]</p>
+      <p><code>scripts/from-email/20180410-WhenStatsLastUpdated.sql</code> <span class="script-date">2018-04-10</span></p>
+    </div>
+    <div class="script">
+      <h3>Backupprogress</h3>
+      <p>SELECT command, percent_complete, start_time FROM sys.dm_exec_requests WHERE command in (&#x27;Backup Database&#x27;,&#x27;RESTORE HEADERONLY&#x27;)</p>
+      <p><code>scripts/from-email/20180504-BackUpProgress.sql</code> <span class="script-date">2018-05-04</span></p>
+    </div>
+    <div class="script">
+      <h3>Checkindexfragmentation</h3>
+      <p>Insert into AddDatabase.dbo.IndexFrag</p>
+      <p><code>scripts/from-email/20180504-CheckIndexFragmentation.sql</code> <span class="script-date">2018-05-04</span></p>
+    </div>
+    <div class="script">
+      <h3>Createlongrunningtable</h3>
+      <p>USE [AddDatabase]</p>
+      <p><code>scripts/from-email/20180504-CreateLongRunningTable.sql</code> <span class="script-date">2018-05-04</span></p>
+    </div>
+    <div class="script">
+      <h3>Databaseinfo</h3>
+      <p>SELECT  name ,</p>
+      <p><code>scripts/from-email/20180504-DatabaseInfo.sql</code> <span class="script-date">2018-05-04</span></p>
+    </div>
+    <div class="script">
+      <h3>Dropindex</h3>
+      <p>Unused Index Script</p>
+      <p><code>scripts/from-email/20180504-DropIndex.sql</code> <span class="script-date">2018-05-04</span></p>
+    </div>
+    <div class="script">
+      <h3>Enableclr</h3>
+      <p>Sp_configure &#x27;show advanced options&#x27;, 1;</p>
+      <p><code>scripts/from-email/20180504-EnableCLR.sql</code> <span class="script-date">2018-05-04</span></p>
+    </div>
+    <div class="script">
+      <h3>Enabledac</h3>
+      <p>EXEC sp_configure &#x27;remote admin connections&#x27;, 1</p>
+      <p><code>scripts/from-email/20180504-EnableDAC.sql</code> <span class="script-date">2018-05-04</span></p>
+    </div>
+    <div class="script">
+      <h3>Findsysadmins</h3>
+      <p>CREATE TABLE #SysAdmin</p>
+      <p><code>scripts/from-email/20180504-FindSysAdmins.sql</code> <span class="script-date">2018-05-04</span></p>
+    </div>
+    <div class="script">
+      <h3>Henrytesting</h3>
+      <p>When Description LIKE &#x27;%[^a-zA-Z0-9]%&#x27; and  Description LIKE &#x27;%Driver%&#x27;</p>
+      <p><code>scripts/from-email/20180504-HenryTesting.sql</code> <span class="script-date">2018-05-04</span></p>
+    </div>
+    <div class="script">
+      <h3>Henrytesting2</h3>
+      <p>USE AddDatabase</p>
+      <p><code>scripts/from-email/20180504-Henrytesting2.sql</code> <span class="script-date">2018-05-04</span></p>
+    </div>
+    <div class="script">
+      <h3>Jobfailures</h3>
+      <p>EXEC msdb.dbo.sp_add_operator @name=N&#x27;DBA&#x27;,</p>
+      <p><code>scripts/from-email/20180504-JObFailures.sql</code> <span class="script-date">2018-05-04</span></p>
+    </div>
+    <div class="script">
+      <h3>Jobinfo</h3>
+      <p>SELECT --j.job_id,</p>
+      <p><code>scripts/from-email/20180504-JobInfo.sql</code> <span class="script-date">2018-05-04</span></p>
+    </div>
+    <div class="script">
+      <h3>Jobtrigger</h3>
+      <p>SET ANSI_NULLS ON</p>
+      <p><code>scripts/from-email/20180504-JobTrigger.sql</code> <span class="script-date">2018-05-04</span></p>
+    </div>
+    <div class="script">
+      <h3>Listallpackages</h3>
+      <p>F.name AS FolderName</p>
+      <p><code>scripts/from-email/20180504-ListAllPackages.sql</code> <span class="script-date">2018-05-04</span></p>
+    </div>
+    <div class="script">
+      <h3>Longrunningquery</h3>
+      <p>DECLARE @longrunningthreshold int</p>
+      <p><code>scripts/from-email/20180504-LongRunningQuery.sql</code> <span class="script-date">2018-05-04</span></p>
+    </div>
+    <div class="script">
+      <h3>Longrunningqueries</h3>
+      <p>SELECT TOP 100</p>
+      <p><code>scripts/from-email/20180504-LongrunningQueries.sql</code> <span class="script-date">2018-05-04</span></p>
+    </div>
+    <div class="script">
+      <h3>Maintenancesolution</h3>
+      <p>DBA utility script</p>
+      <p><code>scripts/from-email/20180504-MaintenanceSolution.sql</code> <span class="script-date">2018-05-04</span></p>
+    </div>
+    <div class="script">
+      <h3>Missingindexes</h3>
+      <p>Missing Index Script</p>
+      <p><code>scripts/from-email/20180504-MissingIndexes.sql</code> <span class="script-date">2018-05-04</span></p>
+    </div>
+    <div class="script">
+      <h3>Querybufferpoolformemoryissues</h3>
+      <p>USE [AddDatabase]</p>
+      <p><code>scripts/from-email/20180504-QueryBufferPoolForMemoryIssues.sql</code> <span class="script-date">2018-05-04</span></p>
+    </div>
+    <div class="script">
+      <h3>Queryforperfmon</h3>
+      <p>SELECT CF.CounterValue,cf.dttm,CD.CounterName,cf.valueType</p>
+      <p><code>scripts/from-email/20180504-QueryForPerfmon.sql</code> <span class="script-date">2018-05-04</span></p>
+    </div>
+    <div class="script">
+      <h3>Reducevlfs</h3>
+      <p>First go to gui and reduce</p>
+      <p><code>scripts/from-email/20180504-ReduceVLFs.sql</code> <span class="script-date">2018-05-04</span></p>
+    </div>
+    <div class="script">
+      <h3>Sqllog</h3>
+      <p>Query ErrorLog</p>
+      <p><code>scripts/from-email/20180504-SQLLOG.sql</code> <span class="script-date">2018-05-04</span></p>
+    </div>
+    <div class="script">
+      <h3>Setalljobstepstogotonextstep</h3>
+      <p>SET QUOTED_IDENTIFIER ON</p>
+      <p><code>scripts/from-email/20180504-SetAllJobStepsToGoToNextStep.sql</code> <span class="script-date">2018-05-04</span></p>
+    </div>
+    <div class="script">
+      <h3>Sp Whoisactive</h3>
+      <p>Stored procedure</p>
+      <p><code>scripts/from-email/20180504-Sp_WhoIsActive.sql</code> <span class="script-date">2018-05-04</span></p>
+    </div>
+    <div class="script">
+      <h3>Stringfunctiontogetridofcharacterssql</h3>
+      <p>Create FUNCTION RemoveNonAlphaCharacters(@OriginalText VARCHAR(8000))</p>
+      <p><code>scripts/from-email/20180504-StringFunctionToGetRidOfCharacterssql.sql</code> <span class="script-date">2018-05-04</span></p>
+    </div>
+    <div class="script">
+      <h3>Stringfunctiontoremovenumbers3</h3>
+      <p>CREATE Function [dbo].[RemoveNumericCharacters](@Temp VarChar(1000))</p>
+      <p><code>scripts/from-email/20180504-StringFunctionToRemoveNumbers3.sql</code> <span class="script-date">2018-05-04</span></p>
+    </div>
+    <div class="script">
+      <h3>Thoroughjobinfo</h3>
+      <p>Created by Solihin Ho - https://solihinho.wordpress.com</p>
+      <p><code>scripts/from-email/20180504-ThoroughJobInfo.sql</code> <span class="script-date">2018-05-04</span></p>
+    </div>
+    <div class="script">
+      <h3>Whenwillbackupcomplete</h3>
+      <p>SELECT����� command, percent_complete,</p>
+      <p><code>scripts/from-email/20180504-WhenWillbackUpComplete.sql</code> <span class="script-date">2018-05-04</span></p>
+    </div>
+    <div class="script">
+      <h3>Backupsizehistory</h3>
+      <p>SELECT [backup_start_date],</p>
+      <p><code>scripts/from-email/20180504-backupSizeHistory.sql</code> <span class="script-date">2018-05-04</span></p>
+    </div>
+    <div class="script">
+      <h3>Henrytestingmain</h3>
+      <p>SELECT - HenryCountyEMS_OderingFacility_Report</p>
+      <p><code>scripts/from-email/20180504-henrytestingMain.sql</code> <span class="script-date">2018-05-04</span></p>
+    </div>
+    <div class="script">
+      <h3>Killallfromadatabase</h3>
+      <p>ALTER DATABASE [AddDatabase] SET OFFLINE WITH ROLLBACK IMMEDIATE</p>
+      <p><code>scripts/from-email/20180504-killAllFromADatabase.sql</code> <span class="script-date">2018-05-04</span></p>
+    </div>
+    <div class="script">
+      <h3>Perfqueryforcpu</h3>
+      <p>With CTEPerf as (</p>
+      <p><code>scripts/from-email/20180504-perfQueryForCPU.sql</code> <span class="script-date">2018-05-04</span></p>
+    </div>
+    <div class="script">
+      <h3>Perfqueryforexcel</h3>
+      <p>With CTEPerf as (</p>
+      <p><code>scripts/from-email/20180504-perfQueryForExcel.sql</code> <span class="script-date">2018-05-04</span></p>
+    </div>
+    <div class="script">
+      <h3>Sp 3</h3>
+      <p>CREATE PROCEDURE [dbo].[sp_who3]</p>
+      <p><code>scripts/from-email/20180504-sp_3.sql</code> <span class="script-date">2018-05-04</span></p>
+    </div>
+  </section>
+
+  <section class="script-group">
+    <h2>From Email — 2010 (3)</h2>
+    <p class="group-note">Recovered from email attachments and redacted for sharing: servers → <code>AddServer</code>, databases → <code>AddDatabase</code>, companies → <code>AddCompany</code>.</p>
+    <div class="script">
+      <h3>Addtohistory</h3>
+      <p>Take data previously in staging table and add it to History table before new records are entered using the stored proc below...</p>
+      <p><code>scripts/from-email/20101221-AddToHistory.sql</code> <span class="script-date">2010-12-21</span></p>
+    </div>
+    <div class="script">
+      <h3>Creatingtables</h3>
+      <p>12/20/2010 Set up tables for testing</p>
+      <p><code>scripts/from-email/20101221-CreatingTables.sql</code> <span class="script-date">2010-12-21</span></p>
+    </div>
+    <div class="script">
+      <h3>Ssis..Steps</h3>
+      <p>SSIS will be used to pull daily file. A job will run once a day to run SSIS. Stored procs below will run from SSIS</p>
+      <p><code>scripts/from-email/20101221-SSIS..Steps.sql</code> <span class="script-date">2010-12-21</span></p>
+    </div>
+  </section>
+
+  <section class="script-group">
+    <h2>PowerShell</h2>
+    <p class="group-note">No PowerShell scripts found in email yet — this section will fill in as they are added to <code>scripts/powershell/</code>.</p>
+  </section>
+</main>
+
+<footer>
+  <div class="container">&copy; 2026 Cheryl Smith</div>
+</footer>
+
+</body>
+</html>
