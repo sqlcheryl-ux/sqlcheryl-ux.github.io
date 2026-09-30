@@ -32,6 +32,26 @@
   -->
 
   <article class="note">
+    <p class="note-date">2026-09-30</p>
+    <h2>Remote into Windows from a Mac with Homebrew</h2>
+    <p>
+      Microsoft's remote desktop client is now called <strong>Windows
+      App</strong> (free on the Mac App Store). To install it from the
+      terminal instead:
+    </p>
+<pre><code>brew install --cask windows-app</code></pre>
+    <p>
+      The old cask name (<code>microsoft-remote-desktop</code>) was retired,
+      so <code>windows-app</code> is the one to use. Open Terminal with
+      Cmd+Space, type the command, hit enter — the app lands in your
+      Applications folder. Then open it and add the Windows machine by name.
+      If you get stuck mid-command with a <code>dquote cmdsubst&gt;</code>
+      prompt, you mistyped a quote: hit Ctrl+C and paste the command in one
+      go instead of typing it.
+    </p>
+  </article>
+
+  <article class="note">
     <p class="note-date">2026-09-29</p>
     <h2>Make job-failure emails actually useful</h2>
     <p>
